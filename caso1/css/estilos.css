@@ -2,17 +2,18 @@
    CASO 1
    CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
 
-   Commit 2:
-   - Mejora del encabezado principal.
-   - Navegación construida con Flexbox.
-   - Estado operativo del encabezado con Flexbox.
-   - Resumen real de operaciones.
-   - Indicadores visuales reutilizables.
-   - Mayor jerarquía tipográfica.
-   - Se mantiene el enfoque mobile-first.
+   Commit 3:
+   - Se mantienen encabezado, navegación e indicadores.
+   - Se incorporan cinco misiones científicas completas.
+   - Se incorporan cuatro equipos científicos.
+   - Se agregan estados y prioridades identificables
+     mediante texto, símbolos y color.
+   - Se amplía el uso justificado de Flexbox.
+   - Continúa el enfoque mobile-first.
 
-   Los módulos de misiones, equipos, alertas y agenda
-   continuarán desarrollándose progresivamente.
+   El layout principal con CSS Grid, el posicionamiento
+   avanzado y las media queries se incorporarán en
+   commits posteriores.
    ========================================================== */
 
 
@@ -47,15 +48,34 @@
        Bordes
        ------------------------------------------------------ */
     --color-borde: #cbd8d1;
+    --color-borde-fuerte: #9eb4a8;
 
     /* ------------------------------------------------------
-       Estados operativos
+       Estados positivos
        ------------------------------------------------------ */
     --color-activo: #176b45;
     --color-activo-fondo: #dcf5e8;
 
+    /* ------------------------------------------------------
+       Estados de advertencia
+       ------------------------------------------------------ */
+    --color-advertencia: #8a5a00;
+    --color-advertencia-fondo: #fff4d6;
+
+    /* ------------------------------------------------------
+       Estados críticos
+       ------------------------------------------------------ */
     --color-alerta: #a64412;
     --color-alerta-fondo: #fff1e7;
+
+    --color-critico: #8f2525;
+    --color-critico-fondo: #fde8e8;
+
+    /* ------------------------------------------------------
+       Estados neutrales
+       ------------------------------------------------------ */
+    --color-neutral: #53616a;
+    --color-neutral-fondo: #edf1f3;
 
     /* ------------------------------------------------------
        Espaciado reutilizable
@@ -71,6 +91,7 @@
     /* ------------------------------------------------------
        Bordes redondeados
        ------------------------------------------------------ */
+    --radio-xs: 0.35rem;
     --radio-sm: 0.5rem;
     --radio-md: 0.875rem;
     --radio-lg: 1.25rem;
@@ -139,6 +160,7 @@ body {
 .contenedor {
     width: 92%;
     max-width: var(--ancho-contenido);
+
     margin-inline: auto;
 }
 
@@ -150,7 +172,9 @@ body {
 h1,
 h2,
 h3,
-p {
+p,
+dl,
+dd {
     margin-top: 0;
 }
 
@@ -207,6 +231,7 @@ p {
 .encabezado-contenido {
     display: flex;
     flex-direction: column;
+
     gap: var(--espacio-lg);
 }
 
@@ -401,7 +426,7 @@ p {
 
 /*
    Las secciones comparten una misma apariencia base.
-   Esto evita duplicar estilos innecesariamente.
+   Esto aprovecha la cascada y evita duplicar estilos.
 */
 .seccion-panel {
     margin-bottom: var(--espacio-lg);
@@ -462,10 +487,7 @@ p {
 /*
    Los cuatro indicadores utilizan Flexbox.
 
-   En teléfono comienzan apilados naturalmente y
-   flex-wrap permitirá aprovechar más ancho conforme
-   esté disponible, incluso antes de incorporar las
-   media queries definitivas.
+   En teléfono comienzan apilados naturalmente.
 */
 .indicadores-operacion {
     display: flex;
@@ -569,13 +591,6 @@ p {
 }
 
 
-/* ----------------------------------------------------------
-   Indicador destacado
-
-   Se diferencia mediante borde, fondo y texto.
-   La importancia no depende exclusivamente del color.
-   ---------------------------------------------------------- */
-
 .indicador-destacado {
     background-color: var(--color-activo-fondo);
 
@@ -589,14 +604,6 @@ p {
     background-color: #c5ebd7;
 }
 
-
-/* ----------------------------------------------------------
-   Indicador de alertas
-
-   Además del color contiene el símbolo ! y la palabra
-   "Atención", cumpliendo el principio de no comunicar
-   información únicamente mediante color.
-   ---------------------------------------------------------- */
 
 .indicador-alerta {
     background-color: var(--color-alerta-fondo);
@@ -618,13 +625,428 @@ p {
 
 
 /* ==========================================================
-   11. CONTENIDO TEMPORAL
+   11. LISTA DE MISIONES
+   ========================================================== */
+
+/*
+   En esta versión mobile-first las misiones se presentan
+   una debajo de otra.
+
+   Flexbox permite controlar el flujo vertical y el espacio
+   entre tarjetas sin recurrir a márgenes individuales.
+*/
+.lista-misiones {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   12. TARJETA DE MISIÓN
+   ========================================================== */
+
+.tarjeta-mision {
+    min-width: 0;
+
+    padding: var(--espacio-md);
+
+    background-color:
+        var(--color-superficie-secundaria);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-left:
+        0.25rem
+        solid
+        var(--color-secundario);
+
+    border-radius: var(--radio-md);
+}
+
+
+/*
+   Flexbox organiza el nombre de la misión y la prioridad.
+
+   flex-wrap evita que una prioridad larga produzca
+   desplazamiento horizontal en teléfonos estrechos.
+*/
+.mision-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: var(--espacio-sm);
+
+    margin-bottom: var(--espacio-lg);
+}
+
+
+.mision-encabezado h3 {
+    margin-bottom: 0;
+
+    font-size: 1.05rem;
+}
+
+
+.mision-codigo {
+    margin-bottom: var(--espacio-2xs);
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   13. PRIORIDADES DE MISIÓN
+   ========================================================== */
+
+.prioridad {
+    display: inline-block;
+
+    padding:
+        var(--espacio-2xs)
+        var(--espacio-sm);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    border:
+        0.0625rem
+        solid
+        currentColor;
+
+    border-radius: var(--radio-sm);
+}
+
+
+.prioridad-media {
+    color: var(--color-advertencia);
+
+    background-color:
+        var(--color-advertencia-fondo);
+}
+
+
+.prioridad-alta {
+    color: var(--color-alerta);
+
+    background-color:
+        var(--color-alerta-fondo);
+}
+
+
+.prioridad-critica {
+    color: var(--color-critico);
+
+    background-color:
+        var(--color-critico-fondo);
+}
+
+
+/* ==========================================================
+   14. INFORMACIÓN DE LAS MISIONES
+   ========================================================== */
+
+.mision-datos {
+    margin-bottom: var(--espacio-lg);
+}
+
+
+.dato-mision {
+    padding-block: var(--espacio-sm);
+
+    border-bottom:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.dato-mision:first-child {
+    padding-top: 0;
+}
+
+
+.dato-mision:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+
+.dato-mision dt {
+    margin-bottom: var(--espacio-2xs);
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.dato-mision dd {
+    margin-left: 0;
+    margin-bottom: 0;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+.mision-pie {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: var(--espacio-xs);
+}
+
+
+/* ==========================================================
+   15. ESTADOS
+   ========================================================== */
+
+/*
+   Los estados usan texto y símbolo además de color.
+
+   Esto permite comprender el significado incluso cuando
+   el usuario no distingue correctamente los colores.
+*/
+.estado {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: var(--espacio-xs);
+
+    padding:
+        var(--espacio-xs)
+        var(--espacio-sm);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    border:
+        0.0625rem
+        solid
+        currentColor;
+
+    border-radius: var(--radio-sm);
+}
+
+
+.estado-progreso {
+    color: var(--color-activo);
+
+    background-color:
+        var(--color-activo-fondo);
+}
+
+
+.estado-completada {
+    color: var(--color-primario);
+
+    background-color: #e0eee7;
+}
+
+
+.estado-pendiente {
+    color: var(--color-advertencia);
+
+    background-color:
+        var(--color-advertencia-fondo);
+}
+
+
+.estado-suspendida {
+    color: var(--color-critico);
+
+    background-color:
+        var(--color-critico-fondo);
+}
+
+
+.estado-atencion {
+    color: var(--color-alerta);
+
+    background-color:
+        var(--color-alerta-fondo);
+}
+
+
+.tarjeta-mision-suspendida {
+    border-left-color: var(--color-critico);
+}
+
+
+/* ==========================================================
+   16. LISTA DE EQUIPOS
+   ========================================================== */
+
+/*
+   Los equipos utilizan inicialmente una distribución
+   vertical adecuada para pantallas pequeñas.
+
+   Posteriormente, las media queries permitirán reorganizar
+   estas tarjetas en más columnas.
+*/
+.lista-equipos {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   17. TARJETAS DE EQUIPO
+   ========================================================== */
+
+.tarjeta-equipo {
+    min-width: 0;
+
+    padding: var(--espacio-md);
+
+    background-color:
+        var(--color-superficie-secundaria);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-radius: var(--radio-md);
+}
+
+
+.tarjeta-equipo-atencion {
+    border-color: var(--color-alerta);
+}
+
+
+/*
+   El encabezado de cada equipo utiliza Flexbox para
+   alinear el identificador con el nombre del equipo.
+*/
+.equipo-encabezado {
+    display: flex;
+
+    align-items: center;
+
+    gap: var(--espacio-md);
+
+    margin-bottom: var(--espacio-lg);
+}
+
+
+.equipo-identificador {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    color: var(--color-texto-claro);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    background-color:
+        var(--color-primario);
+
+    border-radius: var(--radio-md);
+}
+
+
+.equipo-tipo {
+    margin-bottom: var(--espacio-2xs);
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+
+.equipo-encabezado h3 {
+    margin-bottom: 0;
+
+    font-size: 1.1rem;
+}
+
+
+/* ==========================================================
+   18. INFORMACIÓN DE EQUIPOS
+   ========================================================== */
+
+.equipo-datos {
+    margin-bottom: 0;
+}
+
+
+.dato-equipo {
+    padding-block: var(--espacio-sm);
+
+    border-top:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.dato-equipo dt {
+    margin-bottom: var(--espacio-2xs);
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.dato-equipo dd {
+    margin-left: 0;
+    margin-bottom: 0;
+
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================================
+   19. CONTENIDO TEMPORAL
    ========================================================== */
 
 /*
    Estos bloques permanecerán solamente mientras las
-   secciones correspondientes se desarrollan en futuros
-   commits.
+   secciones de alertas y agenda se desarrollan.
 */
 .contenido-pendiente {
     margin-bottom: 0;
@@ -645,7 +1067,7 @@ p {
 
 
 /* ==========================================================
-   12. PIE DE PÁGINA
+   20. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {

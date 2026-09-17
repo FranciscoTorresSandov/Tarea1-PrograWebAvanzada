@@ -59,20 +59,40 @@
                 Flexbox permite distribuir estos datos en una sola
                 dimensión y envolverlos cuando el espacio disminuye.
             -->
-            <div class="estado-expedicion" aria-label="Estado general de la expedición">
+            <div
+                class="estado-expedicion"
+                aria-label="Estado general de la expedición"
+            >
 
                 <p class="dato-operativo">
-                    <span class="dato-etiqueta">Jornada</span>
-                    <strong>Día 4 de 7</strong>
+
+                    <span class="dato-etiqueta">
+                        Jornada
+                    </span>
+
+                    <strong>
+                        Día 4 de 7
+                    </strong>
+
                 </p>
 
                 <p class="dato-operativo">
-                    <span class="dato-etiqueta">Hora de corte</span>
-                    <strong>10:45</strong>
+
+                    <span class="dato-etiqueta">
+                        Hora de corte
+                    </span>
+
+                    <strong>
+                        10:45
+                    </strong>
+
                 </p>
 
                 <p class="dato-operativo dato-operativo-activo">
-                    <span class="dato-etiqueta">Estado general</span>
+
+                    <span class="dato-etiqueta">
+                        Estado general
+                    </span>
 
                     <!--
                         El símbolo y el texto comunican el estado,
@@ -82,6 +102,7 @@
                         <span aria-hidden="true">●</span>
                         Operaciones activas
                     </strong>
+
                 </p>
 
             </div>
@@ -94,7 +115,10 @@
                  La navegación utiliza enlaces reales hacia
                  secciones existentes dentro del documento.
             -->
-            <nav class="navegacion-principal" aria-label="Navegación principal">
+            <nav
+                class="navegacion-principal"
+                aria-label="Navegación principal"
+            >
 
                 <ul class="lista-navegacion">
 
@@ -140,7 +164,10 @@
         <!-- =================================================
              RESUMEN DE OPERACIONES
              ================================================= -->
-        <section id="resumen" class="seccion-panel seccion-resumen">
+        <section
+            id="resumen"
+            class="seccion-panel seccion-resumen"
+        >
 
             <header class="encabezado-seccion">
 
@@ -148,7 +175,9 @@
                     Estado general
                 </p>
 
-                <h2>Resumen de operaciones</h2>
+                <h2>
+                    Resumen de operaciones
+                </h2>
 
                 <p>
                     Indicadores principales para evaluar rápidamente
@@ -184,7 +213,9 @@
 
                     </div>
 
-                    <h3>Investigadores activos</h3>
+                    <h3>
+                        Investigadores activos
+                    </h3>
 
                     <p class="indicador-valor">
                         18
@@ -214,10 +245,12 @@
 
                     </div>
 
-                    <h3>Misiones en progreso</h3>
+                    <h3>
+                        Misiones en progreso
+                    </h3>
 
                     <p class="indicador-valor">
-                        3
+                        2
                     </p>
 
                     <p class="indicador-detalle">
@@ -244,7 +277,9 @@
 
                     </div>
 
-                    <h3>Misiones completadas</h3>
+                    <h3>
+                        Misiones completadas
+                    </h3>
 
                     <p class="indicador-valor">
                         7
@@ -274,7 +309,9 @@
 
                     </div>
 
-                    <h3>Alertas pendientes</h3>
+                    <h3>
+                        Alertas pendientes
+                    </h3>
 
                     <p class="indicador-valor">
                         4
@@ -294,7 +331,10 @@
         <!-- =================================================
              MISIONES ACTIVAS
              ================================================= -->
-        <section id="misiones" class="seccion-panel">
+        <section
+            id="misiones"
+            class="seccion-panel seccion-misiones"
+        >
 
             <header class="encabezado-seccion">
 
@@ -302,23 +342,491 @@
                     Operaciones de campo
                 </p>
 
-                <h2>Misiones activas</h2>
+                <h2>
+                    Misiones activas
+                </h2>
 
                 <p>
-                    Seguimiento de las actividades científicas
-                    realizadas actualmente en la reserva.
+                    Seguimiento de las actividades científicas,
+                    su prioridad y su estado operativo actual.
                 </p>
 
             </header>
 
+
             <!--
-                Las cinco misiones completas se incorporarán
-                en el Commit 3.
+                Se muestran cinco misiones.
+
+                Cada misión se representa mediante <article>
+                porque constituye una unidad independiente
+                dentro de la sección.
+
+                Se utiliza <dl> para asociar correctamente
+                cada dato con su correspondiente descripción.
             -->
-            <p class="contenido-pendiente">
-                El detalle de las misiones científicas será incorporado
-                en la siguiente etapa del desarrollo.
-            </p>
+            <div class="lista-misiones">
+
+
+                <!-- =========================================
+                     MISIÓN 1
+                     ========================================= -->
+                <article class="tarjeta-mision">
+
+                    <header class="mision-encabezado">
+
+                        <div>
+
+                            <p class="mision-codigo">
+                                Misión M-014
+                            </p>
+
+                            <h3>
+                                Monitoreo de anfibios
+                            </h3>
+
+                        </div>
+
+                        <span class="prioridad prioridad-alta">
+                            Prioridad: Alta
+                        </span>
+
+                    </header>
+
+
+                    <dl class="mision-datos">
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Equipo responsable
+                            </dt>
+
+                            <dd>
+                                Biología
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Sendero Norte
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="08:30">
+                                    08:30
+                                </time>
+                                –
+                                <time datetime="11:30">
+                                    11:30
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="mision-pie">
+
+                        <span class="estado estado-progreso">
+
+                            <span aria-hidden="true">
+                                ▶
+                            </span>
+
+                            Estado: En progreso
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     MISIÓN 2
+                     ========================================= -->
+                <article class="tarjeta-mision">
+
+                    <header class="mision-encabezado">
+
+                        <div>
+
+                            <p class="mision-codigo">
+                                Misión M-018
+                            </p>
+
+                            <h3>
+                                Muestreo de calidad del agua
+                            </h3>
+
+                        </div>
+
+                        <span class="prioridad prioridad-media">
+                            Prioridad: Media
+                        </span>
+
+                    </header>
+
+
+                    <dl class="mision-datos">
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Equipo responsable
+                            </dt>
+
+                            <dd>
+                                Hidrología
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Quebrada Verde
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="09:00">
+                                    09:00
+                                </time>
+                                –
+                                <time datetime="12:00">
+                                    12:00
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="mision-pie">
+
+                        <span class="estado estado-progreso">
+
+                            <span aria-hidden="true">
+                                ▶
+                            </span>
+
+                            Estado: En progreso
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     MISIÓN 3
+                     ========================================= -->
+                <article class="tarjeta-mision">
+
+                    <header class="mision-encabezado">
+
+                        <div>
+
+                            <p class="mision-codigo">
+                                Misión M-011
+                            </p>
+
+                            <h3>
+                                Calibración de estación meteorológica
+                            </h3>
+
+                        </div>
+
+                        <span class="prioridad prioridad-alta">
+                            Prioridad: Alta
+                        </span>
+
+                    </header>
+
+
+                    <dl class="mision-datos">
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Equipo responsable
+                            </dt>
+
+                            <dd>
+                                Meteorología
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Torre Climática
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="07:45">
+                                    07:45
+                                </time>
+                                –
+                                <time datetime="09:15">
+                                    09:15
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="mision-pie">
+
+                        <span class="estado estado-completada">
+
+                            <span aria-hidden="true">
+                                ✓
+                            </span>
+
+                            Estado: Completada
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     MISIÓN 4
+                     ========================================= -->
+                <article class="tarjeta-mision">
+
+                    <header class="mision-encabezado">
+
+                        <div>
+
+                            <p class="mision-codigo">
+                                Misión M-021
+                            </p>
+
+                            <h3>
+                                Levantamiento geológico del sector este
+                            </h3>
+
+                        </div>
+
+                        <span class="prioridad prioridad-media">
+                            Prioridad: Media
+                        </span>
+
+                    </header>
+
+
+                    <dl class="mision-datos">
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Equipo responsable
+                            </dt>
+
+                            <dd>
+                                Geología
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Sector Rocoso Este
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="10:00">
+                                    10:00
+                                </time>
+                                –
+                                <time datetime="13:30">
+                                    13:30
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="mision-pie">
+
+                        <span class="estado estado-pendiente">
+
+                            <span aria-hidden="true">
+                                ◷
+                            </span>
+
+                            Estado: Pendiente
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     MISIÓN 5
+                     ========================================= -->
+                <article class="tarjeta-mision tarjeta-mision-suspendida">
+
+                    <header class="mision-encabezado">
+
+                        <div>
+
+                            <p class="mision-codigo">
+                                Misión M-019
+                            </p>
+
+                            <h3>
+                                Inspección de sensor pluviométrico
+                            </h3>
+
+                        </div>
+
+                        <span class="prioridad prioridad-critica">
+                            Prioridad: Crítica
+                        </span>
+
+                    </header>
+
+
+                    <dl class="mision-datos">
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Equipo responsable
+                            </dt>
+
+                            <dd>
+                                Meteorología
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Sector Norte
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-mision">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="09:30">
+                                    09:30
+                                </time>
+                                –
+                                <time datetime="10:30">
+                                    10:30
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="mision-pie">
+
+                        <span class="estado estado-suspendida">
+
+                            <span aria-hidden="true">
+                                ■
+                            </span>
+
+                            Estado: Suspendida
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+            </div>
 
         </section>
 
@@ -326,7 +834,10 @@
         <!-- =================================================
              EQUIPOS CIENTÍFICOS
              ================================================= -->
-        <section id="equipos" class="seccion-panel">
+        <section
+            id="equipos"
+            class="seccion-panel seccion-equipos"
+        >
 
             <header class="encabezado-seccion">
 
@@ -334,23 +845,420 @@
                     Personal científico
                 </p>
 
-                <h2>Equipos científicos</h2>
+                <h2>
+                    Equipos científicos
+                </h2>
 
                 <p>
-                    Estado de los diferentes grupos responsables
-                    de las investigaciones de campo.
+                    Resumen de los grupos de trabajo, su actividad
+                    actual y la siguiente acción planificada.
                 </p>
 
             </header>
 
+
             <!--
-                Biología, Hidrología, Meteorología y Geología
-                serán incorporados en el Commit 3.
+                Los cuatro equipos exigidos por la consigna
+                se presentan como artículos independientes.
+
+                La suma de integrantes coincide con los
+                18 investigadores activos del resumen.
             -->
-            <p class="contenido-pendiente">
-                La información detallada de los equipos científicos
-                será incorporada en la siguiente etapa.
-            </p>
+            <div class="lista-equipos">
+
+
+                <!-- =========================================
+                     EQUIPO BIOLOGÍA
+                     ========================================= -->
+                <article class="tarjeta-equipo">
+
+                    <header class="equipo-encabezado">
+
+                        <span
+                            class="equipo-identificador"
+                            aria-hidden="true"
+                        >
+                            BIO
+                        </span>
+
+                        <div>
+
+                            <p class="equipo-tipo">
+                                Equipo científico
+                            </p>
+
+                            <h3>
+                                Biología
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <dl class="equipo-datos">
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Integrantes
+                            </dt>
+
+                            <dd>
+                                6 investigadores
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Misión actual
+                            </dt>
+
+                            <dd>
+                                Monitoreo de anfibios
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Estado
+                            </dt>
+
+                            <dd>
+                                <span class="estado estado-progreso">
+
+                                    <span aria-hidden="true">
+                                        ▶
+                                    </span>
+
+                                    En campo
+
+                                </span>
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Próxima actividad
+                            </dt>
+
+                            <dd>
+                                <time datetime="12:30">
+                                    12:30
+                                </time>
+                                · Registro de especímenes
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     EQUIPO HIDROLOGÍA
+                     ========================================= -->
+                <article class="tarjeta-equipo">
+
+                    <header class="equipo-encabezado">
+
+                        <span
+                            class="equipo-identificador"
+                            aria-hidden="true"
+                        >
+                            HID
+                        </span>
+
+                        <div>
+
+                            <p class="equipo-tipo">
+                                Equipo científico
+                            </p>
+
+                            <h3>
+                                Hidrología
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <dl class="equipo-datos">
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Integrantes
+                            </dt>
+
+                            <dd>
+                                4 investigadores
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Misión actual
+                            </dt>
+
+                            <dd>
+                                Muestreo de calidad del agua
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Estado
+                            </dt>
+
+                            <dd>
+                                <span class="estado estado-progreso">
+
+                                    <span aria-hidden="true">
+                                        ▶
+                                    </span>
+
+                                    En campo
+
+                                </span>
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Próxima actividad
+                            </dt>
+
+                            <dd>
+                                <time datetime="13:15">
+                                    13:15
+                                </time>
+                                · Análisis preliminar
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     EQUIPO METEOROLOGÍA
+                     ========================================= -->
+                <article class="tarjeta-equipo tarjeta-equipo-atencion">
+
+                    <header class="equipo-encabezado">
+
+                        <span
+                            class="equipo-identificador"
+                            aria-hidden="true"
+                        >
+                            MET
+                        </span>
+
+                        <div>
+
+                            <p class="equipo-tipo">
+                                Equipo científico
+                            </p>
+
+                            <h3>
+                                Meteorología
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <dl class="equipo-datos">
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Integrantes
+                            </dt>
+
+                            <dd>
+                                3 investigadores
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Misión actual
+                            </dt>
+
+                            <dd>
+                                Diagnóstico de sensor pluviométrico
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Estado
+                            </dt>
+
+                            <dd>
+                                <span class="estado estado-atencion">
+
+                                    <span aria-hidden="true">
+                                        !
+                                    </span>
+
+                                    Atención técnica
+
+                                </span>
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Próxima actividad
+                            </dt>
+
+                            <dd>
+                                <time datetime="11:00">
+                                    11:00
+                                </time>
+                                · Verificación de conectividad
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     EQUIPO GEOLOGÍA
+                     ========================================= -->
+                <article class="tarjeta-equipo">
+
+                    <header class="equipo-encabezado">
+
+                        <span
+                            class="equipo-identificador"
+                            aria-hidden="true"
+                        >
+                            GEO
+                        </span>
+
+                        <div>
+
+                            <p class="equipo-tipo">
+                                Equipo científico
+                            </p>
+
+                            <h3>
+                                Geología
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <dl class="equipo-datos">
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Integrantes
+                            </dt>
+
+                            <dd>
+                                5 investigadores
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Misión actual
+                            </dt>
+
+                            <dd>
+                                Preparación del levantamiento geológico
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Estado
+                            </dt>
+
+                            <dd>
+                                <span class="estado estado-pendiente">
+
+                                    <span aria-hidden="true">
+                                        ◷
+                                    </span>
+
+                                    Preparación
+
+                                </span>
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-equipo">
+
+                            <dt>
+                                Próxima actividad
+                            </dt>
+
+                            <dd>
+                                <time datetime="10:00">
+                                    10:00
+                                </time>
+                                · Salida al Sector Rocoso Este
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+            </div>
 
         </section>
 
@@ -358,7 +1266,10 @@
         <!-- =================================================
              ALERTAS
              ================================================= -->
-        <aside id="alertas" class="seccion-panel">
+        <aside
+            id="alertas"
+            class="seccion-panel"
+        >
 
             <header class="encabezado-seccion">
 
@@ -366,7 +1277,9 @@
                     Seguimiento operativo
                 </p>
 
-                <h2>Alertas</h2>
+                <h2>
+                    Alertas
+                </h2>
 
                 <p>
                     Situaciones que requieren seguimiento por parte
@@ -376,13 +1289,12 @@
             </header>
 
             <!--
-                Se utiliza aside porque las alertas complementan
-                y destacan situaciones relacionadas con las
-                operaciones principales.
+                Las cuatro alertas y su jerarquía visual
+                serán desarrolladas en el Commit 4.
             -->
             <p class="contenido-pendiente">
                 El sistema jerarquizado de alertas se incorporará
-                durante una etapa posterior.
+                durante la siguiente etapa.
             </p>
 
         </aside>
@@ -391,7 +1303,10 @@
         <!-- =================================================
              PRÓXIMAS ACTIVIDADES
              ================================================= -->
-        <section id="agenda" class="seccion-panel">
+        <section
+            id="agenda"
+            class="seccion-panel"
+        >
 
             <header class="encabezado-seccion">
 
@@ -399,7 +1314,9 @@
                     Agenda
                 </p>
 
-                <h2>Próximas actividades</h2>
+                <h2>
+                    Próximas actividades
+                </h2>
 
                 <p>
                     Agenda cronológica de las siguientes actividades
@@ -408,9 +1325,13 @@
 
             </header>
 
+            <!--
+                Las cinco actividades cronológicas exigidas
+                serán incorporadas en el Commit 4.
+            -->
             <p class="contenido-pendiente">
                 La agenda cronológica detallada será incorporada
-                en una etapa posterior.
+                durante la siguiente etapa.
             </p>
 
         </section>
