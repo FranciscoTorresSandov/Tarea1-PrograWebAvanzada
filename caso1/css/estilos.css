@@ -1,0 +1,301 @@
+/* ==========================================================
+   CASO 1
+   CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
+
+   Commit 1:
+   - Variables CSS iniciales.
+   - Modelo de caja global.
+   - Estilos base mobile-first.
+   - Encabezado.
+   - Navegación.
+   - Secciones semánticas iniciales.
+
+   El layout avanzado con Flexbox y CSS Grid se desarrollará
+   progresivamente en los siguientes commits.
+   ========================================================== */
+
+
+/* ==========================================================
+   1. VARIABLES CSS
+   ========================================================== */
+
+:root {
+
+    /* Colores principales */
+    --color-primario: #12372a;
+    --color-secundario: #2d6a4f;
+
+    /* Fondos */
+    --color-fondo: #eef4f0;
+    --color-superficie: #ffffff;
+
+    /* Texto */
+    --color-texto: #1d2924;
+    --color-texto-secundario: #52645c;
+
+    /* Bordes */
+    --color-borde: #cbd8d1;
+
+    /* Estado general */
+    --color-activo: #176b45;
+
+    /* Espaciado reutilizable */
+    --espacio-xs: 0.5rem;
+    --espacio-sm: 0.75rem;
+    --espacio-md: 1rem;
+    --espacio-lg: 1.5rem;
+    --espacio-xl: 2rem;
+
+    /* Bordes redondeados */
+    --radio-sm: 0.5rem;
+    --radio-md: 0.875rem;
+
+    /* Ancho máximo general */
+    --ancho-contenido: 75rem;
+}
+
+
+/* ==========================================================
+   2. MODELO DE CAJA GLOBAL
+   ========================================================== */
+
+/*
+   border-box evita que padding y border aumenten
+   inesperadamente el ancho final de los elementos.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   3. ESTILOS GENERALES
+   MOBILE-FIRST
+   ========================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.5;
+
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+
+/*
+   Contenedor reutilizable.
+
+   Se utiliza porcentaje para permitir que el contenido
+   responda naturalmente al tamaño de la pantalla.
+*/
+.contenedor {
+    width: 92%;
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+}
+
+
+/* ==========================================================
+   4. TIPOGRAFÍA GENERAL
+   ========================================================== */
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: var(--espacio-sm);
+    font-size: 1.75rem;
+    line-height: 1.15;
+}
+
+h2 {
+    margin-bottom: var(--espacio-xs);
+    font-size: 1.35rem;
+    line-height: 1.2;
+}
+
+p {
+    margin-bottom: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   5. ENCABEZADO PRINCIPAL
+   ========================================================== */
+
+.encabezado-principal {
+    padding-block: var(--espacio-lg);
+
+    color: #ffffff;
+    background-color: var(--color-primario);
+
+    border-bottom:
+        0.25rem
+        solid
+        var(--color-secundario);
+}
+
+
+.etiqueta-superior {
+    margin-bottom: var(--espacio-xs);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    opacity: 0.85;
+}
+
+
+/*
+   En teléfono los datos aparecen verticalmente.
+
+   Más adelante se utilizará Flexbox para cambiar
+   esta organización en pantallas mayores.
+*/
+.datos-expedicion span,
+.estado-general {
+    display: block;
+    margin-bottom: var(--espacio-xs);
+}
+
+
+.estado-general {
+    color: #d8f3dc;
+}
+
+
+/* ==========================================================
+   6. NAVEGACIÓN
+   ========================================================== */
+
+.navegacion-principal {
+    margin-top: var(--espacio-lg);
+}
+
+
+.lista-navegacion {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.lista-navegacion li {
+    margin-bottom: var(--espacio-xs);
+}
+
+
+.lista-navegacion a {
+    display: block;
+
+    padding:
+        var(--espacio-sm)
+        var(--espacio-md);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    border:
+        0.0625rem
+        solid
+        rgba(255, 255, 255, 0.3);
+
+    border-radius: var(--radio-sm);
+}
+
+
+.lista-navegacion a:hover,
+.lista-navegacion a:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ==========================================================
+   7. PANEL PRINCIPAL
+   ========================================================== */
+
+.panel-control {
+    padding-block: var(--espacio-lg);
+}
+
+
+/*
+   Cada sección utiliza una superficie visual independiente
+   para facilitar la identificación del contenido.
+*/
+.seccion-panel {
+    margin-bottom: var(--espacio-lg);
+
+    padding: var(--espacio-lg);
+
+    background-color: var(--color-superficie);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-radius: var(--radio-md);
+}
+
+
+.encabezado-seccion p {
+    color: var(--color-texto-secundario);
+}
+
+
+/*
+   Clase temporal utilizada solamente durante
+   las primeras etapas del desarrollo.
+*/
+.contenido-pendiente {
+    margin-bottom: 0;
+
+    padding: var(--espacio-md);
+
+    color: var(--color-texto-secundario);
+
+    background-color: var(--color-fondo);
+
+    border-radius: var(--radio-sm);
+}
+
+
+/* ==========================================================
+   8. PIE DE PÁGINA
+   ========================================================== */
+
+.pie-pagina {
+    padding-block: var(--espacio-lg);
+
+    color: #ffffff;
+    background-color: var(--color-primario);
+}
+
+
+.pie-pagina p {
+    margin-bottom: 0;
+
+    font-size: 0.875rem;
+}
