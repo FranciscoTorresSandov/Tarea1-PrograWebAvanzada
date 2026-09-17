@@ -45,7 +45,9 @@
                     Único h1 del documento.
                     Representa el tema principal de toda la página.
                 -->
-                <h1>Expedición Bosque Nuboso 2026</h1>
+                <h1>
+                    Expedición Bosque Nuboso 2026
+                </h1>
 
                 <p class="ubicacion-expedicion">
                     Estación Biológica Monteverde · Costa Rica
@@ -53,11 +55,12 @@
 
             </div>
 
-            <!--
-                Resumen inmediato del día operativo.
 
-                Flexbox permite distribuir estos datos en una sola
-                dimensión y envolverlos cuando el espacio disminuye.
+            <!--
+                Resumen inmediato de la jornada operativa.
+
+                Flexbox distribuye estos datos y permite
+                su envoltura en pantallas pequeñas.
             -->
             <div
                 class="estado-expedicion"
@@ -76,6 +79,7 @@
 
                 </p>
 
+
                 <p class="dato-operativo">
 
                     <span class="dato-etiqueta">
@@ -88,6 +92,7 @@
 
                 </p>
 
+
                 <p class="dato-operativo dato-operativo-activo">
 
                     <span class="dato-etiqueta">
@@ -95,8 +100,8 @@
                     </span>
 
                     <!--
-                        El símbolo y el texto comunican el estado,
-                        por lo que no depende únicamente del color.
+                        El símbolo y el texto permiten reconocer
+                        el estado sin depender únicamente del color.
                     -->
                     <strong>
                         <span aria-hidden="true">●</span>
@@ -110,11 +115,7 @@
 
             <!-- =================================================
                  NAVEGACIÓN PRINCIPAL
-                 =================================================
-
-                 La navegación utiliza enlaces reales hacia
-                 secciones existentes dentro del documento.
-            -->
+                 ================================================= -->
             <nav
                 class="navegacion-principal"
                 aria-label="Navegación principal"
@@ -155,8 +156,11 @@
          CONTENIDO PRINCIPAL
          =====================================================
 
-         En commits posteriores este contenedor se transformará
-         en la estructura principal mediante CSS Grid.
+         Actualmente las secciones se presentan de forma
+         vertical siguiendo la estrategia mobile-first.
+
+         En el Commit 5 este contenedor se transformará
+         en la cuadrícula principal mediante CSS Grid.
     -->
     <main class="contenedor panel-control">
 
@@ -187,15 +191,10 @@
             </header>
 
 
-            <!--
-                Los indicadores se organizan mediante Flexbox.
-
-                Cada indicador es un article porque constituye
-                una unidad independiente de información dentro
-                del resumen operativo.
-            -->
             <div class="indicadores-operacion">
 
+
+                <!-- Investigadores -->
                 <article class="indicador">
 
                     <div class="indicador-encabezado">
@@ -228,6 +227,7 @@
                 </article>
 
 
+                <!-- Misiones en progreso -->
                 <article class="indicador indicador-destacado">
 
                     <div class="indicador-encabezado">
@@ -260,6 +260,7 @@
                 </article>
 
 
+                <!-- Misiones completadas -->
                 <article class="indicador">
 
                     <div class="indicador-encabezado">
@@ -292,6 +293,7 @@
                 </article>
 
 
+                <!-- Alertas pendientes -->
                 <article class="indicador indicador-alerta">
 
                     <div class="indicador-encabezado">
@@ -354,16 +356,6 @@
             </header>
 
 
-            <!--
-                Se muestran cinco misiones.
-
-                Cada misión se representa mediante <article>
-                porque constituye una unidad independiente
-                dentro de la sección.
-
-                Se utiliza <dl> para asociar correctamente
-                cada dato con su correspondiente descripción.
-            -->
             <div class="lista-misiones">
 
 
@@ -428,13 +420,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="08:30">
-                                    08:30
-                                </time>
+                                <time datetime="08:30">08:30</time>
                                 –
-                                <time datetime="11:30">
-                                    11:30
-                                </time>
+                                <time datetime="11:30">11:30</time>
                             </dd>
 
                         </div>
@@ -520,13 +508,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="09:00">
-                                    09:00
-                                </time>
+                                <time datetime="09:00">09:00</time>
                                 –
-                                <time datetime="12:00">
-                                    12:00
-                                </time>
+                                <time datetime="12:00">12:00</time>
                             </dd>
 
                         </div>
@@ -612,13 +596,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="07:45">
-                                    07:45
-                                </time>
+                                <time datetime="07:45">07:45</time>
                                 –
-                                <time datetime="09:15">
-                                    09:15
-                                </time>
+                                <time datetime="09:15">09:15</time>
                             </dd>
 
                         </div>
@@ -704,13 +684,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="10:00">
-                                    10:00
-                                </time>
+                                <time datetime="10:00">10:00</time>
                                 –
-                                <time datetime="13:30">
-                                    13:30
-                                </time>
+                                <time datetime="13:30">13:30</time>
                             </dd>
 
                         </div>
@@ -738,7 +714,9 @@
                 <!-- =========================================
                      MISIÓN 5
                      ========================================= -->
-                <article class="tarjeta-mision tarjeta-mision-suspendida">
+                <article
+                    class="tarjeta-mision tarjeta-mision-suspendida"
+                >
 
                     <header class="mision-encabezado">
 
@@ -796,13 +774,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="09:30">
-                                    09:30
-                                </time>
+                                <time datetime="09:30">09:30</time>
                                 –
-                                <time datetime="10:30">
-                                    10:30
-                                </time>
+                                <time datetime="10:30">10:30</time>
                             </dd>
 
                         </div>
@@ -857,18 +831,11 @@
             </header>
 
 
-            <!--
-                Los cuatro equipos exigidos por la consigna
-                se presentan como artículos independientes.
-
-                La suma de integrantes coincide con los
-                18 investigadores activos del resumen.
-            -->
             <div class="lista-equipos">
 
 
                 <!-- =========================================
-                     EQUIPO BIOLOGÍA
+                     BIOLOGÍA
                      ========================================= -->
                 <article class="tarjeta-equipo">
 
@@ -931,6 +898,7 @@
                             </dt>
 
                             <dd>
+
                                 <span class="estado estado-progreso">
 
                                     <span aria-hidden="true">
@@ -940,6 +908,7 @@
                                     En campo
 
                                 </span>
+
                             </dd>
 
                         </div>
@@ -966,7 +935,7 @@
 
 
                 <!-- =========================================
-                     EQUIPO HIDROLOGÍA
+                     HIDROLOGÍA
                      ========================================= -->
                 <article class="tarjeta-equipo">
 
@@ -1029,6 +998,7 @@
                             </dt>
 
                             <dd>
+
                                 <span class="estado estado-progreso">
 
                                     <span aria-hidden="true">
@@ -1038,6 +1008,7 @@
                                     En campo
 
                                 </span>
+
                             </dd>
 
                         </div>
@@ -1064,9 +1035,11 @@
 
 
                 <!-- =========================================
-                     EQUIPO METEOROLOGÍA
+                     METEOROLOGÍA
                      ========================================= -->
-                <article class="tarjeta-equipo tarjeta-equipo-atencion">
+                <article
+                    class="tarjeta-equipo tarjeta-equipo-atencion"
+                >
 
                     <header class="equipo-encabezado">
 
@@ -1127,6 +1100,7 @@
                             </dt>
 
                             <dd>
+
                                 <span class="estado estado-atencion">
 
                                     <span aria-hidden="true">
@@ -1136,6 +1110,7 @@
                                     Atención técnica
 
                                 </span>
+
                             </dd>
 
                         </div>
@@ -1162,7 +1137,7 @@
 
 
                 <!-- =========================================
-                     EQUIPO GEOLOGÍA
+                     GEOLOGÍA
                      ========================================= -->
                 <article class="tarjeta-equipo">
 
@@ -1225,6 +1200,7 @@
                             </dt>
 
                             <dd>
+
                                 <span class="estado estado-pendiente">
 
                                     <span aria-hidden="true">
@@ -1234,6 +1210,7 @@
                                     Preparación
 
                                 </span>
+
                             </dd>
 
                         </div>
@@ -1264,11 +1241,16 @@
 
 
         <!-- =================================================
-             ALERTAS
-             ================================================= -->
+             ALERTAS OPERATIVAS
+             =================================================
+
+             Se utiliza aside porque las alertas complementan
+             las operaciones principales y requieren especial
+             atención del usuario.
+        -->
         <aside
             id="alertas"
-            class="seccion-panel"
+            class="seccion-panel seccion-alertas"
         >
 
             <header class="encabezado-seccion">
@@ -1282,20 +1264,227 @@
                 </h2>
 
                 <p>
-                    Situaciones que requieren seguimiento por parte
-                    del equipo coordinador de la expedición.
+                    Incidentes y avisos que requieren seguimiento
+                    por parte del equipo coordinador.
                 </p>
 
             </header>
 
-            <!--
-                Las cuatro alertas y su jerarquía visual
-                serán desarrolladas en el Commit 4.
-            -->
-            <p class="contenido-pendiente">
-                El sistema jerarquizado de alertas se incorporará
-                durante la siguiente etapa.
-            </p>
+
+            <div class="lista-alertas">
+
+
+                <!-- =========================================
+                     ALERTA CRÍTICA
+                     ========================================= -->
+                <article
+                    class="alerta alerta-critica"
+                >
+
+                    <header class="alerta-encabezado">
+
+                        <span
+                            class="alerta-simbolo"
+                            aria-hidden="true"
+                        >
+                            !!
+                        </span>
+
+                        <div class="alerta-titulo">
+
+                            <p class="alerta-nivel">
+                                Nivel crítico
+                            </p>
+
+                            <h3>
+                                Sensor meteorológico sin conexión
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="alerta-descripcion">
+                        El sensor pluviométrico del Sector Norte
+                        dejó de transmitir datos a las 09:18.
+                    </p>
+
+
+                    <footer class="alerta-pie">
+
+                        <span>
+                            Equipo: Meteorología
+                        </span>
+
+                        <time datetime="09:18">
+                            Reportada 09:18
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     ALERTA ALTA
+                     ========================================= -->
+                <article
+                    class="alerta alerta-alta"
+                >
+
+                    <header class="alerta-encabezado">
+
+                        <span
+                            class="alerta-simbolo"
+                            aria-hidden="true"
+                        >
+                            !
+                        </span>
+
+                        <div class="alerta-titulo">
+
+                            <p class="alerta-nivel">
+                                Importancia alta
+                            </p>
+
+                            <h3>
+                                Lluvia intensa en el Sector Norte
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="alerta-descripcion">
+                        Se registró un aumento importante de
+                        precipitación cerca del Sendero Norte.
+                        Se recomienda precaución en los desplazamientos.
+                    </p>
+
+
+                    <footer class="alerta-pie">
+
+                        <span>
+                            Área: Sendero Norte
+                        </span>
+
+                        <time datetime="10:05">
+                            Reportada 10:05
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     ALERTA MEDIA
+                     ========================================= -->
+                <article
+                    class="alerta alerta-media"
+                >
+
+                    <header class="alerta-encabezado">
+
+                        <span
+                            class="alerta-simbolo"
+                            aria-hidden="true"
+                        >
+                            ◷
+                        </span>
+
+                        <div class="alerta-titulo">
+
+                            <p class="alerta-nivel">
+                                Importancia media
+                            </p>
+
+                            <h3>
+                                Retraso en levantamiento geológico
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="alerta-descripcion">
+                        La salida hacia el Sector Rocoso Este presenta
+                        un retraso aproximado de treinta minutos
+                        debido a preparación adicional del equipo.
+                    </p>
+
+
+                    <footer class="alerta-pie">
+
+                        <span>
+                            Equipo: Geología
+                        </span>
+
+                        <time datetime="10:20">
+                            Reportada 10:20
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     ALERTA INFORMATIVA
+                     ========================================= -->
+                <article
+                    class="alerta alerta-informativa"
+                >
+
+                    <header class="alerta-encabezado">
+
+                        <span
+                            class="alerta-simbolo"
+                            aria-hidden="true"
+                        >
+                            i
+                        </span>
+
+                        <div class="alerta-titulo">
+
+                            <p class="alerta-nivel">
+                                Información
+                            </p>
+
+                            <h3>
+                                Batería baja en estación remota
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="alerta-descripcion">
+                        La estación de monitoreo de Quebrada Verde
+                        informa un 25 % de batería disponible.
+                        Su reemplazo está previsto para la tarde.
+                    </p>
+
+
+                    <footer class="alerta-pie">
+
+                        <span>
+                            Equipo: Hidrología
+                        </span>
+
+                        <time datetime="10:32">
+                            Reportada 10:32
+                        </time>
+
+                    </footer>
+
+                </article>
+
+            </div>
 
         </aside>
 
@@ -1305,7 +1494,7 @@
              ================================================= -->
         <section
             id="agenda"
-            class="seccion-panel"
+            class="seccion-panel seccion-agenda"
         >
 
             <header class="encabezado-seccion">
@@ -1319,20 +1508,153 @@
                 </h2>
 
                 <p>
-                    Agenda cronológica de las siguientes actividades
-                    programadas para los equipos científicos.
+                    Actividades programadas a partir de la hora
+                    de corte actual, ordenadas cronológicamente.
                 </p>
 
             </header>
 
+
             <!--
-                Las cinco actividades cronológicas exigidas
-                serán incorporadas en el Commit 4.
+                <ol> representa correctamente una secuencia
+                donde el orden cronológico tiene significado.
+
+                Cada elemento contiene hora, actividad
+                y equipo relacionado.
             -->
-            <p class="contenido-pendiente">
-                La agenda cronológica detallada será incorporada
-                durante la siguiente etapa.
-            </p>
+            <ol class="lista-agenda">
+
+
+                <!-- Actividad 1 -->
+                <li class="actividad-agenda">
+
+                    <time
+                        class="actividad-hora"
+                        datetime="11:00"
+                    >
+                        11:00
+                    </time>
+
+                    <div class="actividad-contenido">
+
+                        <h3>
+                            Verificación de conectividad meteorológica
+                        </h3>
+
+                        <p>
+                            <strong>Equipo:</strong>
+                            Meteorología
+                        </p>
+
+                    </div>
+
+                </li>
+
+
+                <!-- Actividad 2 -->
+                <li class="actividad-agenda">
+
+                    <time
+                        class="actividad-hora"
+                        datetime="11:30"
+                    >
+                        11:30
+                    </time>
+
+                    <div class="actividad-contenido">
+
+                        <h3>
+                            Regreso del monitoreo de anfibios
+                        </h3>
+
+                        <p>
+                            <strong>Equipo:</strong>
+                            Biología
+                        </p>
+
+                    </div>
+
+                </li>
+
+
+                <!-- Actividad 3 -->
+                <li class="actividad-agenda">
+
+                    <time
+                        class="actividad-hora"
+                        datetime="12:30"
+                    >
+                        12:30
+                    </time>
+
+                    <div class="actividad-contenido">
+
+                        <h3>
+                            Registro y clasificación de especímenes
+                        </h3>
+
+                        <p>
+                            <strong>Equipo:</strong>
+                            Biología
+                        </p>
+
+                    </div>
+
+                </li>
+
+
+                <!-- Actividad 4 -->
+                <li class="actividad-agenda">
+
+                    <time
+                        class="actividad-hora"
+                        datetime="13:15"
+                    >
+                        13:15
+                    </time>
+
+                    <div class="actividad-contenido">
+
+                        <h3>
+                            Análisis preliminar de muestras de agua
+                        </h3>
+
+                        <p>
+                            <strong>Equipo:</strong>
+                            Hidrología
+                        </p>
+
+                    </div>
+
+                </li>
+
+
+                <!-- Actividad 5 -->
+                <li class="actividad-agenda">
+
+                    <time
+                        class="actividad-hora"
+                        datetime="14:00"
+                    >
+                        14:00
+                    </time>
+
+                    <div class="actividad-contenido">
+
+                        <h3>
+                            Revisión del levantamiento geológico
+                        </h3>
+
+                        <p>
+                            <strong>Equipo:</strong>
+                            Geología
+                        </p>
+
+                    </div>
+
+                </li>
+
+            </ol>
 
         </section>
 

@@ -2,18 +2,19 @@
    CASO 1
    CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
 
-   Commit 3:
-   - Se mantienen encabezado, navegación e indicadores.
-   - Se incorporan cinco misiones científicas completas.
-   - Se incorporan cuatro equipos científicos.
-   - Se agregan estados y prioridades identificables
-     mediante texto, símbolos y color.
-   - Se amplía el uso justificado de Flexbox.
-   - Continúa el enfoque mobile-first.
+   Commit 4:
+   - Se mantienen los componentes previamente construidos.
+   - Se incorporan cuatro alertas operativas.
+   - Se establece una jerarquía de alertas:
+     crítica, alta, media e informativa.
+   - Se agregan cinco actividades en orden cronológico.
+   - Los estados importantes utilizan texto, símbolos y color.
+   - Se amplía el uso de Flexbox.
+   - Se mantiene el enfoque mobile-first.
 
-   El layout principal con CSS Grid, el posicionamiento
-   avanzado y las media queries se incorporarán en
-   commits posteriores.
+   En el Commit 5 se incorporará CSS Grid para resolver
+   la estructura principal del centro de control y se
+   utilizará posicionamiento CSS de forma justificada.
    ========================================================== */
 
 
@@ -23,63 +24,50 @@
 
 :root {
 
-    /* ------------------------------------------------------
-       Colores principales de identidad
-       ------------------------------------------------------ */
+    /* Colores principales */
     --color-primario: #12372a;
     --color-primario-claro: #1b513c;
     --color-secundario: #2d6a4f;
 
-    /* ------------------------------------------------------
-       Fondos
-       ------------------------------------------------------ */
+    /* Fondos */
     --color-fondo: #eef4f0;
     --color-superficie: #ffffff;
     --color-superficie-secundaria: #f6f9f7;
 
-    /* ------------------------------------------------------
-       Texto
-       ------------------------------------------------------ */
+    /* Texto */
     --color-texto: #1d2924;
     --color-texto-secundario: #52645c;
     --color-texto-claro: #ffffff;
 
-    /* ------------------------------------------------------
-       Bordes
-       ------------------------------------------------------ */
+    /* Bordes */
     --color-borde: #cbd8d1;
     --color-borde-fuerte: #9eb4a8;
 
-    /* ------------------------------------------------------
-       Estados positivos
-       ------------------------------------------------------ */
+    /* Estados positivos */
     --color-activo: #176b45;
     --color-activo-fondo: #dcf5e8;
 
-    /* ------------------------------------------------------
-       Estados de advertencia
-       ------------------------------------------------------ */
+    /* Advertencias */
     --color-advertencia: #8a5a00;
     --color-advertencia-fondo: #fff4d6;
 
-    /* ------------------------------------------------------
-       Estados críticos
-       ------------------------------------------------------ */
+    /* Alertas altas */
     --color-alerta: #a64412;
     --color-alerta-fondo: #fff1e7;
 
+    /* Estados críticos */
     --color-critico: #8f2525;
     --color-critico-fondo: #fde8e8;
 
-    /* ------------------------------------------------------
-       Estados neutrales
-       ------------------------------------------------------ */
+    /* Estados informativos */
+    --color-informativo: #245a73;
+    --color-informativo-fondo: #e6f3f8;
+
+    /* Estados neutrales */
     --color-neutral: #53616a;
     --color-neutral-fondo: #edf1f3;
 
-    /* ------------------------------------------------------
-       Espaciado reutilizable
-       ------------------------------------------------------ */
+    /* Espaciado */
     --espacio-2xs: 0.25rem;
     --espacio-xs: 0.5rem;
     --espacio-sm: 0.75rem;
@@ -88,23 +76,20 @@
     --espacio-xl: 2rem;
     --espacio-2xl: 3rem;
 
-    /* ------------------------------------------------------
-       Bordes redondeados
-       ------------------------------------------------------ */
+    /* Bordes redondeados */
     --radio-xs: 0.35rem;
     --radio-sm: 0.5rem;
     --radio-md: 0.875rem;
     --radio-lg: 1.25rem;
 
-    /* ------------------------------------------------------
-       Sombras
-       ------------------------------------------------------ */
+    /* Sombras */
     --sombra-suave:
         0 0.25rem 1rem rgba(18, 55, 42, 0.08);
 
-    /* ------------------------------------------------------
-       Ancho máximo general
-       ------------------------------------------------------ */
+    --sombra-media:
+        0 0.4rem 1.4rem rgba(18, 55, 42, 0.12);
+
+    /* Ancho máximo */
     --ancho-contenido: 75rem;
 }
 
@@ -113,11 +98,6 @@
    2. MODELO DE CAJA GLOBAL
    ========================================================== */
 
-/*
-   border-box permite que width incluya padding y border.
-   Esto ayuda a evitar desbordamientos y dimensiones
-   inesperadas.
-*/
 *,
 *::before,
 *::after {
@@ -150,13 +130,6 @@ body {
 }
 
 
-/*
-   Contenedor reutilizable.
-
-   width en porcentaje permite responder al ancho
-   del dispositivo y max-width impide que el contenido
-   crezca indefinidamente en pantallas grandes.
-*/
 .contenedor {
     width: 92%;
     max-width: var(--ancho-contenido);
@@ -166,7 +139,7 @@ body {
 
 
 /* ==========================================================
-   4. TIPOGRAFÍA GENERAL
+   4. TIPOGRAFÍA
    ========================================================== */
 
 h1,
@@ -248,7 +221,6 @@ p {
     font-weight: 700;
 
     letter-spacing: 0.1em;
-
     text-transform: uppercase;
 
     opacity: 0.8;
@@ -265,17 +237,10 @@ p {
 
 
 /* ==========================================================
-   6. ESTADO GENERAL DE LA EXPEDICIÓN
+   6. ESTADO GENERAL
    FLEXBOX
    ========================================================== */
 
-/*
-   Flexbox se utiliza porque los datos pertenecen a una
-   distribución principalmente unidimensional.
-
-   flex-wrap permite que los elementos bajen de línea
-   naturalmente si falta espacio.
-*/
 .estado-expedicion {
     display: flex;
     flex-wrap: wrap;
@@ -314,7 +279,6 @@ p {
     font-weight: 700;
 
     letter-spacing: 0.06em;
-
     text-transform: uppercase;
 
     opacity: 0.7;
@@ -334,7 +298,7 @@ p {
 
 
 /* ==========================================================
-   7. NAVEGACIÓN PRINCIPAL
+   7. NAVEGACIÓN
    FLEXBOX
    ========================================================== */
 
@@ -343,13 +307,6 @@ p {
 }
 
 
-/*
-   La navegación constituye una necesidad real de
-   distribución horizontal/unidimensional.
-
-   En teléfono los enlaces pueden envolverse mediante
-   flex-wrap en lugar de provocar scroll horizontal.
-*/
 .lista-navegacion {
     display: flex;
     flex-wrap: wrap;
@@ -395,10 +352,6 @@ p {
 }
 
 
-/*
-   Se proporciona una respuesta visual tanto para mouse
-   como para navegación mediante teclado.
-*/
 .lista-navegacion a:hover,
 .lista-navegacion a:focus-visible {
     background-color:
@@ -424,10 +377,6 @@ p {
 }
 
 
-/*
-   Las secciones comparten una misma apariencia base.
-   Esto aprovecha la cascada y evita duplicar estilos.
-*/
 .seccion-panel {
     margin-bottom: var(--espacio-lg);
 
@@ -467,13 +416,12 @@ p {
     font-weight: 700;
 
     letter-spacing: 0.08em;
-
     text-transform: uppercase;
 }
 
 
 /* ==========================================================
-   9. RESUMEN DE OPERACIONES
+   9. RESUMEN
    ========================================================== */
 
 .seccion-resumen {
@@ -484,11 +432,6 @@ p {
 }
 
 
-/*
-   Los cuatro indicadores utilizan Flexbox.
-
-   En teléfono comienzan apilados naturalmente.
-*/
 .indicadores-operacion {
     display: flex;
     flex-direction: column;
@@ -593,7 +536,6 @@ p {
 
 .indicador-destacado {
     background-color: var(--color-activo-fondo);
-
     border-color: var(--color-activo);
 }
 
@@ -607,7 +549,6 @@ p {
 
 .indicador-alerta {
     background-color: var(--color-alerta-fondo);
-
     border-color: var(--color-alerta);
 }
 
@@ -628,13 +569,6 @@ p {
    11. LISTA DE MISIONES
    ========================================================== */
 
-/*
-   En esta versión mobile-first las misiones se presentan
-   una debajo de otra.
-
-   Flexbox permite controlar el flujo vertical y el espacio
-   entre tarjetas sin recurrir a márgenes individuales.
-*/
 .lista-misiones {
     display: flex;
     flex-direction: column;
@@ -644,7 +578,7 @@ p {
 
 
 /* ==========================================================
-   12. TARJETA DE MISIÓN
+   12. TARJETAS DE MISIÓN
    ========================================================== */
 
 .tarjeta-mision {
@@ -669,12 +603,6 @@ p {
 }
 
 
-/*
-   Flexbox organiza el nombre de la misión y la prioridad.
-
-   flex-wrap evita que una prioridad larga produzca
-   desplazamiento horizontal en teléfonos estrechos.
-*/
 .mision-encabezado {
     display: flex;
     flex-wrap: wrap;
@@ -704,13 +632,12 @@ p {
     font-weight: 700;
 
     letter-spacing: 0.06em;
-
     text-transform: uppercase;
 }
 
 
 /* ==========================================================
-   13. PRIORIDADES DE MISIÓN
+   13. PRIORIDADES
    ========================================================== */
 
 .prioridad {
@@ -734,30 +661,24 @@ p {
 
 .prioridad-media {
     color: var(--color-advertencia);
-
-    background-color:
-        var(--color-advertencia-fondo);
+    background-color: var(--color-advertencia-fondo);
 }
 
 
 .prioridad-alta {
     color: var(--color-alerta);
-
-    background-color:
-        var(--color-alerta-fondo);
+    background-color: var(--color-alerta-fondo);
 }
 
 
 .prioridad-critica {
     color: var(--color-critico);
-
-    background-color:
-        var(--color-critico-fondo);
+    background-color: var(--color-critico-fondo);
 }
 
 
 /* ==========================================================
-   14. INFORMACIÓN DE LAS MISIONES
+   14. INFORMACIÓN DE MISIONES
    ========================================================== */
 
 .mision-datos {
@@ -822,12 +743,6 @@ p {
    15. ESTADOS
    ========================================================== */
 
-/*
-   Los estados usan texto y símbolo además de color.
-
-   Esto permite comprender el significado incluso cuando
-   el usuario no distingue correctamente los colores.
-*/
 .estado {
     display: inline-flex;
 
@@ -853,40 +768,31 @@ p {
 
 .estado-progreso {
     color: var(--color-activo);
-
-    background-color:
-        var(--color-activo-fondo);
+    background-color: var(--color-activo-fondo);
 }
 
 
 .estado-completada {
     color: var(--color-primario);
-
     background-color: #e0eee7;
 }
 
 
 .estado-pendiente {
     color: var(--color-advertencia);
-
-    background-color:
-        var(--color-advertencia-fondo);
+    background-color: var(--color-advertencia-fondo);
 }
 
 
 .estado-suspendida {
     color: var(--color-critico);
-
-    background-color:
-        var(--color-critico-fondo);
+    background-color: var(--color-critico-fondo);
 }
 
 
 .estado-atencion {
     color: var(--color-alerta);
-
-    background-color:
-        var(--color-alerta-fondo);
+    background-color: var(--color-alerta-fondo);
 }
 
 
@@ -896,16 +802,9 @@ p {
 
 
 /* ==========================================================
-   16. LISTA DE EQUIPOS
+   16. EQUIPOS
    ========================================================== */
 
-/*
-   Los equipos utilizan inicialmente una distribución
-   vertical adecuada para pantallas pequeñas.
-
-   Posteriormente, las media queries permitirán reorganizar
-   estas tarjetas en más columnas.
-*/
 .lista-equipos {
     display: flex;
     flex-direction: column;
@@ -913,10 +812,6 @@ p {
     gap: var(--espacio-md);
 }
 
-
-/* ==========================================================
-   17. TARJETAS DE EQUIPO
-   ========================================================== */
 
 .tarjeta-equipo {
     min-width: 0;
@@ -940,10 +835,6 @@ p {
 }
 
 
-/*
-   El encabezado de cada equipo utiliza Flexbox para
-   alinear el identificador con el nombre del equipo.
-*/
 .equipo-encabezado {
     display: flex;
 
@@ -989,7 +880,6 @@ p {
     font-weight: 700;
 
     letter-spacing: 0.06em;
-
     text-transform: uppercase;
 }
 
@@ -1000,10 +890,6 @@ p {
     font-size: 1.1rem;
 }
 
-
-/* ==========================================================
-   18. INFORMACIÓN DE EQUIPOS
-   ========================================================== */
 
 .equipo-datos {
     margin-bottom: 0;
@@ -1041,28 +927,300 @@ p {
 
 
 /* ==========================================================
-   19. CONTENIDO TEMPORAL
+   17. ALERTAS
    ========================================================== */
 
 /*
-   Estos bloques permanecerán solamente mientras las
-   secciones de alertas y agenda se desarrollan.
+   Las alertas se presentan inicialmente en una sola
+   columna para facilitar su localización en teléfono.
+
+   Su importancia se comunica mediante:
+   - texto;
+   - símbolo;
+   - borde;
+   - fondo;
+   - color.
+
+   Por lo tanto, el significado no depende exclusivamente
+   de la percepción del color.
 */
-.contenido-pendiente {
-    margin-bottom: 0;
+.lista-alertas {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-md);
+}
+
+
+.alerta {
+    min-width: 0;
 
     padding: var(--espacio-md);
 
-    color: var(--color-texto-secundario);
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
 
-    background-color: var(--color-fondo);
+    border-left-width: 0.35rem;
+
+    border-radius: var(--radio-md);
+}
+
+
+.alerta-encabezado {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: var(--espacio-md);
+
+    margin-bottom: var(--espacio-md);
+}
+
+
+.alerta-simbolo {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    font-size: 0.8rem;
+    font-weight: 700;
 
     border:
         0.0625rem
-        dashed
+        solid
+        currentColor;
+
+    border-radius: 50%;
+}
+
+
+.alerta-titulo {
+    min-width: 0;
+}
+
+
+.alerta-titulo h3 {
+    margin-bottom: 0;
+
+    font-size: 1rem;
+}
+
+
+.alerta-nivel {
+    margin-bottom: var(--espacio-2xs);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+.alerta-descripcion {
+    color: var(--color-texto-secundario);
+
+    font-size: 0.9rem;
+}
+
+
+.alerta-pie {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    gap: var(--espacio-sm);
+
+    padding-top: var(--espacio-sm);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    border-top:
+        0.0625rem
+        solid
+        currentColor;
+}
+
+
+/* ==========================================================
+   18. NIVELES DE ALERTA
+   ========================================================== */
+
+/*
+   Alerta crítica:
+   mayor peso visual de la sección.
+*/
+.alerta-critica {
+    color: var(--color-critico);
+
+    background-color:
+        var(--color-critico-fondo);
+
+    border-color:
+        var(--color-critico);
+
+    box-shadow: var(--sombra-media);
+}
+
+
+.alerta-critica .alerta-descripcion {
+    color: #602323;
+}
+
+
+/* Alerta de importancia alta */
+.alerta-alta {
+    color: var(--color-alerta);
+
+    background-color:
+        var(--color-alerta-fondo);
+
+    border-color:
+        var(--color-alerta);
+}
+
+
+.alerta-alta .alerta-descripcion {
+    color: #69351b;
+}
+
+
+/* Alerta de importancia media */
+.alerta-media {
+    color: var(--color-advertencia);
+
+    background-color:
+        var(--color-advertencia-fondo);
+
+    border-color:
+        var(--color-advertencia);
+}
+
+
+.alerta-media .alerta-descripcion {
+    color: #654b15;
+}
+
+
+/* Alerta informativa */
+.alerta-informativa {
+    color: var(--color-informativo);
+
+    background-color:
+        var(--color-informativo-fondo);
+
+    border-color:
+        var(--color-informativo);
+}
+
+
+.alerta-informativa .alerta-descripcion {
+    color: #355b6d;
+}
+
+
+/* ==========================================================
+   19. AGENDA
+   ========================================================== */
+
+.lista-agenda {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/*
+   Cada actividad se organiza mediante Flexbox:
+   hora a un lado y contenido al otro.
+
+   flex-wrap evita problemas cuando el espacio sea
+   especialmente reducido.
+*/
+.actividad-agenda {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: flex-start;
+
+    gap: var(--espacio-md);
+
+    padding-block: var(--espacio-md);
+
+    border-bottom:
+        0.0625rem
+        solid
         var(--color-borde);
+}
+
+
+.actividad-agenda:first-child {
+    padding-top: 0;
+}
+
+
+.actividad-agenda:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+
+/* Hora con fuerte jerarquía visual */
+.actividad-hora {
+    display: inline-flex;
+
+    flex: 0 0 4.5rem;
+
+    justify-content: center;
+
+    padding:
+        var(--espacio-xs)
+        var(--espacio-sm);
+
+    color: var(--color-texto-claro);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    background-color:
+        var(--color-primario);
 
     border-radius: var(--radio-sm);
+}
+
+
+.actividad-contenido {
+    flex: 1 1 12rem;
+
+    min-width: 0;
+}
+
+
+.actividad-contenido h3 {
+    margin-bottom: var(--espacio-xs);
+
+    font-size: 0.95rem;
+}
+
+
+.actividad-contenido p {
+    margin-bottom: 0;
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.8rem;
 }
 
 
@@ -1081,7 +1239,6 @@ p {
 
 .contenido-pie {
     display: flex;
-
     flex-direction: column;
 
     gap: var(--espacio-xs);
