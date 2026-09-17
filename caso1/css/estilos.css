@@ -2,16 +2,17 @@
    CASO 1
    CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
 
-   Commit 1:
-   - Variables CSS iniciales.
-   - Modelo de caja global.
-   - Estilos base mobile-first.
-   - Encabezado.
-   - Navegación.
-   - Secciones semánticas iniciales.
+   Commit 2:
+   - Mejora del encabezado principal.
+   - Navegación construida con Flexbox.
+   - Estado operativo del encabezado con Flexbox.
+   - Resumen real de operaciones.
+   - Indicadores visuales reutilizables.
+   - Mayor jerarquía tipográfica.
+   - Se mantiene el enfoque mobile-first.
 
-   El layout avanzado con Flexbox y CSS Grid se desarrollará
-   progresivamente en los siguientes commits.
+   Los módulos de misiones, equipos, alertas y agenda
+   continuarán desarrollándose progresivamente.
    ========================================================== */
 
 
@@ -21,36 +22,68 @@
 
 :root {
 
-    /* Colores principales */
+    /* ------------------------------------------------------
+       Colores principales de identidad
+       ------------------------------------------------------ */
     --color-primario: #12372a;
+    --color-primario-claro: #1b513c;
     --color-secundario: #2d6a4f;
 
-    /* Fondos */
+    /* ------------------------------------------------------
+       Fondos
+       ------------------------------------------------------ */
     --color-fondo: #eef4f0;
     --color-superficie: #ffffff;
+    --color-superficie-secundaria: #f6f9f7;
 
-    /* Texto */
+    /* ------------------------------------------------------
+       Texto
+       ------------------------------------------------------ */
     --color-texto: #1d2924;
     --color-texto-secundario: #52645c;
+    --color-texto-claro: #ffffff;
 
-    /* Bordes */
+    /* ------------------------------------------------------
+       Bordes
+       ------------------------------------------------------ */
     --color-borde: #cbd8d1;
 
-    /* Estado general */
+    /* ------------------------------------------------------
+       Estados operativos
+       ------------------------------------------------------ */
     --color-activo: #176b45;
+    --color-activo-fondo: #dcf5e8;
 
-    /* Espaciado reutilizable */
+    --color-alerta: #a64412;
+    --color-alerta-fondo: #fff1e7;
+
+    /* ------------------------------------------------------
+       Espaciado reutilizable
+       ------------------------------------------------------ */
+    --espacio-2xs: 0.25rem;
     --espacio-xs: 0.5rem;
     --espacio-sm: 0.75rem;
     --espacio-md: 1rem;
     --espacio-lg: 1.5rem;
     --espacio-xl: 2rem;
+    --espacio-2xl: 3rem;
 
-    /* Bordes redondeados */
+    /* ------------------------------------------------------
+       Bordes redondeados
+       ------------------------------------------------------ */
     --radio-sm: 0.5rem;
     --radio-md: 0.875rem;
+    --radio-lg: 1.25rem;
 
-    /* Ancho máximo general */
+    /* ------------------------------------------------------
+       Sombras
+       ------------------------------------------------------ */
+    --sombra-suave:
+        0 0.25rem 1rem rgba(18, 55, 42, 0.08);
+
+    /* ------------------------------------------------------
+       Ancho máximo general
+       ------------------------------------------------------ */
     --ancho-contenido: 75rem;
 }
 
@@ -60,8 +93,9 @@
    ========================================================== */
 
 /*
-   border-box evita que padding y border aumenten
-   inesperadamente el ancho final de los elementos.
+   border-box permite que width incluya padding y border.
+   Esto ayuda a evitar desbordamientos y dimensiones
+   inesperadas.
 */
 *,
 *::before,
@@ -78,6 +112,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 
 body {
     margin: 0;
@@ -97,8 +132,9 @@ body {
 /*
    Contenedor reutilizable.
 
-   Se utiliza porcentaje para permitir que el contenido
-   responda naturalmente al tamaño de la pantalla.
+   width en porcentaje permite responder al ancho
+   del dispositivo y max-width impide que el contenido
+   crezca indefinidamente en pantallas grandes.
 */
 .contenedor {
     width: 92%;
@@ -118,17 +154,30 @@ p {
     margin-top: 0;
 }
 
+
 h1 {
     margin-bottom: var(--espacio-sm);
-    font-size: 1.75rem;
+
+    font-size: 1.8rem;
     line-height: 1.15;
 }
 
+
 h2 {
     margin-bottom: var(--espacio-xs);
+
     font-size: 1.35rem;
     line-height: 1.2;
 }
+
+
+h3 {
+    margin-bottom: var(--espacio-xs);
+
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
 
 p {
     margin-bottom: var(--espacio-md);
@@ -140,9 +189,12 @@ p {
    ========================================================== */
 
 .encabezado-principal {
-    padding-block: var(--espacio-lg);
+    padding-block:
+        var(--espacio-lg)
+        var(--espacio-md);
 
-    color: #ffffff;
+    color: var(--color-texto-claro);
+
     background-color: var(--color-primario);
 
     border-bottom:
@@ -152,47 +204,133 @@ p {
 }
 
 
+.encabezado-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+}
+
+
+.identidad-expedicion {
+    max-width: 45rem;
+}
+
+
 .etiqueta-superior {
     margin-bottom: var(--espacio-xs);
 
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
+
     text-transform: uppercase;
+
+    opacity: 0.8;
+}
+
+
+.ubicacion-expedicion {
+    margin-bottom: 0;
+
+    font-size: 0.95rem;
 
     opacity: 0.85;
 }
 
 
-/*
-   En teléfono los datos aparecen verticalmente.
+/* ==========================================================
+   6. ESTADO GENERAL DE LA EXPEDICIÓN
+   FLEXBOX
+   ========================================================== */
 
-   Más adelante se utilizará Flexbox para cambiar
-   esta organización en pantallas mayores.
+/*
+   Flexbox se utiliza porque los datos pertenecen a una
+   distribución principalmente unidimensional.
+
+   flex-wrap permite que los elementos bajen de línea
+   naturalmente si falta espacio.
 */
-.datos-expedicion span,
-.estado-general {
-    display: block;
-    margin-bottom: var(--espacio-xs);
+.estado-expedicion {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--espacio-sm);
 }
 
 
-.estado-general {
+.dato-operativo {
+    flex: 1 1 9rem;
+
+    min-width: 0;
+
+    margin-bottom: 0;
+
+    padding: var(--espacio-sm);
+
+    background-color:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        0.0625rem
+        solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: var(--radio-sm);
+}
+
+
+.dato-etiqueta {
+    display: block;
+
+    margin-bottom: var(--espacio-2xs);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+
+    opacity: 0.7;
+}
+
+
+.dato-operativo strong {
+    display: block;
+
+    font-size: 0.9rem;
+}
+
+
+.dato-operativo-activo strong {
     color: #d8f3dc;
 }
 
 
 /* ==========================================================
-   6. NAVEGACIÓN
+   7. NAVEGACIÓN PRINCIPAL
+   FLEXBOX
    ========================================================== */
 
 .navegacion-principal {
-    margin-top: var(--espacio-lg);
+    width: 100%;
 }
 
 
+/*
+   La navegación constituye una necesidad real de
+   distribución horizontal/unidimensional.
+
+   En teléfono los enlaces pueden envolverse mediante
+   flex-wrap en lugar de provocar scroll horizontal.
+*/
 .lista-navegacion {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--espacio-xs);
+
     margin: 0;
     padding: 0;
 
@@ -201,7 +339,7 @@ p {
 
 
 .lista-navegacion li {
-    margin-bottom: var(--espacio-xs);
+    flex: 1 1 auto;
 }
 
 
@@ -212,27 +350,48 @@ p {
         var(--espacio-sm)
         var(--espacio-md);
 
-    color: #ffffff;
+    color: var(--color-texto-claro);
 
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    text-align: center;
     text-decoration: none;
+
+    background-color:
+        rgba(255, 255, 255, 0.05);
 
     border:
         0.0625rem
         solid
-        rgba(255, 255, 255, 0.3);
+        rgba(255, 255, 255, 0.25);
 
     border-radius: var(--radio-sm);
 }
 
 
+/*
+   Se proporciona una respuesta visual tanto para mouse
+   como para navegación mediante teclado.
+*/
 .lista-navegacion a:hover,
-.lista-navegacion a:focus {
-    background-color: rgba(255, 255, 255, 0.12);
+.lista-navegacion a:focus-visible {
+    background-color:
+        rgba(255, 255, 255, 0.15);
+
+    outline: none;
+}
+
+
+.lista-navegacion a:focus-visible {
+    box-shadow:
+        0 0 0 0.1875rem
+        rgba(255, 255, 255, 0.35);
 }
 
 
 /* ==========================================================
-   7. PANEL PRINCIPAL
+   8. PANEL PRINCIPAL
    ========================================================== */
 
 .panel-control {
@@ -241,8 +400,8 @@ p {
 
 
 /*
-   Cada sección utiliza una superficie visual independiente
-   para facilitar la identificación del contenido.
+   Las secciones comparten una misma apariencia base.
+   Esto evita duplicar estilos innecesariamente.
 */
 .seccion-panel {
     margin-bottom: var(--espacio-lg);
@@ -257,17 +416,215 @@ p {
         var(--color-borde);
 
     border-radius: var(--radio-md);
+
+    box-shadow: var(--sombra-suave);
 }
 
 
-.encabezado-seccion p {
+.encabezado-seccion {
+    margin-bottom: var(--espacio-lg);
+}
+
+
+.encabezado-seccion p:last-child {
+    margin-bottom: 0;
+
     color: var(--color-texto-secundario);
 }
 
 
+.categoria-seccion {
+    margin-bottom: var(--espacio-xs);
+
+    color: var(--color-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   9. RESUMEN DE OPERACIONES
+   ========================================================== */
+
+.seccion-resumen {
+    border-top:
+        0.25rem
+        solid
+        var(--color-secundario);
+}
+
+
 /*
-   Clase temporal utilizada solamente durante
-   las primeras etapas del desarrollo.
+   Los cuatro indicadores utilizan Flexbox.
+
+   En teléfono comienzan apilados naturalmente y
+   flex-wrap permitirá aprovechar más ancho conforme
+   esté disponible, incluso antes de incorporar las
+   media queries definitivas.
+*/
+.indicadores-operacion {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   10. INDICADORES
+   ========================================================== */
+
+.indicador {
+    min-width: 0;
+
+    padding: var(--espacio-md);
+
+    background-color:
+        var(--color-superficie-secundaria);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-radius: var(--radio-md);
+}
+
+
+.indicador-encabezado {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: var(--espacio-sm);
+
+    margin-bottom: var(--espacio-md);
+}
+
+
+.indicador-icono {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 2.5rem;
+    min-height: 2rem;
+
+    padding-inline: var(--espacio-xs);
+
+    color: var(--color-primario);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    background-color: #dfece5;
+
+    border-radius: var(--radio-sm);
+}
+
+
+.indicador-tendencia {
+    color: var(--color-texto-secundario);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+
+.indicador h3 {
+    color: var(--color-texto-secundario);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+.indicador-valor {
+    margin-bottom: var(--espacio-xs);
+
+    color: var(--color-primario);
+
+    font-size: 2.25rem;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+.indicador-detalle {
+    margin-bottom: 0;
+
+    color: var(--color-texto-secundario);
+
+    font-size: 0.85rem;
+}
+
+
+/* ----------------------------------------------------------
+   Indicador destacado
+
+   Se diferencia mediante borde, fondo y texto.
+   La importancia no depende exclusivamente del color.
+   ---------------------------------------------------------- */
+
+.indicador-destacado {
+    background-color: var(--color-activo-fondo);
+
+    border-color: var(--color-activo);
+}
+
+
+.indicador-destacado .indicador-icono {
+    color: var(--color-activo);
+
+    background-color: #c5ebd7;
+}
+
+
+/* ----------------------------------------------------------
+   Indicador de alertas
+
+   Además del color contiene el símbolo ! y la palabra
+   "Atención", cumpliendo el principio de no comunicar
+   información únicamente mediante color.
+   ---------------------------------------------------------- */
+
+.indicador-alerta {
+    background-color: var(--color-alerta-fondo);
+
+    border-color: var(--color-alerta);
+}
+
+
+.indicador-alerta .indicador-icono {
+    color: var(--color-alerta);
+
+    background-color: #ffe1ce;
+}
+
+
+.indicador-alerta .indicador-valor {
+    color: var(--color-alerta);
+}
+
+
+/* ==========================================================
+   11. CONTENIDO TEMPORAL
+   ========================================================== */
+
+/*
+   Estos bloques permanecerán solamente mientras las
+   secciones correspondientes se desarrollan en futuros
+   commits.
 */
 .contenido-pendiente {
     margin-bottom: 0;
@@ -278,24 +635,41 @@ p {
 
     background-color: var(--color-fondo);
 
+    border:
+        0.0625rem
+        dashed
+        var(--color-borde);
+
     border-radius: var(--radio-sm);
 }
 
 
 /* ==========================================================
-   8. PIE DE PÁGINA
+   12. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {
     padding-block: var(--espacio-lg);
 
-    color: #ffffff;
+    color: var(--color-texto-claro);
+
     background-color: var(--color-primario);
+}
+
+
+.contenido-pie {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--espacio-xs);
 }
 
 
 .pie-pagina p {
     margin-bottom: 0;
 
-    font-size: 0.875rem;
+    font-size: 0.8rem;
+
+    opacity: 0.85;
 }

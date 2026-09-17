@@ -23,42 +23,76 @@
 
 <body>
 
-    <!--
-        ENCABEZADO PRINCIPAL
+    <!-- =====================================================
+         ENCABEZADO PRINCIPAL
+         =====================================================
 
-        Contiene la identidad general de la expedición.
-        Se utiliza <header> porque representa información
-        introductoria del documento.
+         Contiene la identidad general de la expedición
+         y la información necesaria para reconocer rápidamente
+         el estado de las operaciones.
     -->
     <header class="encabezado-principal">
 
         <div class="contenedor encabezado-contenido">
 
-            <p class="etiqueta-superior">
-                Centro de control científico
-            </p>
+            <div class="identidad-expedicion">
+
+                <p class="etiqueta-superior">
+                    Centro de control científico
+                </p>
+
+                <!--
+                    Único h1 del documento.
+                    Representa el tema principal de toda la página.
+                -->
+                <h1>Expedición Bosque Nuboso 2026</h1>
+
+                <p class="ubicacion-expedicion">
+                    Estación Biológica Monteverde · Costa Rica
+                </p>
+
+            </div>
 
             <!--
-                Único h1 de la página.
-                Representa el tema principal del documento.
+                Resumen inmediato del día operativo.
+
+                Flexbox permite distribuir estos datos en una sola
+                dimensión y envolverlos cuando el espacio disminuye.
             -->
-            <h1>Expedición Bosque Nuboso 2026</h1>
+            <div class="estado-expedicion" aria-label="Estado general de la expedición">
 
-            <p class="datos-expedicion">
-                <span>Estación Biológica Monteverde</span>
+                <p class="dato-operativo">
+                    <span class="dato-etiqueta">Jornada</span>
+                    <strong>Día 4 de 7</strong>
+                </p>
 
-                <span>Día 4 de 7</span>
+                <p class="dato-operativo">
+                    <span class="dato-etiqueta">Hora de corte</span>
+                    <strong>10:45</strong>
+                </p>
 
-                <strong class="estado-general">
-                    ● Operaciones activas
-                </strong>
-            </p>
+                <p class="dato-operativo dato-operativo-activo">
+                    <span class="dato-etiqueta">Estado general</span>
 
-            <!--
-                Navegación principal del centro de control.
+                    <!--
+                        El símbolo y el texto comunican el estado,
+                        por lo que no depende únicamente del color.
+                    -->
+                    <strong>
+                        <span aria-hidden="true">●</span>
+                        Operaciones activas
+                    </strong>
+                </p>
 
-                Los enlaces apuntan a secciones existentes
-                dentro de la misma página.
+            </div>
+
+
+            <!-- =================================================
+                 NAVEGACIÓN PRINCIPAL
+                 =================================================
+
+                 La navegación utiliza enlaces reales hacia
+                 secciones existentes dentro del documento.
             -->
             <nav class="navegacion-principal" aria-label="Navegación principal">
 
@@ -93,11 +127,12 @@
     </header>
 
 
-    <!--
-        CONTENIDO PRINCIPAL
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         =====================================================
 
-        En próximos commits esta zona se convertirá
-        en la cuadrícula principal mediante CSS Grid.
+         En commits posteriores este contenedor se transformará
+         en la estructura principal mediante CSS Grid.
     -->
     <main class="contenedor panel-control">
 
@@ -105,27 +140,153 @@
         <!-- =================================================
              RESUMEN DE OPERACIONES
              ================================================= -->
-        <section id="resumen" class="seccion-panel">
+        <section id="resumen" class="seccion-panel seccion-resumen">
 
             <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Estado general
+                </p>
 
                 <h2>Resumen de operaciones</h2>
 
                 <p>
-                    Indicadores generales sobre el estado actual
-                    de la expedición.
+                    Indicadores principales para evaluar rápidamente
+                    el estado actual de la expedición científica.
                 </p>
 
             </header>
 
+
             <!--
-                Los indicadores específicos se incorporarán
-                en el Commit 3.
+                Los indicadores se organizan mediante Flexbox.
+
+                Cada indicador es un article porque constituye
+                una unidad independiente de información dentro
+                del resumen operativo.
             -->
-            <p class="contenido-pendiente">
-                Los indicadores operativos se incorporarán
-                durante la siguiente etapa del desarrollo.
-            </p>
+            <div class="indicadores-operacion">
+
+                <article class="indicador">
+
+                    <div class="indicador-encabezado">
+
+                        <span
+                            class="indicador-icono"
+                            aria-hidden="true"
+                        >
+                            INV
+                        </span>
+
+                        <span class="indicador-tendencia">
+                            Personal
+                        </span>
+
+                    </div>
+
+                    <h3>Investigadores activos</h3>
+
+                    <p class="indicador-valor">
+                        18
+                    </p>
+
+                    <p class="indicador-detalle">
+                        Distribuidos entre cuatro equipos científicos.
+                    </p>
+
+                </article>
+
+
+                <article class="indicador indicador-destacado">
+
+                    <div class="indicador-encabezado">
+
+                        <span
+                            class="indicador-icono"
+                            aria-hidden="true"
+                        >
+                            RUN
+                        </span>
+
+                        <span class="indicador-tendencia">
+                            En campo
+                        </span>
+
+                    </div>
+
+                    <h3>Misiones en progreso</h3>
+
+                    <p class="indicador-valor">
+                        3
+                    </p>
+
+                    <p class="indicador-detalle">
+                        Actividades actualmente ejecutándose.
+                    </p>
+
+                </article>
+
+
+                <article class="indicador">
+
+                    <div class="indicador-encabezado">
+
+                        <span
+                            class="indicador-icono"
+                            aria-hidden="true"
+                        >
+                            OK
+                        </span>
+
+                        <span class="indicador-tendencia">
+                            Finalizadas
+                        </span>
+
+                    </div>
+
+                    <h3>Misiones completadas</h3>
+
+                    <p class="indicador-valor">
+                        7
+                    </p>
+
+                    <p class="indicador-detalle">
+                        Actividades concluidas durante la expedición.
+                    </p>
+
+                </article>
+
+
+                <article class="indicador indicador-alerta">
+
+                    <div class="indicador-encabezado">
+
+                        <span
+                            class="indicador-icono"
+                            aria-hidden="true"
+                        >
+                            !
+                        </span>
+
+                        <span class="indicador-tendencia">
+                            Atención
+                        </span>
+
+                    </div>
+
+                    <h3>Alertas pendientes</h3>
+
+                    <p class="indicador-valor">
+                        4
+                    </p>
+
+                    <p class="indicador-detalle">
+                        Situaciones que requieren seguimiento operativo.
+                    </p>
+
+                </article>
+
+            </div>
 
         </section>
 
@@ -137,6 +298,10 @@
 
             <header class="encabezado-seccion">
 
+                <p class="categoria-seccion">
+                    Operaciones de campo
+                </p>
+
                 <h2>Misiones activas</h2>
 
                 <p>
@@ -147,12 +312,12 @@
             </header>
 
             <!--
-                Las cinco misiones requeridas por la consigna
-                se incorporarán progresivamente.
+                Las cinco misiones completas se incorporarán
+                en el Commit 3.
             -->
             <p class="contenido-pendiente">
-                Las misiones de la expedición se agregarán
-                en una etapa posterior.
+                El detalle de las misiones científicas será incorporado
+                en la siguiente etapa del desarrollo.
             </p>
 
         </section>
@@ -165,22 +330,26 @@
 
             <header class="encabezado-seccion">
 
+                <p class="categoria-seccion">
+                    Personal científico
+                </p>
+
                 <h2>Equipos científicos</h2>
 
                 <p>
                     Estado de los diferentes grupos responsables
-                    de las investigaciones.
+                    de las investigaciones de campo.
                 </p>
 
             </header>
 
             <!--
-                Aquí se incorporarán Biología, Hidrología,
-                Meteorología y Geología.
+                Biología, Hidrología, Meteorología y Geología
+                serán incorporados en el Commit 3.
             -->
             <p class="contenido-pendiente">
-                Los equipos científicos serán incorporados
-                durante las siguientes versiones.
+                La información detallada de los equipos científicos
+                será incorporada en la siguiente etapa.
             </p>
 
         </section>
@@ -193,47 +362,55 @@
 
             <header class="encabezado-seccion">
 
+                <p class="categoria-seccion">
+                    Seguimiento operativo
+                </p>
+
                 <h2>Alertas</h2>
 
                 <p>
-                    Situaciones que requieren seguimiento
-                    por parte del equipo coordinador.
+                    Situaciones que requieren seguimiento por parte
+                    del equipo coordinador de la expedición.
                 </p>
 
             </header>
 
             <!--
-                Se utiliza <aside> porque las alertas complementan
-                y llaman la atención sobre el contenido operativo
-                principal del centro de control.
+                Se utiliza aside porque las alertas complementan
+                y destacan situaciones relacionadas con las
+                operaciones principales.
             -->
             <p class="contenido-pendiente">
-                El sistema de alertas se incorporará
-                posteriormente.
+                El sistema jerarquizado de alertas se incorporará
+                durante una etapa posterior.
             </p>
 
         </aside>
 
 
         <!-- =================================================
-             PRÓXIMAS ACTIVIDADES / AGENDA
+             PRÓXIMAS ACTIVIDADES
              ================================================= -->
         <section id="agenda" class="seccion-panel">
 
             <header class="encabezado-seccion">
 
+                <p class="categoria-seccion">
+                    Agenda
+                </p>
+
                 <h2>Próximas actividades</h2>
 
                 <p>
-                    Agenda cronológica de las siguientes
-                    actividades de la expedición.
+                    Agenda cronológica de las siguientes actividades
+                    programadas para los equipos científicos.
                 </p>
 
             </header>
 
             <p class="contenido-pendiente">
-                La agenda detallada se agregará
-                durante una etapa posterior.
+                La agenda cronológica detallada será incorporada
+                en una etapa posterior.
             </p>
 
         </section>
@@ -241,19 +418,20 @@
     </main>
 
 
-    <!--
-        PIE DE PÁGINA
-
-        Contiene información secundaria relacionada
-        con el sistema de control.
-    -->
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
     <footer class="pie-pagina">
 
-        <div class="contenedor">
+        <div class="contenedor contenido-pie">
 
             <p>
                 Expedición Bosque Nuboso 2026 ·
                 Centro de coordinación científica
+            </p>
+
+            <p>
+                Estación Biológica Monteverde · Costa Rica
             </p>
 
         </div>
