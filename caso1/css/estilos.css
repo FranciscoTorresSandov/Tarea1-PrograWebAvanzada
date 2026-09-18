@@ -2,19 +2,21 @@
    CASO 1
    CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
 
-   Commit 4:
-   - Se mantienen los componentes previamente construidos.
-   - Se incorporan cuatro alertas operativas.
-   - Se establece una jerarquía de alertas:
-     crítica, alta, media e informativa.
-   - Se agregan cinco actividades en orden cronológico.
-   - Los estados importantes utilizan texto, símbolos y color.
-   - Se amplía el uso de Flexbox.
-   - Se mantiene el enfoque mobile-first.
+   Commit 5:
+   - La estructura principal se resuelve mediante CSS Grid.
+   - Se utilizan grid-template-areas para representar
+     semánticamente las principales zonas del tablero.
+   - El Grid base mantiene una columna por ser mobile-first.
+   - Flexbox continúa resolviendo distribuciones
+     unidimensionales dentro de los componentes.
+   - Se incorpora position: relative y absolute para
+     superponer las etiquetas de prioridad de las misiones.
+   - El posicionamiento no sustituye el layout principal.
+   - Se mantiene una especificidad controlada y no se utiliza
+     !important.
 
-   En el Commit 5 se incorporará CSS Grid para resolver
-   la estructura principal del centro de control y se
-   utilizará posicionamiento CSS de forma justificada.
+   En el Commit 6 se incorporarán las media queries que
+   transformarán esta cuadrícula para tableta y escritorio.
    ========================================================== */
 
 
@@ -76,7 +78,7 @@
     --espacio-xl: 2rem;
     --espacio-2xl: 3rem;
 
-    /* Bordes redondeados */
+    /* Radios */
     --radio-xs: 0.35rem;
     --radio-sm: 0.5rem;
     --radio-md: 0.875rem;
@@ -95,7 +97,7 @@
 
 
 /* ==========================================================
-   2. MODELO DE CAJA GLOBAL
+   2. MODELO DE CAJA
    ========================================================== */
 
 *,
@@ -127,6 +129,12 @@ body {
 
     color: var(--color-texto);
     background-color: var(--color-fondo);
+
+    /*
+        Evita desplazamientos horizontales accidentales
+        provocados por contenido que exceda su contenedor.
+    */
+    overflow-x: hidden;
 }
 
 
@@ -191,7 +199,6 @@ p {
         var(--espacio-md);
 
     color: var(--color-texto-claro);
-
     background-color: var(--color-primario);
 
     border-bottom:
@@ -322,6 +329,8 @@ p {
 
 .lista-navegacion li {
     flex: 1 1 auto;
+
+    min-width: 0;
 }
 
 
@@ -369,16 +378,84 @@ p {
 
 
 /* ==========================================================
-   8. PANEL PRINCIPAL
+   8. GRID PRINCIPAL DEL CENTRO DE CONTROL
    ========================================================== */
 
+/*
+   Este es el layout bidimensional principal del Caso 1.
+
+   Se utiliza CSS Grid porque debemos controlar tanto filas
+   como columnas y porque cada sección constituye una zona
+   independiente del centro de mando.
+
+   MOBILE-FIRST:
+   En la configuración inicial existe una sola columna.
+
+   En el Commit 6 los nombres de las áreas permanecerán,
+   pero grid-template-columns y grid-template-areas cambiarán
+   para tableta y escritorio.
+*/
 .panel-control {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr);
+
+    grid-template-areas:
+        "resumen"
+        "misiones"
+        "alertas"
+        "equipos"
+        "agenda";
+
+    gap: var(--espacio-lg);
+
     padding-block: var(--espacio-lg);
 }
 
 
+/*
+   Cada sección se vincula explícitamente
+   con un área de la cuadrícula principal.
+*/
+.seccion-resumen {
+    grid-area: resumen;
+}
+
+
+.seccion-misiones {
+    grid-area: misiones;
+}
+
+
+.seccion-equipos {
+    grid-area: equipos;
+}
+
+
+.seccion-alertas {
+    grid-area: alertas;
+}
+
+
+.seccion-agenda {
+    grid-area: agenda;
+}
+
+
+/* ==========================================================
+   9. SECCIONES PRINCIPALES
+   ========================================================== */
+
 .seccion-panel {
-    margin-bottom: var(--espacio-lg);
+    /*
+        min-width: 0 es importante dentro de Grid.
+        Permite que el elemento pueda reducirse sin provocar
+        desbordamiento horizontal por su contenido.
+    */
+    min-width: 0;
+
+    margin: 0;
 
     padding: var(--espacio-lg);
 
@@ -420,10 +497,6 @@ p {
 }
 
 
-/* ==========================================================
-   9. RESUMEN
-   ========================================================== */
-
 .seccion-resumen {
     border-top:
         0.25rem
@@ -432,6 +505,16 @@ p {
 }
 
 
+/* ==========================================================
+   10. INDICADORES
+   FLEXBOX
+   ========================================================== */
+
+/*
+   Aunque la estructura principal utiliza Grid,
+   los indicadores constituyen una distribución
+   unidimensional y por eso mantienen Flexbox.
+*/
 .indicadores-operacion {
     display: flex;
     flex-direction: column;
@@ -439,10 +522,6 @@ p {
     gap: var(--espacio-md);
 }
 
-
-/* ==========================================================
-   10. INDICADORES
-   ========================================================== */
 
 .indicador {
     min-width: 0;
@@ -536,6 +615,7 @@ p {
 
 .indicador-destacado {
     background-color: var(--color-activo-fondo);
+
     border-color: var(--color-activo);
 }
 
@@ -549,6 +629,7 @@ p {
 
 .indicador-alerta {
     background-color: var(--color-alerta-fondo);
+
     border-color: var(--color-alerta);
 }
 
@@ -567,6 +648,7 @@ p {
 
 /* ==========================================================
    11. LISTA DE MISIONES
+   FLEXBOX
    ========================================================== */
 
 .lista-misiones {
@@ -579,12 +661,29 @@ p {
 
 /* ==========================================================
    12. TARJETAS DE MISIÓN
+   POSITION RELATIVE
    ========================================================== */
 
+/*
+   position: relative crea el contexto de posicionamiento
+   para la etiqueta de prioridad.
+
+   NO se utiliza position para construir el layout
+   de la tarjeta ni de la página.
+*/
 .tarjeta-mision {
+    position: relative;
+
     min-width: 0;
 
-    padding: var(--espacio-md);
+    /*
+        Se reserva espacio superior suficiente para que
+        la etiqueta absoluta nunca tape el contenido.
+    */
+    padding:
+        3.75rem
+        var(--espacio-md)
+        var(--espacio-md);
 
     background-color:
         var(--color-superficie-secundaria);
@@ -605,9 +704,7 @@ p {
 
 .mision-encabezado {
     display: flex;
-    flex-wrap: wrap;
 
-    justify-content: space-between;
     align-items: flex-start;
 
     gap: var(--espacio-sm);
@@ -616,10 +713,17 @@ p {
 }
 
 
+.mision-encabezado > div {
+    min-width: 0;
+}
+
+
 .mision-encabezado h3 {
     margin-bottom: 0;
 
     font-size: 1.05rem;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -638,10 +742,31 @@ p {
 
 /* ==========================================================
    13. PRIORIDADES
+   POSITION ABSOLUTE
    ========================================================== */
 
+/*
+   La etiqueta se superpone en la esquina superior derecha
+   de la tarjeta.
+
+   Es un uso justificado de position:absolute porque se trata
+   de una etiqueta contextual asociada a la misión.
+
+   La tarjeta mantiene position:relative, por lo que la
+   etiqueta nunca se posiciona respecto a toda la página.
+*/
 .prioridad {
+    position: absolute;
+
+    top: var(--espacio-md);
+    right: var(--espacio-md);
+
+    z-index: 1;
+
     display: inline-block;
+
+    max-width:
+        calc(100% - (var(--espacio-md) * 2));
 
     padding:
         var(--espacio-2xs)
@@ -649,6 +774,8 @@ p {
 
     font-size: 0.72rem;
     font-weight: 700;
+
+    text-align: center;
 
     border:
         0.0625rem
@@ -661,19 +788,25 @@ p {
 
 .prioridad-media {
     color: var(--color-advertencia);
-    background-color: var(--color-advertencia-fondo);
+
+    background-color:
+        var(--color-advertencia-fondo);
 }
 
 
 .prioridad-alta {
     color: var(--color-alerta);
-    background-color: var(--color-alerta-fondo);
+
+    background-color:
+        var(--color-alerta-fondo);
 }
 
 
 .prioridad-critica {
     color: var(--color-critico);
-    background-color: var(--color-critico-fondo);
+
+    background-color:
+        var(--color-critico-fondo);
 }
 
 
@@ -687,6 +820,8 @@ p {
 
 
 .dato-mision {
+    min-width: 0;
+
     padding-block: var(--espacio-sm);
 
     border-bottom:
@@ -726,6 +861,8 @@ p {
 
     font-size: 0.9rem;
     font-weight: 600;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -750,6 +887,8 @@ p {
 
     gap: var(--espacio-xs);
 
+    max-width: 100%;
+
     padding:
         var(--espacio-xs)
         var(--espacio-sm);
@@ -768,31 +907,40 @@ p {
 
 .estado-progreso {
     color: var(--color-activo);
-    background-color: var(--color-activo-fondo);
+
+    background-color:
+        var(--color-activo-fondo);
 }
 
 
 .estado-completada {
     color: var(--color-primario);
+
     background-color: #e0eee7;
 }
 
 
 .estado-pendiente {
     color: var(--color-advertencia);
-    background-color: var(--color-advertencia-fondo);
+
+    background-color:
+        var(--color-advertencia-fondo);
 }
 
 
 .estado-suspendida {
     color: var(--color-critico);
-    background-color: var(--color-critico-fondo);
+
+    background-color:
+        var(--color-critico-fondo);
 }
 
 
 .estado-atencion {
     color: var(--color-alerta);
-    background-color: var(--color-alerta-fondo);
+
+    background-color:
+        var(--color-alerta-fondo);
 }
 
 
@@ -803,6 +951,7 @@ p {
 
 /* ==========================================================
    16. EQUIPOS
+   FLEXBOX
    ========================================================== */
 
 .lista-equipos {
@@ -897,6 +1046,8 @@ p {
 
 
 .dato-equipo {
+    min-width: 0;
+
     padding-block: var(--espacio-sm);
 
     border-top:
@@ -923,27 +1074,16 @@ p {
     margin-bottom: 0;
 
     font-size: 0.9rem;
+
+    overflow-wrap: anywhere;
 }
 
 
 /* ==========================================================
    17. ALERTAS
+   FLEXBOX
    ========================================================== */
 
-/*
-   Las alertas se presentan inicialmente en una sola
-   columna para facilitar su localización en teléfono.
-
-   Su importancia se comunica mediante:
-   - texto;
-   - símbolo;
-   - borde;
-   - fondo;
-   - color.
-
-   Por lo tanto, el significado no depende exclusivamente
-   de la percepción del color.
-*/
 .lista-alertas {
     display: flex;
     flex-direction: column;
@@ -1011,6 +1151,8 @@ p {
     margin-bottom: 0;
 
     font-size: 1rem;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1026,9 +1168,9 @@ p {
 
 
 .alerta-descripcion {
-    color: var(--color-texto-secundario);
-
     font-size: 0.9rem;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1056,10 +1198,6 @@ p {
    18. NIVELES DE ALERTA
    ========================================================== */
 
-/*
-   Alerta crítica:
-   mayor peso visual de la sección.
-*/
 .alerta-critica {
     color: var(--color-critico);
 
@@ -1078,7 +1216,6 @@ p {
 }
 
 
-/* Alerta de importancia alta */
 .alerta-alta {
     color: var(--color-alerta);
 
@@ -1095,7 +1232,6 @@ p {
 }
 
 
-/* Alerta de importancia media */
 .alerta-media {
     color: var(--color-advertencia);
 
@@ -1112,7 +1248,6 @@ p {
 }
 
 
-/* Alerta informativa */
 .alerta-informativa {
     color: var(--color-informativo);
 
@@ -1131,6 +1266,7 @@ p {
 
 /* ==========================================================
    19. AGENDA
+   FLEXBOX
    ========================================================== */
 
 .lista-agenda {
@@ -1141,13 +1277,6 @@ p {
 }
 
 
-/*
-   Cada actividad se organiza mediante Flexbox:
-   hora a un lado y contenido al otro.
-
-   flex-wrap evita problemas cuando el espacio sea
-   especialmente reducido.
-*/
 .actividad-agenda {
     display: flex;
     flex-wrap: wrap;
@@ -1155,6 +1284,8 @@ p {
     align-items: flex-start;
 
     gap: var(--espacio-md);
+
+    min-width: 0;
 
     padding-block: var(--espacio-md);
 
@@ -1177,7 +1308,6 @@ p {
 }
 
 
-/* Hora con fuerte jerarquía visual */
 .actividad-hora {
     display: inline-flex;
 
@@ -1212,6 +1342,8 @@ p {
     margin-bottom: var(--espacio-xs);
 
     font-size: 0.95rem;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -1233,7 +1365,8 @@ p {
 
     color: var(--color-texto-claro);
 
-    background-color: var(--color-primario);
+    background-color:
+        var(--color-primario);
 }
 
 
