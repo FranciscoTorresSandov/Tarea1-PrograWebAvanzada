@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
 
     <!--
-        Permite que el diseño responda correctamente
-        al ancho real del dispositivo.
+        Permite que la interfaz utilice correctamente
+        el ancho real del dispositivo.
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,6 +23,21 @@
 
 <body>
 
+    <!--
+        Enlace de accesibilidad.
+
+        Permite a una persona que navega con teclado
+        saltar directamente al contenido principal sin
+        tener que recorrer primero toda la navegación.
+    -->
+    <a
+        class="salto-contenido"
+        href="#contenido-principal"
+    >
+        Saltar al contenido principal
+    </a>
+
+
     <!-- =====================================================
          ENCABEZADO PRINCIPAL
          ===================================================== -->
@@ -36,7 +51,10 @@
                     Centro de control científico
                 </p>
 
-                <!-- Único h1 del documento -->
+                <!--
+                    Único h1 del documento.
+                    Representa el tema principal de la interfaz.
+                -->
                 <h1>
                     Expedición Bosque Nuboso 2026
                 </h1>
@@ -49,11 +67,8 @@
 
 
             <!--
-                Estado operativo resumido.
-
-                Esta distribución se resuelve mediante Flexbox
-                porque los datos forman una agrupación
-                principalmente unidimensional.
+                Flexbox se utiliza para distribuir los datos
+                operativos del encabezado.
             -->
             <div
                 class="estado-expedicion"
@@ -92,6 +107,10 @@
                         Estado general
                     </span>
 
+                    <!--
+                        El símbolo y el texto permiten reconocer
+                        el estado sin depender solo del color.
+                    -->
                     <strong>
                         <span aria-hidden="true">●</span>
                         Operaciones activas
@@ -145,14 +164,16 @@
          CENTRO DE CONTROL
          =====================================================
 
-         Este elemento <main> constituye ahora la cuadrícula
-         principal del Caso 1 mediante CSS Grid.
+         La estructura principal utiliza CSS Grid.
 
-         En teléfono las áreas permanecen en una sola columna.
-         En el Commit 6 las mismas áreas se reorganizarán para
-         tableta y escritorio mediante media queries.
+         El CSS base representa el diseño de teléfono.
+         Las media queries reorganizan posteriormente las
+         mismas áreas para tableta y computadora.
     -->
-    <main class="contenedor panel-control">
+    <main
+        id="contenido-principal"
+        class="contenedor panel-control"
+    >
 
 
         <!-- =================================================
@@ -184,6 +205,8 @@
 
             <div class="indicadores-operacion">
 
+
+                <!-- Investigadores activos -->
                 <article class="indicador">
 
                     <div class="indicador-encabezado">
@@ -216,6 +239,7 @@
                 </article>
 
 
+                <!-- Misiones actualmente ejecutándose -->
                 <article class="indicador indicador-destacado">
 
                     <div class="indicador-encabezado">
@@ -248,6 +272,7 @@
                 </article>
 
 
+                <!-- Misiones finalizadas -->
                 <article class="indicador">
 
                     <div class="indicador-encabezado">
@@ -280,6 +305,7 @@
                 </article>
 
 
+                <!-- Alertas que requieren seguimiento -->
                 <article class="indicador indicador-alerta">
 
                     <div class="indicador-encabezado">
@@ -365,12 +391,9 @@
 
                         </div>
 
-
                         <!--
-                            La etiqueta de prioridad será
-                            posicionada mediante position:absolute.
-
-                            La tarjeta será su contenedor relativo.
+                            Etiqueta posicionada absolutamente
+                            respecto a la tarjeta de misión.
                         -->
                         <span class="prioridad prioridad-alta">
                             Prioridad: Alta
@@ -383,7 +406,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Equipo responsable</dt>
+                            <dt>
+                                Equipo responsable
+                            </dt>
 
                             <dd>
                                 Biología
@@ -394,7 +419,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Ubicación</dt>
+                            <dt>
+                                Ubicación
+                            </dt>
 
                             <dd>
                                 Sendero Norte
@@ -405,7 +432,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Horario</dt>
+                            <dt>
+                                Horario
+                            </dt>
 
                             <dd>
                                 <time datetime="08:30">08:30</time>
@@ -465,7 +494,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Equipo responsable</dt>
+                            <dt>
+                                Equipo responsable
+                            </dt>
 
                             <dd>
                                 Hidrología
@@ -476,7 +507,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Ubicación</dt>
+                            <dt>
+                                Ubicación
+                            </dt>
 
                             <dd>
                                 Quebrada Verde
@@ -487,7 +520,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Horario</dt>
+                            <dt>
+                                Horario
+                            </dt>
 
                             <dd>
                                 <time datetime="09:00">09:00</time>
@@ -547,7 +582,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Equipo responsable</dt>
+                            <dt>
+                                Equipo responsable
+                            </dt>
 
                             <dd>
                                 Meteorología
@@ -558,7 +595,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Ubicación</dt>
+                            <dt>
+                                Ubicación
+                            </dt>
 
                             <dd>
                                 Torre Climática
@@ -569,7 +608,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Horario</dt>
+                            <dt>
+                                Horario
+                            </dt>
 
                             <dd>
                                 <time datetime="07:45">07:45</time>
@@ -629,7 +670,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Equipo responsable</dt>
+                            <dt>
+                                Equipo responsable
+                            </dt>
 
                             <dd>
                                 Geología
@@ -640,7 +683,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Ubicación</dt>
+                            <dt>
+                                Ubicación
+                            </dt>
 
                             <dd>
                                 Sector Rocoso Este
@@ -651,7 +696,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Horario</dt>
+                            <dt>
+                                Horario
+                            </dt>
 
                             <dd>
                                 <time datetime="10:00">10:00</time>
@@ -713,7 +760,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Equipo responsable</dt>
+                            <dt>
+                                Equipo responsable
+                            </dt>
 
                             <dd>
                                 Meteorología
@@ -724,7 +773,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Ubicación</dt>
+                            <dt>
+                                Ubicación
+                            </dt>
 
                             <dd>
                                 Sector Norte
@@ -735,7 +786,9 @@
 
                         <div class="dato-mision">
 
-                            <dt>Horario</dt>
+                            <dt>
+                                Horario
+                            </dt>
 
                             <dd>
                                 <time datetime="09:30">09:30</time>
@@ -799,7 +852,9 @@
             <div class="lista-equipos">
 
 
-                <!-- BIOLOGÍA -->
+                <!-- =========================================
+                     BIOLOGÍA
+                     ========================================= -->
                 <article class="tarjeta-equipo">
 
                     <header class="equipo-encabezado">
@@ -830,7 +885,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Integrantes</dt>
+                            <dt>
+                                Integrantes
+                            </dt>
 
                             <dd>
                                 6 investigadores
@@ -841,7 +898,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Misión actual</dt>
+                            <dt>
+                                Misión actual
+                            </dt>
 
                             <dd>
                                 Monitoreo de anfibios
@@ -852,7 +911,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Estado</dt>
+                            <dt>
+                                Estado
+                            </dt>
 
                             <dd>
 
@@ -873,7 +934,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Próxima actividad</dt>
+                            <dt>
+                                Próxima actividad
+                            </dt>
 
                             <dd>
                                 <time datetime="12:30">12:30</time>
@@ -887,7 +950,9 @@
                 </article>
 
 
-                <!-- HIDROLOGÍA -->
+                <!-- =========================================
+                     HIDROLOGÍA
+                     ========================================= -->
                 <article class="tarjeta-equipo">
 
                     <header class="equipo-encabezado">
@@ -918,7 +983,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Integrantes</dt>
+                            <dt>
+                                Integrantes
+                            </dt>
 
                             <dd>
                                 4 investigadores
@@ -929,7 +996,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Misión actual</dt>
+                            <dt>
+                                Misión actual
+                            </dt>
 
                             <dd>
                                 Muestreo de calidad del agua
@@ -940,7 +1009,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Estado</dt>
+                            <dt>
+                                Estado
+                            </dt>
 
                             <dd>
 
@@ -961,7 +1032,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Próxima actividad</dt>
+                            <dt>
+                                Próxima actividad
+                            </dt>
 
                             <dd>
                                 <time datetime="13:15">13:15</time>
@@ -975,7 +1048,9 @@
                 </article>
 
 
-                <!-- METEOROLOGÍA -->
+                <!-- =========================================
+                     METEOROLOGÍA
+                     ========================================= -->
                 <article
                     class="tarjeta-equipo tarjeta-equipo-atencion"
                 >
@@ -1008,7 +1083,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Integrantes</dt>
+                            <dt>
+                                Integrantes
+                            </dt>
 
                             <dd>
                                 3 investigadores
@@ -1019,7 +1096,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Misión actual</dt>
+                            <dt>
+                                Misión actual
+                            </dt>
 
                             <dd>
                                 Diagnóstico de sensor pluviométrico
@@ -1030,7 +1109,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Estado</dt>
+                            <dt>
+                                Estado
+                            </dt>
 
                             <dd>
 
@@ -1051,7 +1132,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Próxima actividad</dt>
+                            <dt>
+                                Próxima actividad
+                            </dt>
 
                             <dd>
                                 <time datetime="11:00">11:00</time>
@@ -1065,7 +1148,9 @@
                 </article>
 
 
-                <!-- GEOLOGÍA -->
+                <!-- =========================================
+                     GEOLOGÍA
+                     ========================================= -->
                 <article class="tarjeta-equipo">
 
                     <header class="equipo-encabezado">
@@ -1096,7 +1181,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Integrantes</dt>
+                            <dt>
+                                Integrantes
+                            </dt>
 
                             <dd>
                                 5 investigadores
@@ -1107,7 +1194,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Misión actual</dt>
+                            <dt>
+                                Misión actual
+                            </dt>
 
                             <dd>
                                 Preparación del levantamiento geológico
@@ -1118,7 +1207,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Estado</dt>
+                            <dt>
+                                Estado
+                            </dt>
 
                             <dd>
 
@@ -1139,7 +1230,9 @@
 
                         <div class="dato-equipo">
 
-                            <dt>Próxima actividad</dt>
+                            <dt>
+                                Próxima actividad
+                            </dt>
 
                             <dd>
                                 <time datetime="10:00">10:00</time>
@@ -1160,6 +1253,10 @@
         <!-- =================================================
              ALERTAS
              Área Grid: alertas
+
+             <aside> se utiliza porque contiene información
+             operativa complementaria que requiere atención
+             especial.
              ================================================= -->
         <aside
             id="alertas"
@@ -1387,7 +1484,7 @@
 
 
         <!-- =================================================
-             AGENDA
+             PRÓXIMAS ACTIVIDADES
              Área Grid: agenda
              ================================================= -->
         <section
@@ -1413,6 +1510,10 @@
             </header>
 
 
+            <!--
+                Se utiliza una lista ordenada porque
+                el orden cronológico tiene significado.
+            -->
             <ol class="lista-agenda">
 
 

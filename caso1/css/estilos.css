@@ -2,21 +2,21 @@
    CASO 1
    CENTRO DE CONTROL DE UNA EXPEDICIÓN CIENTÍFICA
 
-   Commit 5:
-   - La estructura principal se resuelve mediante CSS Grid.
-   - Se utilizan grid-template-areas para representar
-     semánticamente las principales zonas del tablero.
-   - El Grid base mantiene una columna por ser mobile-first.
-   - Flexbox continúa resolviendo distribuciones
-     unidimensionales dentro de los componentes.
-   - Se incorpora position: relative y absolute para
-     superponer las etiquetas de prioridad de las misiones.
-   - El posicionamiento no sustituye el layout principal.
-   - Se mantiene una especificidad controlada y no se utiliza
-     !important.
+   Commit 6 - Versión final del Caso 1
 
-   En el Commit 6 se incorporarán las media queries que
-   transformarán esta cuadrícula para tableta y escritorio.
+   Características principales:
+   - HTML y CSS desarrollado con enfoque mobile-first.
+   - CSS Grid para la estructura principal.
+   - Flexbox para distribuciones unidimensionales internas.
+   - Position relative + absolute en prioridades de misión.
+   - Adaptación real para teléfono, tableta y escritorio.
+   - Variables CSS reutilizables.
+   - Unidades relativas.
+   - Estados identificables mediante texto, símbolo y color.
+   - Control del modelo de caja y del desbordamiento.
+   - Reglas para imágenes adaptables.
+   - Estilos visibles de enfoque para teclado.
+   - No se utiliza !important.
    ========================================================== */
 
 
@@ -53,7 +53,7 @@
     --color-advertencia: #8a5a00;
     --color-advertencia-fondo: #fff4d6;
 
-    /* Alertas altas */
+    /* Alertas */
     --color-alerta: #a64412;
     --color-alerta-fondo: #fff1e7;
 
@@ -61,13 +61,16 @@
     --color-critico: #8f2525;
     --color-critico-fondo: #fde8e8;
 
-    /* Estados informativos */
+    /* Información */
     --color-informativo: #245a73;
     --color-informativo-fondo: #e6f3f8;
 
     /* Estados neutrales */
     --color-neutral: #53616a;
     --color-neutral-fondo: #edf1f3;
+
+    /* Color para enfoque mediante teclado */
+    --color-foco: #f6cf65;
 
     /* Espaciado */
     --espacio-2xs: 0.25rem;
@@ -91,15 +94,19 @@
     --sombra-media:
         0 0.4rem 1.4rem rgba(18, 55, 42, 0.12);
 
-    /* Ancho máximo */
+    /* Contenedor principal */
     --ancho-contenido: 75rem;
 }
 
 
 /* ==========================================================
-   2. MODELO DE CAJA
+   2. MODELO DE CAJA GLOBAL
    ========================================================== */
 
+/*
+   border-box hace que padding y border formen parte
+   del tamaño declarado del elemento.
+*/
 *,
 *::before,
 *::after {
@@ -108,8 +115,7 @@
 
 
 /* ==========================================================
-   3. ESTILOS GENERALES
-   MOBILE-FIRST
+   3. CONFIGURACIÓN GENERAL
    ========================================================== */
 
 html {
@@ -129,15 +135,15 @@ body {
 
     color: var(--color-texto);
     background-color: var(--color-fondo);
-
-    /*
-        Evita desplazamientos horizontales accidentales
-        provocados por contenido que exceda su contenedor.
-    */
-    overflow-x: hidden;
 }
 
 
+/*
+   Contenedor reutilizable.
+
+   El porcentaje permite adaptación.
+   max-width limita la expansión en monitores grandes.
+*/
 .contenedor {
     width: 92%;
     max-width: var(--ancho-contenido);
@@ -147,7 +153,25 @@ body {
 
 
 /* ==========================================================
-   4. TIPOGRAFÍA
+   4. IMÁGENES ADAPTABLES
+   ========================================================== */
+
+/*
+   Aunque el Caso 1 no necesita imágenes para comunicar
+   su información, cualquier imagen que pudiera incorporarse
+   permanecerá limitada al ancho de su contenedor y conservará
+   su proporción.
+*/
+img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================================
+   5. TIPOGRAFÍA
    ========================================================== */
 
 h1,
@@ -163,15 +187,23 @@ dd {
 h1 {
     margin-bottom: var(--espacio-sm);
 
-    font-size: 1.8rem;
-    line-height: 1.15;
+    /*
+        clamp combina tamaño mínimo, tamaño adaptable
+        y tamaño máximo.
+    */
+    font-size:
+        clamp(1.8rem, 5vw, 2.75rem);
+
+    line-height: 1.1;
 }
 
 
 h2 {
     margin-bottom: var(--espacio-xs);
 
-    font-size: 1.35rem;
+    font-size:
+        clamp(1.3rem, 3vw, 1.65rem);
+
     line-height: 1.2;
 }
 
@@ -190,7 +222,44 @@ p {
 
 
 /* ==========================================================
-   5. ENCABEZADO PRINCIPAL
+   6. ACCESIBILIDAD: SALTO AL CONTENIDO
+   ========================================================== */
+
+/*
+   El enlace permanece fuera del área visible normalmente,
+   pero aparece al recibir foco mediante teclado.
+*/
+.salto-contenido {
+    position: absolute;
+
+    top: -5rem;
+    left: var(--espacio-md);
+
+    z-index: 100;
+
+    padding:
+        var(--espacio-sm)
+        var(--espacio-md);
+
+    color: var(--color-primario);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    background-color: var(--color-foco);
+
+    border-radius: var(--radio-sm);
+}
+
+
+.salto-contenido:focus {
+    top: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   7. ENCABEZADO PRINCIPAL
    ========================================================== */
 
 .encabezado-principal {
@@ -199,7 +268,9 @@ p {
         var(--espacio-md);
 
     color: var(--color-texto-claro);
-    background-color: var(--color-primario);
+
+    background-color:
+        var(--color-primario);
 
     border-bottom:
         0.25rem
@@ -230,7 +301,7 @@ p {
     letter-spacing: 0.1em;
     text-transform: uppercase;
 
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 
@@ -239,12 +310,12 @@ p {
 
     font-size: 0.95rem;
 
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 
 /* ==========================================================
-   6. ESTADO GENERAL
+   8. ESTADO GENERAL
    FLEXBOX
    ========================================================== */
 
@@ -271,7 +342,7 @@ p {
     border:
         0.0625rem
         solid
-        rgba(255, 255, 255, 0.15);
+        rgba(255, 255, 255, 0.18);
 
     border-radius: var(--radio-sm);
 }
@@ -288,7 +359,7 @@ p {
     letter-spacing: 0.06em;
     text-transform: uppercase;
 
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
 
@@ -305,7 +376,7 @@ p {
 
 
 /* ==========================================================
-   7. NAVEGACIÓN
+   9. NAVEGACIÓN PRINCIPAL
    FLEXBOX
    ========================================================== */
 
@@ -355,45 +426,48 @@ p {
     border:
         0.0625rem
         solid
-        rgba(255, 255, 255, 0.25);
+        rgba(255, 255, 255, 0.28);
 
     border-radius: var(--radio-sm);
 }
 
 
-.lista-navegacion a:hover,
-.lista-navegacion a:focus-visible {
+.lista-navegacion a:hover {
     background-color:
         rgba(255, 255, 255, 0.15);
-
-    outline: none;
 }
 
 
+/*
+   Estado de foco claramente visible para
+   personas que utilizan teclado.
+*/
 .lista-navegacion a:focus-visible {
-    box-shadow:
-        0 0 0 0.1875rem
-        rgba(255, 255, 255, 0.35);
+    outline:
+        0.1875rem
+        solid
+        var(--color-foco);
+
+    outline-offset: 0.15rem;
+
+    background-color:
+        rgba(255, 255, 255, 0.15);
 }
 
 
 /* ==========================================================
-   8. GRID PRINCIPAL DEL CENTRO DE CONTROL
+   10. GRID PRINCIPAL
+   MOBILE-FIRST
    ========================================================== */
 
 /*
-   Este es el layout bidimensional principal del Caso 1.
+   El layout base representa TELÉFONO.
 
-   Se utiliza CSS Grid porque debemos controlar tanto filas
-   como columnas y porque cada sección constituye una zona
-   independiente del centro de mando.
+   Una única columna conserva una lectura clara y mantiene
+   las alertas antes de equipos y agenda.
 
-   MOBILE-FIRST:
-   En la configuración inicial existe una sola columna.
-
-   En el Commit 6 los nombres de las áreas permanecerán,
-   pero grid-template-columns y grid-template-areas cambiarán
-   para tableta y escritorio.
+   Las mismas áreas se reorganizan posteriormente mediante
+   media queries con min-width.
 */
 .panel-control {
     display: grid;
@@ -410,14 +484,15 @@ p {
 
     gap: var(--espacio-lg);
 
-    padding-block: var(--espacio-lg);
+    align-items: start;
+
+    padding-block:
+        var(--espacio-lg)
+        var(--espacio-xl);
 }
 
 
-/*
-   Cada sección se vincula explícitamente
-   con un área de la cuadrícula principal.
-*/
+/* Asignación de cada sección a su área */
 .seccion-resumen {
     grid-area: resumen;
 }
@@ -444,14 +519,13 @@ p {
 
 
 /* ==========================================================
-   9. SECCIONES PRINCIPALES
+   11. SECCIONES PRINCIPALES
    ========================================================== */
 
 .seccion-panel {
     /*
-        min-width: 0 es importante dentro de Grid.
-        Permite que el elemento pueda reducirse sin provocar
-        desbordamiento horizontal por su contenido.
+        Permite que los elementos Grid puedan reducir
+        su tamaño sin forzar un overflow horizontal.
     */
     min-width: 0;
 
@@ -459,7 +533,8 @@ p {
 
     padding: var(--espacio-lg);
 
-    background-color: var(--color-superficie);
+    background-color:
+        var(--color-superficie);
 
     border:
         0.0625rem
@@ -469,6 +544,15 @@ p {
     border-radius: var(--radio-md);
 
     box-shadow: var(--sombra-suave);
+}
+
+
+/*
+   Cuando se navega mediante los enlaces internos,
+   se conserva un pequeño espacio antes de la sección.
+*/
+.seccion-panel {
+    scroll-margin-top: var(--espacio-lg);
 }
 
 
@@ -506,15 +590,10 @@ p {
 
 
 /* ==========================================================
-   10. INDICADORES
+   12. INDICADORES
    FLEXBOX
    ========================================================== */
 
-/*
-   Aunque la estructura principal utiliza Grid,
-   los indicadores constituyen una distribución
-   unidimensional y por eso mantienen Flexbox.
-*/
 .indicadores-operacion {
     display: flex;
     flex-direction: column;
@@ -614,9 +693,11 @@ p {
 
 
 .indicador-destacado {
-    background-color: var(--color-activo-fondo);
+    background-color:
+        var(--color-activo-fondo);
 
-    border-color: var(--color-activo);
+    border-color:
+        var(--color-activo);
 }
 
 
@@ -628,9 +709,11 @@ p {
 
 
 .indicador-alerta {
-    background-color: var(--color-alerta-fondo);
+    background-color:
+        var(--color-alerta-fondo);
 
-    border-color: var(--color-alerta);
+    border-color:
+        var(--color-alerta);
 }
 
 
@@ -647,8 +730,7 @@ p {
 
 
 /* ==========================================================
-   11. LISTA DE MISIONES
-   FLEXBOX
+   13. LISTA DE MISIONES
    ========================================================== */
 
 .lista-misiones {
@@ -660,16 +742,13 @@ p {
 
 
 /* ==========================================================
-   12. TARJETAS DE MISIÓN
+   14. TARJETAS DE MISIÓN
    POSITION RELATIVE
    ========================================================== */
 
 /*
-   position: relative crea el contexto de posicionamiento
+   La tarjeta crea el contexto de posicionamiento
    para la etiqueta de prioridad.
-
-   NO se utiliza position para construir el layout
-   de la tarjeta ni de la página.
 */
 .tarjeta-mision {
     position: relative;
@@ -677,8 +756,8 @@ p {
     min-width: 0;
 
     /*
-        Se reserva espacio superior suficiente para que
-        la etiqueta absoluta nunca tape el contenido.
+        Se reserva espacio superior para evitar que
+        la prioridad superpuesta cubra el contenido.
     */
     padding:
         3.75rem
@@ -741,19 +820,15 @@ p {
 
 
 /* ==========================================================
-   13. PRIORIDADES
+   15. PRIORIDADES
    POSITION ABSOLUTE
    ========================================================== */
 
 /*
-   La etiqueta se superpone en la esquina superior derecha
-   de la tarjeta.
+   La etiqueta aparece superpuesta dentro de la tarjeta.
 
-   Es un uso justificado de position:absolute porque se trata
-   de una etiqueta contextual asociada a la misión.
-
-   La tarjeta mantiene position:relative, por lo que la
-   etiqueta nunca se posiciona respecto a toda la página.
+   No se utiliza position para construir el layout principal.
+   Su único propósito es posicionar una etiqueta contextual.
 */
 .prioridad {
     position: absolute;
@@ -811,7 +886,7 @@ p {
 
 
 /* ==========================================================
-   14. INFORMACIÓN DE MISIONES
+   16. INFORMACIÓN DE MISIONES
    ========================================================== */
 
 .mision-datos {
@@ -877,9 +952,12 @@ p {
 
 
 /* ==========================================================
-   15. ESTADOS
+   17. ESTADOS
    ========================================================== */
 
+/*
+   Los estados utilizan texto y símbolos además de color.
+*/
 .estado {
     display: inline-flex;
 
@@ -945,12 +1023,13 @@ p {
 
 
 .tarjeta-mision-suspendida {
-    border-left-color: var(--color-critico);
+    border-left-color:
+        var(--color-critico);
 }
 
 
 /* ==========================================================
-   16. EQUIPOS
+   18. EQUIPOS
    FLEXBOX
    ========================================================== */
 
@@ -980,7 +1059,8 @@ p {
 
 
 .tarjeta-equipo-atencion {
-    border-color: var(--color-alerta);
+    border-color:
+        var(--color-alerta);
 }
 
 
@@ -1080,7 +1160,7 @@ p {
 
 
 /* ==========================================================
-   17. ALERTAS
+   19. ALERTAS
    FLEXBOX
    ========================================================== */
 
@@ -1195,7 +1275,7 @@ p {
 
 
 /* ==========================================================
-   18. NIVELES DE ALERTA
+   20. NIVELES DE ALERTA
    ========================================================== */
 
 .alerta-critica {
@@ -1265,7 +1345,7 @@ p {
 
 
 /* ==========================================================
-   19. AGENDA
+   21. AGENDA
    FLEXBOX
    ========================================================== */
 
@@ -1357,7 +1437,7 @@ p {
 
 
 /* ==========================================================
-   20. PIE DE PÁGINA
+   22. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {
@@ -1383,5 +1463,273 @@ p {
 
     font-size: 0.8rem;
 
-    opacity: 0.85;
+    opacity: 0.9;
+}
+
+
+/* ==========================================================
+   23. TABLETA
+   BREAKPOINT: 40rem ≈ 640px
+   ========================================================== */
+
+/*
+   A partir de este punto existe suficiente espacio para
+   reorganizar el tablero en dos columnas.
+
+   No se limita a aumentar tamaños: cambia la estructura
+   de las áreas principales.
+*/
+@media (min-width: 40rem) {
+
+    .contenedor {
+        width: 94%;
+    }
+
+
+    /* ------------------------------------------------------
+       Indicadores: dos por fila
+       ------------------------------------------------------ */
+
+    .indicadores-operacion {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+
+    .indicador {
+        flex:
+            1
+            1
+            calc(50% - var(--espacio-md));
+    }
+
+
+    /* ------------------------------------------------------
+       GRID PRINCIPAL DE TABLETA
+
+       Resumen ocupa todo el ancho.
+
+       Misiones y alertas se observan simultáneamente.
+
+       Equipos y agenda también comparten una fila.
+       ------------------------------------------------------ */
+
+    .panel-control {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        grid-template-areas:
+            "resumen resumen"
+            "misiones alertas"
+            "equipos agenda";
+
+        gap: var(--espacio-lg);
+
+        padding-block: var(--espacio-xl);
+    }
+
+
+    /* ------------------------------------------------------
+       Equipos: dos tarjetas por fila cuando el espacio
+       disponible lo permite.
+       ------------------------------------------------------ */
+
+    .lista-equipos {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+
+    .tarjeta-equipo {
+        flex:
+            1
+            1
+            calc(50% - var(--espacio-md));
+    }
+
+
+    /* ------------------------------------------------------
+       Pie de página
+       ------------------------------------------------------ */
+
+    .contenido-pie {
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: center;
+
+        gap: var(--espacio-lg);
+    }
+
+}
+
+
+/* ==========================================================
+   24. ESCRITORIO
+   BREAKPOINT: 64rem ≈ 1024px
+   ========================================================== */
+
+/*
+   En escritorio el centro de control aprovecha el ancho
+   disponible mediante una cuadrícula de doce columnas.
+
+   El resumen ocupa el ancho total.
+
+   Misiones recibe siete columnas porque representa la
+   operación principal.
+
+   Alertas utiliza cinco columnas para permanecer
+   inmediatamente visible.
+
+   Equipos y agenda siguen la misma relación.
+*/
+@media (min-width: 64rem) {
+
+    /* ------------------------------------------------------
+       Encabezado
+       ------------------------------------------------------ */
+
+    .encabezado-principal {
+        padding-block:
+            var(--espacio-xl)
+            var(--espacio-lg);
+    }
+
+
+    .encabezado-contenido {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        justify-content: space-between;
+        align-items: flex-end;
+
+        gap:
+            var(--espacio-lg)
+            var(--espacio-xl);
+    }
+
+
+    .identidad-expedicion {
+        flex: 1 1 28rem;
+    }
+
+
+    .estado-expedicion {
+        flex: 1 1 30rem;
+    }
+
+
+    /*
+        La navegación ocupa nuevamente una fila completa
+        debajo de identidad y estado.
+    */
+    .navegacion-principal {
+        flex: 1 0 100%;
+    }
+
+
+    .lista-navegacion li {
+        flex: 1 1 0;
+    }
+
+
+    /* ------------------------------------------------------
+       GRID PRINCIPAL DE ESCRITORIO
+       ------------------------------------------------------ */
+
+    .panel-control {
+        grid-template-columns:
+            repeat(12, minmax(0, 1fr));
+
+        grid-template-areas:
+            "resumen resumen resumen resumen resumen resumen resumen resumen resumen resumen resumen resumen"
+            "misiones misiones misiones misiones misiones misiones misiones alertas alertas alertas alertas alertas"
+            "equipos equipos equipos equipos equipos equipos equipos agenda agenda agenda agenda agenda";
+
+        gap: var(--espacio-xl);
+
+        padding-block:
+            var(--espacio-xl)
+            var(--espacio-2xl);
+    }
+
+
+    /* ------------------------------------------------------
+       Resumen: cuatro indicadores simultáneos
+       ------------------------------------------------------ */
+
+    .indicadores-operacion {
+        flex-wrap: nowrap;
+    }
+
+
+    .indicador {
+        flex: 1 1 0;
+    }
+
+
+    /* ------------------------------------------------------
+       Secciones
+       ------------------------------------------------------ */
+
+    .seccion-panel {
+        padding: var(--espacio-xl);
+    }
+
+
+    /* ------------------------------------------------------
+       Equipos
+
+       Conservamos Flexbox porque se trata de una colección
+       unidimensional que puede envolver sus tarjetas.
+       ------------------------------------------------------ */
+
+    .lista-equipos {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+
+    .tarjeta-equipo {
+        flex:
+            1
+            1
+            calc(50% - var(--espacio-md));
+    }
+
+
+    /* ------------------------------------------------------
+       Mejora de legibilidad de misión
+       ------------------------------------------------------ */
+
+    .tarjeta-mision {
+        padding:
+            3.75rem
+            var(--espacio-lg)
+            var(--espacio-lg);
+    }
+
+
+    .prioridad {
+        top: var(--espacio-lg);
+        right: var(--espacio-lg);
+    }
+
+}
+
+
+/* ==========================================================
+   25. PREFERENCIA DE MOVIMIENTO REDUCIDO
+   ========================================================== */
+
+/*
+   Si el sistema operativo indica que el usuario prefiere
+   menor movimiento, se evita el desplazamiento animado.
+*/
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
 }
