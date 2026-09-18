@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+        La interfaz se desarrolla bajo un enfoque mobile-first.
+        Esta meta permite que el navegador utilice el ancho
+        real del dispositivo.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Panel público de información del Festival Raíces y Cultura 2026 en San José, Costa Rica."
+    >
+
+    <title>Festival Raíces y Cultura 2026</title>
+
+    <!-- Hoja de estilos principal del Caso 2 -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <!--
+        Enlace de accesibilidad para navegación con teclado.
+        Se mostrará visualmente únicamente cuando reciba foco.
+    -->
+    <a
+        class="salto-contenido"
+        href="#contenido-principal"
+    >
+        Saltar al contenido principal
+    </a>
+
+
+    <!-- =====================================================
+         ENCABEZADO DEL FESTIVAL
+         ===================================================== -->
+    <header class="encabezado-festival">
+
+        <div class="contenedor encabezado-contenido">
+
+            <div class="identidad-festival">
+
+                <p class="etiqueta-evento">
+                    Festival cultural · Edición 2026
+                </p>
+
+                <!--
+                    Único h1 del documento.
+                -->
+                <h1>
+                    Festival Raíces y Cultura
+                </h1>
+
+                <p class="descripcion-festival">
+                    Música, teatro, danza, gastronomía y actividades
+                    familiares durante una jornada cultural abierta
+                    al público.
+                </p>
+
+            </div>
+
+
+            <!--
+                Datos generales solicitados en la consigna:
+                fecha, ubicación y horario.
+            -->
+            <div
+                class="datos-festival"
+                aria-label="Información general del festival"
+            >
+
+                <p class="dato-evento">
+
+                    <span class="dato-etiqueta">
+                        Fecha
+                    </span>
+
+                    <strong>
+                        Domingo 27 de setiembre de 2026
+                    </strong>
+
+                </p>
+
+
+                <p class="dato-evento">
+
+                    <span class="dato-etiqueta">
+                        Ubicación
+                    </span>
+
+                    <strong>
+                        Parque Metropolitano La Sabana
+                    </strong>
+
+                </p>
+
+
+                <p class="dato-evento">
+
+                    <span class="dato-etiqueta">
+                        Horario general
+                    </span>
+
+                    <strong>
+                        10:00 – 21:00
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NAVEGACIÓN PRINCIPAL
+             =================================================
+
+             Flexbox se utilizará para permitir que las opciones
+             se distribuyan y envuelvan en pantallas pequeñas.
+        -->
+        <nav
+            class="navegacion-principal"
+            aria-label="Navegación del festival"
+        >
+
+            <div class="contenedor">
+
+                <ul class="lista-navegacion">
+
+                    <li>
+                        <a
+                            class="enlace-activo"
+                            href="#ahora"
+                        >
+                            Ahora
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#programacion">
+                            Programación
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#escenarios">
+                            Escenarios
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#servicios">
+                            Servicios
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#informacion">
+                            Información
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+    <main
+        id="contenido-principal"
+        class="contenedor contenido-festival"
+    >
+
+
+        <!-- =================================================
+             AHORA
+             =================================================
+
+             Esta sección recibe la mayor jerarquía visual
+             inicial porque en teléfono el visitante necesita
+             identificar primero qué está ocurriendo.
+        -->
+        <section
+            id="ahora"
+            class="seccion ahora"
+        >
+
+            <header class="encabezado-seccion encabezado-ahora">
+
+                <div>
+
+                    <p class="categoria-seccion">
+                        En vivo
+                    </p>
+
+                    <h2>
+                        Está ocurriendo ahora
+                    </h2>
+
+                </div>
+
+                <p class="hora-referencia">
+                    Actualizado · 14:25
+                </p>
+
+            </header>
+
+
+            <p class="introduccion-seccion">
+                Actividades actualmente en desarrollo dentro de
+                los diferentes espacios del festival.
+            </p>
+
+
+            <div class="actividades-ahora">
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 1
+                     ========================================= -->
+                <article class="actividad-actual">
+
+                    <header class="actividad-encabezado">
+
+                        <p class="tipo-actividad">
+                            Música · Concierto
+                        </p>
+
+                        <h3>
+                            Los Viajeros
+                        </h3>
+
+                    </header>
+
+
+                    <dl class="actividad-datos">
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Escenario
+                            </dt>
+
+                            <dd>
+                                Escenario Central
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="14:00">
+                                    14:00
+                                </time>
+                                –
+                                <time datetime="15:00">
+                                    15:00
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <!--
+                        El estado se comunica mediante texto
+                        y símbolo además del color.
+                    -->
+                    <footer class="actividad-pie">
+
+                        <span class="estado-en-vivo">
+
+                            <span aria-hidden="true">
+                                ●
+                            </span>
+
+                            En este momento
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 2
+                     ========================================= -->
+                <article class="actividad-actual">
+
+                    <header class="actividad-encabezado">
+
+                        <p class="tipo-actividad">
+                            Teatro · Comedia
+                        </p>
+
+                        <h3>
+                            Historias del Barrio
+                        </h3>
+
+                    </header>
+
+
+                    <dl class="actividad-datos">
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Escenario
+                            </dt>
+
+                            <dd>
+                                Teatro
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="14:15">
+                                    14:15
+                                </time>
+                                –
+                                <time datetime="15:10">
+                                    15:10
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="actividad-pie">
+
+                        <span class="estado-en-vivo">
+
+                            <span aria-hidden="true">
+                                ●
+                            </span>
+
+                            En este momento
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 3
+                     ========================================= -->
+                <article class="actividad-actual">
+
+                    <header class="actividad-encabezado">
+
+                        <p class="tipo-actividad">
+                            Actividad infantil · Taller
+                        </p>
+
+                        <h3>
+                            Pequeños Exploradores
+                        </h3>
+
+                    </header>
+
+
+                    <dl class="actividad-datos">
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Escenario
+                            </dt>
+
+                            <dd>
+                                Zona Familiar
+                            </dd>
+
+                        </div>
+
+
+                        <div class="dato-actividad">
+
+                            <dt>
+                                Horario
+                            </dt>
+
+                            <dd>
+                                <time datetime="14:00">
+                                    14:00
+                                </time>
+                                –
+                                <time datetime="14:50">
+                                    14:50
+                                </time>
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+
+                    <footer class="actividad-pie">
+
+                        <span class="estado-en-vivo">
+
+                            <span aria-hidden="true">
+                                ●
+                            </span>
+
+                            En este momento
+
+                        </span>
+
+                    </footer>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PRÓXIMAS ACTIVIDADES
+
+             Se desarrollará completamente en el Commit 8.
+             ================================================= -->
+        <section
+            id="programacion"
+            class="seccion seccion-pendiente"
+        >
+
+            <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Próximamente
+                </p>
+
+                <h2>
+                    Próximas actividades
+                </h2>
+
+            </header>
+
+            <p>
+                La programación de las próximas actividades será
+                incorporada en la siguiente etapa del desarrollo.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             PROGRAMACIÓN POR ESCENARIOS
+
+             Se desarrollará mediante CSS Grid posteriormente.
+             ================================================= -->
+        <section
+            id="escenarios"
+            class="seccion seccion-pendiente"
+        >
+
+            <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Espacios
+                </p>
+
+                <h2>
+                    Programación por escenarios
+                </h2>
+
+            </header>
+
+            <p>
+                La comparación entre Escenario Central, Teatro,
+                Zona Cultural y Zona Familiar será incorporada
+                durante los siguientes commits.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             CAMBIOS IMPORTANTES
+
+             Aunque no forma parte de la navegación principal,
+             constituye una zona independiente solicitada por
+             la consigna.
+             ================================================= -->
+        <aside
+            id="cambios"
+            class="seccion seccion-pendiente"
+        >
+
+            <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Avisos
+                </p>
+
+                <h2>
+                    Cambios importantes
+                </h2>
+
+            </header>
+
+            <p>
+                Los cambios de horario, escenario, traslados y
+                cancelaciones se incorporarán posteriormente.
+            </p>
+
+        </aside>
+
+
+        <!-- =================================================
+             SERVICIOS
+             ================================================= -->
+        <section
+            id="servicios"
+            class="seccion seccion-pendiente"
+        >
+
+            <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Para visitantes
+                </p>
+
+                <h2>
+                    Servicios disponibles
+                </h2>
+
+            </header>
+
+            <p>
+                Los servicios para asistentes serán incorporados
+                en una etapa posterior.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             INFORMACIÓN GENERAL
+             ================================================= -->
+        <section
+            id="informacion"
+            class="seccion seccion-informacion"
+        >
+
+            <header class="encabezado-seccion">
+
+                <p class="categoria-seccion">
+                    Información
+                </p>
+
+                <h2>
+                    Información general
+                </h2>
+
+            </header>
+
+            <p>
+                El festival se desarrolla en distintos espacios
+                del Parque Metropolitano La Sabana durante toda
+                la jornada.
+            </p>
+
+            <p>
+                Se recomienda consultar este panel durante el día
+                para identificar actividades en curso, próximos
+                eventos y modificaciones de la programación.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+    <footer class="pie-pagina">
+
+        <div class="contenedor contenido-pie">
+
+            <p>
+                Festival Raíces y Cultura 2026
+            </p>
+
+            <p>
+                San José · Costa Rica
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

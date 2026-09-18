@@ -1,0 +1,776 @@
+/* ==========================================================
+   CASO 2
+   PANEL PÚBLICO DE INFORMACIÓN DE UN FESTIVAL
+
+   Commit 7:
+   - Estructura visual inicial del festival.
+   - Enfoque explícitamente mobile-first.
+   - Encabezado con datos generales.
+   - Navegación mediante Flexbox.
+   - Sección "Ahora" con tres actividades.
+   - Variables CSS y modelo de caja.
+   - Accesibilidad básica.
+   - Sin media queries todavía.
+
+   El diseño se diferencia deliberadamente del Caso 1:
+   este panel prioriza la consulta rápida desde teléfono.
+   ========================================================== */
+
+
+/* ==========================================================
+   1. VARIABLES CSS
+   ========================================================== */
+
+:root {
+
+    /* Identidad visual del festival */
+    --color-primario: #502070;
+    --color-primario-oscuro: #341247;
+    --color-secundario: #d95d39;
+
+    /* Acentos */
+    --color-acento: #f2bd4b;
+    --color-en-vivo: #b42318;
+    --color-en-vivo-fondo: #fff0ee;
+
+    /* Fondos */
+    --color-fondo: #fff8f2;
+    --color-superficie: #ffffff;
+    --color-superficie-alterna: #f7f0fa;
+
+    /* Texto */
+    --color-texto: #2c2230;
+    --color-texto-secundario: #655968;
+    --color-texto-claro: #ffffff;
+
+    /* Bordes */
+    --color-borde: #ded2e2;
+
+    /* Foco accesible */
+    --color-foco: #ffd972;
+
+    /* Espaciado */
+    --espacio-2xs: 0.25rem;
+    --espacio-xs: 0.5rem;
+    --espacio-sm: 0.75rem;
+    --espacio-md: 1rem;
+    --espacio-lg: 1.5rem;
+    --espacio-xl: 2rem;
+    --espacio-2xl: 3rem;
+
+    /* Radios */
+    --radio-sm: 0.5rem;
+    --radio-md: 0.9rem;
+    --radio-lg: 1.4rem;
+
+    /* Sombras */
+    --sombra-suave:
+        0 0.3rem 1.2rem rgba(80, 32, 112, 0.08);
+
+    --sombra-destacada:
+        0 0.5rem 1.7rem rgba(80, 32, 112, 0.14);
+
+    /* Contenedor */
+    --ancho-contenido: 75rem;
+}
+
+
+/* ==========================================================
+   2. MODELO DE CAJA
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   3. BASE MOBILE-FIRST
+   ========================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.5;
+
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+
+/*
+   Contenedor reutilizable.
+
+   El ancho relativo permite que la interfaz responda
+   naturalmente al tamaño del dispositivo.
+*/
+.contenedor {
+    width: 92%;
+    max-width: var(--ancho-contenido);
+
+    margin-inline: auto;
+}
+
+
+/* ==========================================================
+   4. IMÁGENES ADAPTABLES
+   ========================================================== */
+
+/*
+   Si posteriormente se incorpora alguna imagen,
+   nunca excederá el ancho disponible.
+*/
+img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================================
+   5. TIPOGRAFÍA
+   ========================================================== */
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
+    margin-top: 0;
+}
+
+
+h1 {
+    margin-bottom: var(--espacio-sm);
+
+    font-size: 2rem;
+    line-height: 1.05;
+}
+
+
+h2 {
+    margin-bottom: var(--espacio-xs);
+
+    font-size: 1.45rem;
+    line-height: 1.2;
+}
+
+
+h3 {
+    margin-bottom: var(--espacio-xs);
+
+    font-size: 1.1rem;
+    line-height: 1.25;
+}
+
+
+p {
+    margin-bottom: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   6. ACCESIBILIDAD: SALTO AL CONTENIDO
+   ========================================================== */
+
+.salto-contenido {
+    position: absolute;
+
+    top: -5rem;
+    left: var(--espacio-md);
+
+    z-index: 100;
+
+    padding:
+        var(--espacio-sm)
+        var(--espacio-md);
+
+    color: var(--color-primario-oscuro);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    background-color:
+        var(--color-foco);
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+.salto-contenido:focus {
+    top: var(--espacio-md);
+}
+
+
+/* ==========================================================
+   7. ENCABEZADO DEL FESTIVAL
+   ========================================================== */
+
+.encabezado-festival {
+    color: var(--color-texto-claro);
+
+    background-color:
+        var(--color-primario);
+}
+
+
+.encabezado-contenido {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-lg);
+
+    padding-block:
+        var(--espacio-xl)
+        var(--espacio-lg);
+}
+
+
+.identidad-festival {
+    max-width: 42rem;
+}
+
+
+.etiqueta-evento {
+    margin-bottom:
+        var(--espacio-xs);
+
+    color: var(--color-acento);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+.descripcion-festival {
+    margin-bottom: 0;
+
+    max-width: 38rem;
+
+    color: #eee3f2;
+}
+
+
+/* ==========================================================
+   8. DATOS DEL FESTIVAL
+   FLEXBOX
+   ========================================================== */
+
+.datos-festival {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--espacio-sm);
+}
+
+
+.dato-evento {
+    margin-bottom: 0;
+
+    padding:
+        var(--espacio-sm)
+        var(--espacio-md);
+
+    background-color:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        0.0625rem
+        solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.dato-etiqueta {
+    display: block;
+
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color: #ddcde4;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+.dato-evento strong {
+    display: block;
+
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================================
+   9. NAVEGACIÓN
+   FLEXBOX
+   ========================================================== */
+
+.navegacion-principal {
+    padding-block:
+        var(--espacio-sm);
+
+    background-color:
+        var(--color-primario-oscuro);
+
+    border-top:
+        0.0625rem
+        solid
+        rgba(255, 255, 255, 0.12);
+}
+
+
+.lista-navegacion {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--espacio-xs);
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.lista-navegacion li {
+    flex: 1 1 auto;
+
+    min-width: 0;
+}
+
+
+.lista-navegacion a {
+    display: block;
+
+    padding:
+        var(--espacio-sm);
+
+    color: var(--color-texto-claro);
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    text-align: center;
+    text-decoration: none;
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+.lista-navegacion a:hover {
+    background-color:
+        rgba(255, 255, 255, 0.12);
+}
+
+
+.lista-navegacion a:focus-visible {
+    outline:
+        0.1875rem
+        solid
+        var(--color-foco);
+
+    outline-offset:
+        0.1rem;
+}
+
+
+.lista-navegacion .enlace-activo {
+    color:
+        var(--color-primario-oscuro);
+
+    background-color:
+        var(--color-acento);
+}
+
+
+/* ==========================================================
+   10. CONTENIDO PRINCIPAL
+   ========================================================== */
+
+.contenido-festival {
+    padding-block:
+        var(--espacio-lg)
+        var(--espacio-xl);
+}
+
+
+/*
+   Las secciones se mantienen inicialmente una debajo
+   de otra porque el CSS base está diseñado para teléfono.
+*/
+.seccion {
+    min-width: 0;
+
+    margin-bottom:
+        var(--espacio-lg);
+
+    padding:
+        var(--espacio-lg);
+
+    background-color:
+        var(--color-superficie);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-radius:
+        var(--radio-lg);
+
+    box-shadow:
+        var(--sombra-suave);
+
+    scroll-margin-top:
+        var(--espacio-md);
+}
+
+
+.encabezado-seccion {
+    margin-bottom:
+        var(--espacio-md);
+}
+
+
+.categoria-seccion {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+
+.introduccion-seccion {
+    color:
+        var(--color-texto-secundario);
+}
+
+
+/* ==========================================================
+   11. SECCIÓN "AHORA"
+   ========================================================== */
+
+/*
+   Esta sección recibe mayor peso visual debido a que
+   constituye la prioridad principal en teléfono.
+*/
+.ahora {
+    padding:
+        var(--espacio-lg);
+
+    background:
+        var(--color-superficie-alterna);
+
+    border:
+        0.125rem
+        solid
+        #cbaed7;
+
+    box-shadow:
+        var(--sombra-destacada);
+}
+
+
+.encabezado-ahora {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: var(--espacio-sm);
+}
+
+
+.encabezado-ahora h2 {
+    margin-bottom: 0;
+}
+
+
+.hora-referencia {
+    margin-bottom: 0;
+
+    padding:
+        var(--espacio-xs)
+        var(--espacio-sm);
+
+    color:
+        var(--color-primario);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    background-color:
+        #efe3f3;
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+/* ==========================================================
+   12. ACTIVIDADES ACTUALES
+   ========================================================== */
+
+.actividades-ahora {
+    display: flex;
+    flex-direction: column;
+
+    gap:
+        var(--espacio-md);
+}
+
+
+.actividad-actual {
+    min-width: 0;
+
+    padding:
+        var(--espacio-lg);
+
+    background-color:
+        var(--color-superficie);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-top:
+        0.3rem
+        solid
+        var(--color-secundario);
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.actividad-encabezado {
+    margin-bottom:
+        var(--espacio-lg);
+}
+
+
+.tipo-actividad {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+.actividad-encabezado h3 {
+    margin-bottom: 0;
+
+    font-size: 1.2rem;
+}
+
+
+/* ==========================================================
+   13. DATOS DE ACTIVIDADES
+   ========================================================== */
+
+.actividad-datos {
+    margin-bottom:
+        var(--espacio-lg);
+}
+
+
+.dato-actividad {
+    padding-block:
+        var(--espacio-sm);
+
+    border-top:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.dato-actividad dt {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.dato-actividad dd {
+    margin-left: 0;
+    margin-bottom: 0;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   14. ESTADO "EN ESTE MOMENTO"
+   ========================================================== */
+
+/*
+   No depende exclusivamente del color:
+   utiliza símbolo + texto + borde.
+*/
+.estado-en-vivo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap:
+        var(--espacio-xs);
+
+    padding:
+        var(--espacio-xs)
+        var(--espacio-sm);
+
+    color:
+        var(--color-en-vivo);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    background-color:
+        var(--color-en-vivo-fondo);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-en-vivo);
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+/* ==========================================================
+   15. SECCIONES EN DESARROLLO
+   ========================================================== */
+
+/*
+   Estos estilos indican que el contenido existe dentro
+   de la estructura semántica, aunque todavía será
+   desarrollado en los siguientes commits.
+*/
+.seccion-pendiente {
+    background-color:
+        #fffdfb;
+
+    border-style:
+        dashed;
+}
+
+
+.seccion-pendiente > p {
+    margin-bottom: 0;
+
+    color:
+        var(--color-texto-secundario);
+}
+
+
+/* ==========================================================
+   16. INFORMACIÓN GENERAL
+   ========================================================== */
+
+.seccion-informacion p {
+    color:
+        var(--color-texto-secundario);
+}
+
+
+.seccion-informacion p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================
+   17. PIE DE PÁGINA
+   ========================================================== */
+
+.pie-pagina {
+    padding-block:
+        var(--espacio-lg);
+
+    color:
+        var(--color-texto-claro);
+
+    background-color:
+        var(--color-primario-oscuro);
+}
+
+
+.contenido-pie {
+    display: flex;
+    flex-direction: column;
+
+    gap:
+        var(--espacio-xs);
+}
+
+
+.pie-pagina p {
+    margin-bottom: 0;
+
+    font-size: 0.8rem;
+}
+
+
+/* ==========================================================
+   18. PREFERENCIA DE MOVIMIENTO REDUCIDO
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+}
