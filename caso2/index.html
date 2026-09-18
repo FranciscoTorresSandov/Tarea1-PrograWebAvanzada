@@ -26,7 +26,7 @@
 
     <!--
         Enlace de accesibilidad para navegación con teclado.
-        Se mostrará visualmente únicamente cuando reciba foco.
+        Se vuelve visible cuando recibe foco.
     -->
     <a
         class="salto-contenido"
@@ -49,9 +49,7 @@
                     Festival cultural · Edición 2026
                 </p>
 
-                <!--
-                    Único h1 del documento.
-                -->
+                <!-- Único h1 del documento -->
                 <h1>
                     Festival Raíces y Cultura
                 </h1>
@@ -66,7 +64,7 @@
 
 
             <!--
-                Datos generales solicitados en la consigna:
+                Datos generales solicitados:
                 fecha, ubicación y horario.
             -->
             <div
@@ -119,11 +117,7 @@
 
         <!-- =================================================
              NAVEGACIÓN PRINCIPAL
-             =================================================
-
-             Flexbox se utilizará para permitir que las opciones
-             se distribuyan y envuelvan en pantallas pequeñas.
-        -->
+             ================================================= -->
         <nav
             class="navegacion-principal"
             aria-label="Navegación del festival"
@@ -186,12 +180,7 @@
 
         <!-- =================================================
              AHORA
-             =================================================
-
-             Esta sección recibe la mayor jerarquía visual
-             inicial porque en teléfono el visitante necesita
-             identificar primero qué está ocurriendo.
-        -->
+             ================================================= -->
         <section
             id="ahora"
             class="seccion ahora"
@@ -267,13 +256,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:00">
-                                    14:00
-                                </time>
+                                <time datetime="14:00">14:00</time>
                                 –
-                                <time datetime="15:00">
-                                    15:00
-                                </time>
+                                <time datetime="15:00">15:00</time>
                             </dd>
 
                         </div>
@@ -281,10 +266,6 @@
                     </dl>
 
 
-                    <!--
-                        El estado se comunica mediante texto
-                        y símbolo además del color.
-                    -->
                     <footer class="actividad-pie">
 
                         <span class="estado-en-vivo">
@@ -342,13 +323,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:15">
-                                    14:15
-                                </time>
+                                <time datetime="14:15">14:15</time>
                                 –
-                                <time datetime="15:10">
-                                    15:10
-                                </time>
+                                <time datetime="15:10">15:10</time>
                             </dd>
 
                         </div>
@@ -413,13 +390,9 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:00">
-                                    14:00
-                                </time>
+                                <time datetime="14:00">14:00</time>
                                 –
-                                <time datetime="14:50">
-                                    14:50
-                                </time>
+                                <time datetime="14:50">14:50</time>
                             </dd>
 
                         </div>
@@ -450,12 +423,16 @@
 
         <!-- =================================================
              PRÓXIMAS ACTIVIDADES
+             =================================================
 
-             Se desarrollará completamente en el Commit 8.
-             ================================================= -->
+             La lista contiene seis actividades futuras.
+
+             Se utiliza <ol> porque existe un orden cronológico
+             significativo.
+        -->
         <section
             id="programacion"
-            class="seccion seccion-pendiente"
+            class="seccion seccion-proximas"
         >
 
             <header class="encabezado-seccion">
@@ -468,24 +445,248 @@
                     Próximas actividades
                 </h2>
 
+                <p class="descripcion-seccion">
+                    Programación inmediata posterior a las actividades
+                    que se encuentran actualmente en desarrollo.
+                </p>
+
             </header>
 
-            <p>
-                La programación de las próximas actividades será
-                incorporada en la siguiente etapa del desarrollo.
-            </p>
+
+            <ol class="lista-proximas">
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 1
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="15:00"
+                    >
+                        15:00
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-musica">
+                                Música
+                            </p>
+
+                            <h3>
+                                Ensamble de Percusión Latina
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Escenario Central
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 2
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="15:20"
+                    >
+                        15:20
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-conferencia">
+                                Conferencia
+                            </p>
+
+                            <h3>
+                                Patrimonio cultural y memoria colectiva
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Zona Cultural
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 3
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="16:00"
+                    >
+                        16:00
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-danza">
+                                Danza
+                            </p>
+
+                            <h3>
+                                Ritmos de Nuestra Tierra
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Escenario Central
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 4
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="16:15"
+                    >
+                        16:15
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-infantil">
+                                Actividad infantil
+                            </p>
+
+                            <h3>
+                                Cuentos del Bosque
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Zona Familiar
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 5
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="17:00"
+                    >
+                        17:00
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-teatro">
+                                Teatro
+                            </p>
+
+                            <h3>
+                                Cartas desde San José
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Teatro
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <!-- =========================================
+                     PRÓXIMA ACTIVIDAD 6
+                     ========================================= -->
+                <li class="proxima-actividad">
+
+                    <time
+                        class="proxima-hora"
+                        datetime="17:30"
+                    >
+                        17:30
+                    </time>
+
+
+                    <article class="proxima-contenido">
+
+                        <header>
+
+                            <p class="categoria-actividad categoria-gastronomia">
+                                Gastronomía
+                            </p>
+
+                            <h3>
+                                Sabores tradicionales costarricenses
+                            </h3>
+
+                        </header>
+
+                        <p class="proxima-escenario">
+                            Zona Cultural
+                        </p>
+
+                    </article>
+
+                </li>
+
+            </ol>
 
         </section>
 
 
         <!-- =================================================
              PROGRAMACIÓN POR ESCENARIOS
+             =================================================
 
-             Se desarrollará mediante CSS Grid posteriormente.
-             ================================================= -->
+             Esta sección utiliza CSS Grid porque el objetivo
+             final será permitir la comparación simultánea entre
+             diferentes espacios del festival.
+        -->
         <section
             id="escenarios"
-            class="seccion seccion-pendiente"
+            class="seccion seccion-escenarios"
         >
 
             <header class="encabezado-seccion">
@@ -498,23 +699,367 @@
                     Programación por escenarios
                 </h2>
 
+                <p class="descripcion-seccion">
+                    Consulta la programación correspondiente a cada
+                    uno de los cuatro espacios principales.
+                </p>
+
             </header>
 
-            <p>
-                La comparación entre Escenario Central, Teatro,
-                Zona Cultural y Zona Familiar será incorporada
-                durante los siguientes commits.
-            </p>
+
+            <!--
+                Grid específico de escenarios.
+
+                En teléfono funciona con una sola columna.
+                Posteriormente las media queries permitirán
+                comparar varios escenarios simultáneamente.
+            -->
+            <div class="grid-escenarios">
+
+
+                <!-- =========================================
+                     ESCENARIO CENTRAL
+                     ========================================= -->
+                <article class="tarjeta-escenario">
+
+                    <header class="escenario-encabezado">
+
+                        <p class="escenario-codigo">
+                            EC
+                        </p>
+
+                        <div>
+
+                            <p class="escenario-tipo">
+                                Escenario principal
+                            </p>
+
+                            <h3>
+                                Escenario Central
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <ol class="programacion-escenario">
+
+                        <li>
+
+                            <time datetime="14:00">
+                                14:00
+                            </time>
+
+                            <span>
+                                Los Viajeros
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="15:00">
+                                15:00
+                            </time>
+
+                            <span>
+                                Ensamble de Percusión Latina
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="16:00">
+                                16:00
+                            </time>
+
+                            <span>
+                                Ritmos de Nuestra Tierra
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="18:00">
+                                18:00
+                            </time>
+
+                            <span>
+                                Sonidos del Caribe
+                            </span>
+
+                        </li>
+
+                    </ol>
+
+                </article>
+
+
+                <!-- =========================================
+                     TEATRO
+                     ========================================= -->
+                <article class="tarjeta-escenario">
+
+                    <header class="escenario-encabezado">
+
+                        <p class="escenario-codigo">
+                            TE
+                        </p>
+
+                        <div>
+
+                            <p class="escenario-tipo">
+                                Artes escénicas
+                            </p>
+
+                            <h3>
+                                Teatro
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <ol class="programacion-escenario">
+
+                        <li>
+
+                            <time datetime="14:15">
+                                14:15
+                            </time>
+
+                            <span>
+                                Historias del Barrio
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="15:30">
+                                15:30
+                            </time>
+
+                            <span>
+                                Improvisación Abierta
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="17:00">
+                                17:00
+                            </time>
+
+                            <span>
+                                Cartas desde San José
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="19:00">
+                                19:00
+                            </time>
+
+                            <span>
+                                Voces en Escena
+                            </span>
+
+                        </li>
+
+                    </ol>
+
+                </article>
+
+
+                <!-- =========================================
+                     ZONA CULTURAL
+                     ========================================= -->
+                <article class="tarjeta-escenario">
+
+                    <header class="escenario-encabezado">
+
+                        <p class="escenario-codigo">
+                            ZC
+                        </p>
+
+                        <div>
+
+                            <p class="escenario-tipo">
+                                Cultura y conocimiento
+                            </p>
+
+                            <h3>
+                                Zona Cultural
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <ol class="programacion-escenario">
+
+                        <li>
+
+                            <time datetime="14:30">
+                                14:30
+                            </time>
+
+                            <span>
+                                Exposición de artesanía nacional
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="15:20">
+                                15:20
+                            </time>
+
+                            <span>
+                                Patrimonio cultural y memoria colectiva
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="17:30">
+                                17:30
+                            </time>
+
+                            <span>
+                                Sabores tradicionales costarricenses
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="19:15">
+                                19:15
+                            </time>
+
+                            <span>
+                                Conversatorio de artistas
+                            </span>
+
+                        </li>
+
+                    </ol>
+
+                </article>
+
+
+                <!-- =========================================
+                     ZONA FAMILIAR
+                     ========================================= -->
+                <article class="tarjeta-escenario">
+
+                    <header class="escenario-encabezado">
+
+                        <p class="escenario-codigo">
+                            ZF
+                        </p>
+
+                        <div>
+
+                            <p class="escenario-tipo">
+                                Actividades familiares
+                            </p>
+
+                            <h3>
+                                Zona Familiar
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <ol class="programacion-escenario">
+
+                        <li>
+
+                            <time datetime="14:00">
+                                14:00
+                            </time>
+
+                            <span>
+                                Pequeños Exploradores
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="16:15">
+                                16:15
+                            </time>
+
+                            <span>
+                                Cuentos del Bosque
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="17:30">
+                                17:30
+                            </time>
+
+                            <span>
+                                Juegos tradicionales
+                            </span>
+
+                        </li>
+
+
+                        <li>
+
+                            <time datetime="18:45">
+                                18:45
+                            </time>
+
+                            <span>
+                                Teatro de títeres
+                            </span>
+
+                        </li>
+
+                    </ol>
+
+                </article>
+
+            </div>
 
         </section>
 
 
         <!-- =================================================
              CAMBIOS IMPORTANTES
-
-             Aunque no forma parte de la navegación principal,
-             constituye una zona independiente solicitada por
-             la consigna.
+             Commit 9
              ================================================= -->
         <aside
             id="cambios"
@@ -535,7 +1080,8 @@
 
             <p>
                 Los cambios de horario, escenario, traslados y
-                cancelaciones se incorporarán posteriormente.
+                cancelaciones serán incorporados en la siguiente
+                etapa del desarrollo.
             </p>
 
         </aside>
@@ -543,6 +1089,7 @@
 
         <!-- =================================================
              SERVICIOS
+             Commit 9
              ================================================= -->
         <section
             id="servicios"
@@ -563,7 +1110,7 @@
 
             <p>
                 Los servicios para asistentes serán incorporados
-                en una etapa posterior.
+                durante la siguiente etapa.
             </p>
 
         </section>

@@ -2,18 +2,17 @@
    CASO 2
    PANEL PÚBLICO DE INFORMACIÓN DE UN FESTIVAL
 
-   Commit 7:
-   - Estructura visual inicial del festival.
-   - Enfoque explícitamente mobile-first.
-   - Encabezado con datos generales.
-   - Navegación mediante Flexbox.
-   - Sección "Ahora" con tres actividades.
-   - Variables CSS y modelo de caja.
-   - Accesibilidad básica.
-   - Sin media queries todavía.
-
-   El diseño se diferencia deliberadamente del Caso 1:
-   este panel prioriza la consulta rápida desde teléfono.
+   Commit 8:
+   - Se mantiene la base mobile-first.
+   - Se mantienen encabezado, navegación y sección Ahora.
+   - Se agregan seis próximas actividades.
+   - Se agregan cuatro espacios de programación.
+   - CSS Grid comienza a resolver específicamente la
+     programación por escenarios.
+   - Flexbox se utiliza para las próximas actividades.
+   - Todavía no se aplican breakpoints de tableta/escritorio.
+   - Cambios importantes y servicios se completarán
+     en el Commit 9.
    ========================================================== */
 
 
@@ -33,10 +32,19 @@
     --color-en-vivo: #b42318;
     --color-en-vivo-fondo: #fff0ee;
 
+    /* Categorías */
+    --color-musica: #7a337f;
+    --color-danza: #a43e64;
+    --color-teatro: #385e8d;
+    --color-cultural: #765814;
+    --color-infantil: #28705a;
+    --color-gastronomia: #a54924;
+
     /* Fondos */
     --color-fondo: #fff8f2;
     --color-superficie: #ffffff;
     --color-superficie-alterna: #f7f0fa;
+    --color-fondo-suave: #fffdfb;
 
     /* Texto */
     --color-texto: #2c2230;
@@ -45,6 +53,7 @@
 
     /* Bordes */
     --color-borde: #ded2e2;
+    --color-borde-suave: #eadfeb;
 
     /* Foco accesible */
     --color-foco: #ffd972;
@@ -110,12 +119,6 @@ body {
 }
 
 
-/*
-   Contenedor reutilizable.
-
-   El ancho relativo permite que la interfaz responda
-   naturalmente al tamaño del dispositivo.
-*/
 .contenedor {
     width: 92%;
     max-width: var(--ancho-contenido);
@@ -128,10 +131,6 @@ body {
    4. IMÁGENES ADAPTABLES
    ========================================================== */
 
-/*
-   Si posteriormente se incorpora alguna imagen,
-   nunca excederá el ancho disponible.
-*/
 img {
     display: block;
 
@@ -421,10 +420,6 @@ p {
 }
 
 
-/*
-   Las secciones se mantienen inicialmente una debajo
-   de otra porque el CSS base está diseñado para teléfono.
-*/
 .seccion {
     min-width: 0;
 
@@ -474,6 +469,7 @@ p {
 }
 
 
+.descripcion-seccion,
 .introduccion-seccion {
     color:
         var(--color-texto-secundario);
@@ -484,10 +480,6 @@ p {
    11. SECCIÓN "AHORA"
    ========================================================== */
 
-/*
-   Esta sección recibe mayor peso visual debido a que
-   constituye la prioridad principal en teléfono.
-*/
 .ahora {
     padding:
         var(--espacio-lg);
@@ -608,7 +600,7 @@ p {
 
 
 /* ==========================================================
-   13. DATOS DE ACTIVIDADES
+   13. DATOS DE ACTIVIDADES ACTUALES
    ========================================================== */
 
 .actividad-datos {
@@ -652,13 +644,9 @@ p {
 
 
 /* ==========================================================
-   14. ESTADO "EN ESTE MOMENTO"
+   14. ESTADO EN VIVO
    ========================================================== */
 
-/*
-   No depende exclusivamente del color:
-   utiliza símbolo + texto + borde.
-*/
 .estado-en-vivo {
     display: inline-flex;
 
@@ -691,17 +679,378 @@ p {
 
 
 /* ==========================================================
-   15. SECCIONES EN DESARROLLO
+   15. PRÓXIMAS ACTIVIDADES
+   ========================================================== */
+
+.lista-proximas {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/*
+   Flexbox resuelve cada fila cronológica.
+
+   La hora y el contenido forman una distribución
+   principalmente horizontal/unidimensional.
+*/
+.proxima-actividad {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap:
+        var(--espacio-md);
+
+    min-width: 0;
+
+    padding-block:
+        var(--espacio-md);
+
+    border-bottom:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.proxima-actividad:first-child {
+    padding-top: 0;
+}
+
+
+.proxima-actividad:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+
+.proxima-hora {
+    display: inline-flex;
+
+    flex: 0 0 4.5rem;
+
+    justify-content: center;
+
+    padding:
+        var(--espacio-xs)
+        var(--espacio-sm);
+
+    color:
+        var(--color-texto-claro);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    background-color:
+        var(--color-primario);
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+.proxima-contenido {
+    flex: 1 1 auto;
+
+    min-width: 0;
+}
+
+
+.proxima-contenido header {
+    margin-bottom:
+        var(--espacio-xs);
+}
+
+
+.proxima-contenido h3 {
+    margin-bottom:
+        var(--espacio-xs);
+
+    font-size: 1rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+.proxima-escenario {
+    margin-bottom: 0;
+
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   16. CATEGORÍAS DE ACTIVIDADES
    ========================================================== */
 
 /*
-   Estos estilos indican que el contenido existe dentro
-   de la estructura semántica, aunque todavía será
-   desarrollado en los siguientes commits.
+   Las categorías utilizan texto explícito.
+   El color es únicamente una ayuda visual adicional.
 */
+.categoria-actividad {
+    display: inline-block;
+
+    margin-bottom:
+        var(--espacio-xs);
+
+    padding:
+        var(--espacio-2xs)
+        var(--espacio-xs);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    background-color:
+        var(--color-superficie-alterna);
+
+    border:
+        0.0625rem
+        solid
+        currentColor;
+
+    border-radius:
+        var(--radio-sm);
+}
+
+
+.categoria-musica {
+    color:
+        var(--color-musica);
+}
+
+
+.categoria-danza {
+    color:
+        var(--color-danza);
+}
+
+
+.categoria-teatro {
+    color:
+        var(--color-teatro);
+}
+
+
+.categoria-conferencia {
+    color:
+        var(--color-cultural);
+}
+
+
+.categoria-infantil {
+    color:
+        var(--color-infantil);
+}
+
+
+.categoria-gastronomia {
+    color:
+        var(--color-gastronomia);
+}
+
+
+/* ==========================================================
+   17. PROGRAMACIÓN POR ESCENARIOS
+   CSS GRID
+   ========================================================== */
+
+/*
+   Esta sección comienza a utilizar CSS Grid.
+
+   Debido al enfoque mobile-first, inicialmente existe
+   una sola columna.
+
+   Grid es apropiado porque posteriormente necesitaremos
+   comparar varios escenarios tanto horizontal como
+   verticalmente.
+*/
+.grid-escenarios {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr);
+
+    gap:
+        var(--espacio-md);
+}
+
+
+/* ==========================================================
+   18. TARJETAS DE ESCENARIO
+   ========================================================== */
+
+.tarjeta-escenario {
+    min-width: 0;
+
+    padding:
+        var(--espacio-lg);
+
+    background-color:
+        var(--color-fondo-suave);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.escenario-encabezado {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--espacio-md);
+
+    margin-bottom:
+        var(--espacio-lg);
+
+    padding-bottom:
+        var(--espacio-md);
+
+    border-bottom:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.escenario-codigo {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    margin-bottom: 0;
+
+    color:
+        var(--color-texto-claro);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+
+    background-color:
+        var(--color-primario);
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.escenario-tipo {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+.escenario-encabezado h3 {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================
+   19. PROGRAMACIÓN INTERNA DE CADA ESCENARIO
+   ========================================================== */
+
+.programacion-escenario {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.programacion-escenario li {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap:
+        var(--espacio-md);
+
+    padding-block:
+        var(--espacio-sm);
+
+    border-bottom:
+        0.0625rem
+        solid
+        var(--color-borde-suave);
+}
+
+
+.programacion-escenario li:first-child {
+    padding-top: 0;
+}
+
+
+.programacion-escenario li:last-child {
+    padding-bottom: 0;
+
+    border-bottom: 0;
+}
+
+
+.programacion-escenario time {
+    flex:
+        0
+        0
+        3.5rem;
+
+    color:
+        var(--color-primario);
+
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+
+.programacion-escenario span {
+    min-width: 0;
+
+    font-size: 0.85rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   20. SECCIONES EN DESARROLLO
+   ========================================================== */
+
 .seccion-pendiente {
     background-color:
-        #fffdfb;
+        var(--color-fondo-suave);
 
     border-style:
         dashed;
@@ -717,7 +1066,7 @@ p {
 
 
 /* ==========================================================
-   16. INFORMACIÓN GENERAL
+   21. INFORMACIÓN GENERAL
    ========================================================== */
 
 .seccion-informacion p {
@@ -732,7 +1081,7 @@ p {
 
 
 /* ==========================================================
-   17. PIE DE PÁGINA
+   22. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {
@@ -764,7 +1113,7 @@ p {
 
 
 /* ==========================================================
-   18. PREFERENCIA DE MOVIMIENTO REDUCIDO
+   23. PREFERENCIA DE MOVIMIENTO REDUCIDO
    ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {
