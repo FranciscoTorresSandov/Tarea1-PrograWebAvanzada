@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
 
     <!--
-        La interfaz se desarrolla bajo un enfoque mobile-first.
-        Esta meta permite que el navegador utilice correctamente
-        el ancho real del dispositivo.
+        La interfaz utiliza un enfoque mobile-first.
+        viewport permite trabajar con el ancho real
+        del dispositivo.
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,8 +25,9 @@
 <body>
 
     <!--
-        Enlace de accesibilidad para navegación con teclado.
-        Se vuelve visible cuando recibe foco.
+        Accesibilidad:
+        permite saltar directamente al contenido principal
+        mediante navegación con teclado.
     -->
     <a
         class="salto-contenido"
@@ -64,8 +65,8 @@
 
 
             <!--
-                Datos generales solicitados por la consigna:
-                fecha, ubicación y horario general.
+                Información general del evento:
+                fecha, ubicación y horario.
             -->
             <div
                 class="datos-festival"
@@ -117,11 +118,8 @@
 
         <!-- =================================================
              NAVEGACIÓN PRINCIPAL
-             =================================================
-
-             Flexbox resuelve la distribución de los enlaces
-             porque constituye una estructura unidimensional.
-        -->
+             FLEXBOX
+             ================================================= -->
         <nav
             class="navegacion-principal"
             aria-label="Navegación del festival"
@@ -175,17 +173,8 @@
 
     <!-- =====================================================
          CONTENIDO PRINCIPAL
-         =====================================================
-
-         A partir de este commit, <main> constituye el Grid
-         principal del Caso 2.
-
-         El Grid base conserva una sola columna porque seguimos
-         aplicando mobile-first.
-
-         En el Commit 11 estas mismas áreas serán reorganizadas
-         para tableta y escritorio mediante media queries.
-    -->
+         CSS GRID
+         ===================================================== -->
     <main
         id="contenido-principal"
         class="contenedor contenido-festival"
@@ -236,29 +225,6 @@
                      ========================================= -->
                 <article class="actividad-actual">
 
-                    <!--
-                        Esta etiqueta será posicionada de forma
-                        absoluta dentro de la tarjeta.
-
-                        La tarjeta utiliza position: relative,
-                        por lo que la etiqueta permanece asociada
-                        únicamente a esta actividad.
-                    -->
-                    <footer class="actividad-pie">
-
-                        <span class="estado-en-vivo">
-
-                            <span aria-hidden="true">
-                                ●
-                            </span>
-
-                            En este momento
-
-                        </span>
-
-                    </footer>
-
-
                     <header class="actividad-encabezado">
 
                         <p class="tipo-actividad">
@@ -294,23 +260,25 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:00">14:00</time>
+                                <time datetime="14:00">
+                                    14:00
+                                </time>
                                 –
-                                <time datetime="15:00">15:00</time>
+                                <time datetime="15:00">
+                                    15:00
+                                </time>
                             </dd>
 
                         </div>
 
                     </dl>
 
-                </article>
 
-
-                <!-- =========================================
-                     ACTIVIDAD ACTUAL 2
-                     ========================================= -->
-                <article class="actividad-actual">
-
+                    <!--
+                        Se mantiene al final en el orden semántico
+                        del documento, aunque visualmente CSS lo
+                        posiciona en la parte superior.
+                    -->
                     <footer class="actividad-pie">
 
                         <span class="estado-en-vivo">
@@ -325,6 +293,13 @@
 
                     </footer>
 
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 2
+                     ========================================= -->
+                <article class="actividad-actual">
 
                     <header class="actividad-encabezado">
 
@@ -361,22 +336,19 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:15">14:15</time>
+                                <time datetime="14:15">
+                                    14:15
+                                </time>
                                 –
-                                <time datetime="15:10">15:10</time>
+                                <time datetime="15:10">
+                                    15:10
+                                </time>
                             </dd>
 
                         </div>
 
                     </dl>
 
-                </article>
-
-
-                <!-- =========================================
-                     ACTIVIDAD ACTUAL 3
-                     ========================================= -->
-                <article class="actividad-actual">
 
                     <footer class="actividad-pie">
 
@@ -392,6 +364,13 @@
 
                     </footer>
 
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 3
+                     ========================================= -->
+                <article class="actividad-actual">
 
                     <header class="actividad-encabezado">
 
@@ -428,14 +407,33 @@
                             </dt>
 
                             <dd>
-                                <time datetime="14:00">14:00</time>
+                                <time datetime="14:00">
+                                    14:00
+                                </time>
                                 –
-                                <time datetime="14:50">14:50</time>
+                                <time datetime="14:50">
+                                    14:50
+                                </time>
                             </dd>
 
                         </div>
 
                     </dl>
+
+
+                    <footer class="actividad-pie">
+
+                        <span class="estado-en-vivo">
+
+                            <span aria-hidden="true">
+                                ●
+                            </span>
+
+                            En este momento
+
+                        </span>
+
+                    </footer>
 
                 </article>
 
@@ -471,10 +469,6 @@
             </header>
 
 
-            <!--
-                Se utiliza una lista ordenada porque existe
-                un orden cronológico significativo.
-            -->
             <ol class="lista-proximas">
 
 
@@ -853,7 +847,9 @@
 
                         <li>
                             <time datetime="19:15">19:15</time>
-                            <span>Conversatorio de artistas</span>
+                            <span>
+                                Conversatorio de artistas
+                            </span>
                         </li>
 
                     </ol>
@@ -946,7 +942,7 @@
             <div class="lista-cambios">
 
 
-                <!-- TRASLADO -->
+                <!-- ACTIVIDAD TRASLADADA -->
                 <article class="cambio cambio-traslado">
 
                     <header class="cambio-encabezado">
