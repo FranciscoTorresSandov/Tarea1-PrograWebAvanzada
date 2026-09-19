@@ -117,7 +117,11 @@
 
         <!-- =================================================
              NAVEGACIÓN PRINCIPAL
-             ================================================= -->
+             =================================================
+
+             Flexbox resuelve la distribución de los enlaces
+             porque constituye una estructura unidimensional.
+        -->
         <nav
             class="navegacion-principal"
             aria-label="Navegación del festival"
@@ -171,7 +175,17 @@
 
     <!-- =====================================================
          CONTENIDO PRINCIPAL
-         ===================================================== -->
+         =====================================================
+
+         A partir de este commit, <main> constituye el Grid
+         principal del Caso 2.
+
+         El Grid base conserva una sola columna porque seguimos
+         aplicando mobile-first.
+
+         En el Commit 11 estas mismas áreas serán reorganizadas
+         para tableta y escritorio mediante media queries.
+    -->
     <main
         id="contenido-principal"
         class="contenedor contenido-festival"
@@ -180,6 +194,7 @@
 
         <!-- =================================================
              AHORA
+             Área Grid: ahora
              ================================================= -->
         <section
             id="ahora"
@@ -220,6 +235,29 @@
                      ACTIVIDAD ACTUAL 1
                      ========================================= -->
                 <article class="actividad-actual">
+
+                    <!--
+                        Esta etiqueta será posicionada de forma
+                        absoluta dentro de la tarjeta.
+
+                        La tarjeta utiliza position: relative,
+                        por lo que la etiqueta permanece asociada
+                        únicamente a esta actividad.
+                    -->
+                    <footer class="actividad-pie">
+
+                        <span class="estado-en-vivo">
+
+                            <span aria-hidden="true">
+                                ●
+                            </span>
+
+                            En este momento
+
+                        </span>
+
+                    </footer>
+
 
                     <header class="actividad-encabezado">
 
@@ -265,6 +303,13 @@
 
                     </dl>
 
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 2
+                     ========================================= -->
+                <article class="actividad-actual">
 
                     <footer class="actividad-pie">
 
@@ -280,13 +325,6 @@
 
                     </footer>
 
-                </article>
-
-
-                <!-- =========================================
-                     ACTIVIDAD ACTUAL 2
-                     ========================================= -->
-                <article class="actividad-actual">
 
                     <header class="actividad-encabezado">
 
@@ -332,6 +370,13 @@
 
                     </dl>
 
+                </article>
+
+
+                <!-- =========================================
+                     ACTIVIDAD ACTUAL 3
+                     ========================================= -->
+                <article class="actividad-actual">
 
                     <footer class="actividad-pie">
 
@@ -347,13 +392,6 @@
 
                     </footer>
 
-                </article>
-
-
-                <!-- =========================================
-                     ACTIVIDAD ACTUAL 3
-                     ========================================= -->
-                <article class="actividad-actual">
 
                     <header class="actividad-encabezado">
 
@@ -399,21 +437,6 @@
 
                     </dl>
 
-
-                    <footer class="actividad-pie">
-
-                        <span class="estado-en-vivo">
-
-                            <span aria-hidden="true">
-                                ●
-                            </span>
-
-                            En este momento
-
-                        </span>
-
-                    </footer>
-
                 </article>
 
             </div>
@@ -423,6 +446,7 @@
 
         <!-- =================================================
              PRÓXIMAS ACTIVIDADES
+             Área Grid: programacion
              ================================================= -->
         <section
             id="programacion"
@@ -448,8 +472,8 @@
 
 
             <!--
-                Se utiliza <ol> porque existe un orden
-                cronológico significativo.
+                Se utiliza una lista ordenada porque existe
+                un orden cronológico significativo.
             -->
             <ol class="lista-proximas">
 
@@ -652,6 +676,7 @@
 
         <!-- =================================================
              PROGRAMACIÓN POR ESCENARIOS
+             Área Grid: escenarios
              ================================================= -->
         <section
             id="escenarios"
@@ -676,19 +701,10 @@
             </header>
 
 
-            <!--
-                Esta colección se resuelve mediante CSS Grid.
-
-                En teléfono utiliza una columna.
-                Las siguientes versiones reorganizarán
-                la misma cuadrícula al aumentar el ancho.
-            -->
             <div class="grid-escenarios">
 
 
-                <!-- =========================================
-                     ESCENARIO CENTRAL
-                     ========================================= -->
+                <!-- ESCENARIO CENTRAL -->
                 <article class="tarjeta-escenario">
 
                     <header class="escenario-encabezado">
@@ -739,9 +755,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     TEATRO
-                     ========================================= -->
+                <!-- TEATRO -->
                 <article class="tarjeta-escenario">
 
                     <header class="escenario-encabezado">
@@ -792,9 +806,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     ZONA CULTURAL
-                     ========================================= -->
+                <!-- ZONA CULTURAL -->
                 <article class="tarjeta-escenario">
 
                     <header class="escenario-encabezado">
@@ -849,9 +861,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     ZONA FAMILIAR
-                     ========================================= -->
+                <!-- ZONA FAMILIAR -->
                 <article class="tarjeta-escenario">
 
                     <header class="escenario-encabezado">
@@ -908,12 +918,8 @@
 
         <!-- =================================================
              CAMBIOS IMPORTANTES
-             =================================================
-
-             Se utiliza <aside> porque los avisos complementan
-             la programación principal y llaman la atención
-             sobre modificaciones relevantes.
-        -->
+             Área Grid: cambios
+             ================================================= -->
         <aside
             id="cambios"
             class="seccion seccion-cambios"
@@ -940,9 +946,7 @@
             <div class="lista-cambios">
 
 
-                <!-- =========================================
-                     CAMBIO 1 - TRASLADO
-                     ========================================= -->
+                <!-- TRASLADO -->
                 <article class="cambio cambio-traslado">
 
                     <header class="cambio-encabezado">
@@ -991,9 +995,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     CAMBIO 2 - HORARIO
-                     ========================================= -->
+                <!-- CAMBIO DE HORARIO -->
                 <article class="cambio cambio-horario">
 
                     <header class="cambio-encabezado">
@@ -1041,9 +1043,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     CAMBIO 3 - CANCELACIÓN
-                     ========================================= -->
+                <!-- CANCELACIÓN -->
                 <article class="cambio cambio-cancelacion">
 
                     <header class="cambio-encabezado">
@@ -1092,9 +1092,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     CAMBIO 4 - ESCENARIO
-                     ========================================= -->
+                <!-- CAMBIO DE ESCENARIO -->
                 <article class="cambio cambio-escenario">
 
                     <header class="cambio-encabezado">
@@ -1148,14 +1146,9 @@
 
 
         <!-- =================================================
-             SERVICIOS DISPONIBLES
-             =================================================
-
-             Se incluyen ocho servicios, superando el mínimo
-             de seis solicitado por la consigna.
-
-             La colección se organiza mediante CSS Grid.
-        -->
+             SERVICIOS
+             Área Grid: servicios
+             ================================================= -->
         <section
             id="servicios"
             class="seccion seccion-servicios"
@@ -1182,9 +1175,7 @@
             <div class="grid-servicios">
 
 
-                <!-- =========================================
-                     SERVICIO 1
-                     ========================================= -->
+                <!-- ALIMENTACIÓN -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1240,9 +1231,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 2
-                     ========================================= -->
+                <!-- BAÑOS -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1298,9 +1287,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 3
-                     ========================================= -->
+                <!-- PRIMEROS AUXILIOS -->
                 <article class="servicio servicio-prioritario">
 
                     <header class="servicio-encabezado">
@@ -1356,9 +1343,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 4
-                     ========================================= -->
+                <!-- HIDRATACIÓN -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1414,9 +1399,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 5
-                     ========================================= -->
+                <!-- INFORMACIÓN -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1472,9 +1455,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 6
-                     ========================================= -->
+                <!-- ACCESIBILIDAD -->
                 <article class="servicio servicio-accesible">
 
                     <header class="servicio-encabezado">
@@ -1530,9 +1511,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 7
-                     ========================================= -->
+                <!-- ESTACIONAMIENTO -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1588,9 +1567,7 @@
                 </article>
 
 
-                <!-- =========================================
-                     SERVICIO 8
-                     ========================================= -->
+                <!-- OBJETOS PERDIDOS -->
                 <article class="servicio">
 
                     <header class="servicio-encabezado">
@@ -1652,6 +1629,7 @@
 
         <!-- =================================================
              INFORMACIÓN GENERAL
+             Área Grid: informacion
              ================================================= -->
         <section
             id="informacion"

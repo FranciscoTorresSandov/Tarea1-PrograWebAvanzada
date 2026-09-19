@@ -2,20 +2,20 @@
    CASO 2
    PANEL PÚBLICO DE INFORMACIÓN DE UN FESTIVAL
 
-   Commit 9:
-   - Se mantiene el enfoque mobile-first.
-   - Se mantienen las actividades actuales y próximas.
-   - Se mantiene CSS Grid para programación por escenarios.
-   - Se incorporan cuatro tipos de cambios importantes.
-   - Los cambios se distinguen mediante texto, símbolos,
-     borde y color.
-   - Se incorporan ocho servicios para los asistentes.
-   - Los servicios se organizan mediante CSS Grid.
-   - Se eliminan los últimos placeholders de contenido.
+   Commit 10:
+   - Se mantiene todo el contenido obligatorio.
+   - El contenido principal pasa a utilizar CSS Grid.
+   - Se definen áreas para Ahora, Programación, Escenarios,
+     Cambios, Servicios e Información.
+   - El Grid base conserva una columna por ser mobile-first.
+   - Flexbox continúa resolviendo elementos internos.
+   - Las etiquetas "En este momento" utilizan
+     position:absolute dentro de tarjetas relativas.
+   - El posicionamiento no sustituye Grid ni Flexbox.
+   - Se evita !important.
 
-   En el Commit 10 se desarrollará el layout general,
-   se ampliará el uso coordinado de Grid y Flexbox y se
-   incorporará position de forma justificada.
+   En el Commit 11 se añadirán los breakpoints definitivos
+   para tableta y escritorio.
    ========================================================== */
 
 
@@ -25,24 +25,18 @@
 
 :root {
 
-    /* ------------------------------------------------------
-       Identidad visual del festival
-       ------------------------------------------------------ */
+    /* Identidad visual */
     --color-primario: #502070;
     --color-primario-oscuro: #341247;
     --color-secundario: #d95d39;
 
-    /* ------------------------------------------------------
-       Acentos
-       ------------------------------------------------------ */
+    /* Acentos */
     --color-acento: #f2bd4b;
 
     --color-en-vivo: #b42318;
     --color-en-vivo-fondo: #fff0ee;
 
-    /* ------------------------------------------------------
-       Categorías
-       ------------------------------------------------------ */
+    /* Categorías */
     --color-musica: #7a337f;
     --color-danza: #a43e64;
     --color-teatro: #385e8d;
@@ -50,9 +44,7 @@
     --color-infantil: #28705a;
     --color-gastronomia: #a54924;
 
-    /* ------------------------------------------------------
-       Cambios importantes
-       ------------------------------------------------------ */
+    /* Cambios */
     --color-traslado: #385e8d;
     --color-traslado-fondo: #edf4fb;
 
@@ -65,44 +57,32 @@
     --color-cambio-escenario: #7a337f;
     --color-cambio-escenario-fondo: #f8effa;
 
-    /* ------------------------------------------------------
-       Servicios
-       ------------------------------------------------------ */
+    /* Servicios */
     --color-servicio: #375f54;
     --color-servicio-fondo: #eff8f4;
 
     --color-servicio-prioritario: #a12626;
     --color-servicio-prioritario-fondo: #fff3f2;
 
-    /* ------------------------------------------------------
-       Fondos
-       ------------------------------------------------------ */
+    /* Fondos */
     --color-fondo: #fff8f2;
     --color-superficie: #ffffff;
     --color-superficie-alterna: #f7f0fa;
     --color-fondo-suave: #fffdfb;
 
-    /* ------------------------------------------------------
-       Texto
-       ------------------------------------------------------ */
+    /* Texto */
     --color-texto: #2c2230;
     --color-texto-secundario: #655968;
     --color-texto-claro: #ffffff;
 
-    /* ------------------------------------------------------
-       Bordes
-       ------------------------------------------------------ */
+    /* Bordes */
     --color-borde: #ded2e2;
     --color-borde-suave: #eadfeb;
 
-    /* ------------------------------------------------------
-       Foco accesible
-       ------------------------------------------------------ */
+    /* Foco */
     --color-foco: #ffd972;
 
-    /* ------------------------------------------------------
-       Espaciado
-       ------------------------------------------------------ */
+    /* Espaciado */
     --espacio-2xs: 0.25rem;
     --espacio-xs: 0.5rem;
     --espacio-sm: 0.75rem;
@@ -111,31 +91,25 @@
     --espacio-xl: 2rem;
     --espacio-2xl: 3rem;
 
-    /* ------------------------------------------------------
-       Radios
-       ------------------------------------------------------ */
+    /* Radios */
     --radio-sm: 0.5rem;
     --radio-md: 0.9rem;
     --radio-lg: 1.4rem;
 
-    /* ------------------------------------------------------
-       Sombras
-       ------------------------------------------------------ */
+    /* Sombras */
     --sombra-suave:
         0 0.3rem 1.2rem rgba(80, 32, 112, 0.08);
 
     --sombra-destacada:
         0 0.5rem 1.7rem rgba(80, 32, 112, 0.14);
 
-    /* ------------------------------------------------------
-       Contenedor
-       ------------------------------------------------------ */
+    /* Contenedor */
     --ancho-contenido: 75rem;
 }
 
 
 /* ==========================================================
-   2. MODELO DE CAJA
+   2. MODELO DE CAJA GLOBAL
    ========================================================== */
 
 *,
@@ -164,14 +138,18 @@ body {
 
     line-height: 1.5;
 
-    color: var(--color-texto);
-    background-color: var(--color-fondo);
+    color:
+        var(--color-texto);
+
+    background-color:
+        var(--color-fondo);
 }
 
 
 .contenedor {
     width: 92%;
-    max-width: var(--ancho-contenido);
+    max-width:
+        var(--ancho-contenido);
 
     margin-inline: auto;
 }
@@ -274,7 +252,7 @@ p {
 
 
 /* ==========================================================
-   7. ENCABEZADO DEL FESTIVAL
+   7. ENCABEZADO
    ========================================================== */
 
 .encabezado-festival {
@@ -472,21 +450,93 @@ p {
 
 
 /* ==========================================================
-   10. CONTENIDO PRINCIPAL
+   10. GRID PRINCIPAL DEL FESTIVAL
    ========================================================== */
 
+/*
+   Este es el layout principal del Caso 2.
+
+   La configuración base conserva una sola columna
+   debido al enfoque mobile-first.
+
+   Se utilizan nombres de áreas para que la posterior
+   reorganización de tableta/escritorio pueda realizarse
+   sin modificar el HTML.
+*/
 .contenido-festival {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr);
+
+    grid-template-areas:
+        "ahora"
+        "programacion"
+        "escenarios"
+        "cambios"
+        "servicios"
+        "informacion";
+
+    gap:
+        var(--espacio-lg);
+
+    align-items: start;
+
     padding-block:
         var(--espacio-lg)
         var(--espacio-xl);
 }
 
 
+/* ==========================================================
+   11. ÁREAS DEL GRID PRINCIPAL
+   ========================================================== */
+
+.ahora {
+    grid-area: ahora;
+}
+
+
+.seccion-proximas {
+    grid-area: programacion;
+}
+
+
+.seccion-escenarios {
+    grid-area: escenarios;
+}
+
+
+.seccion-cambios {
+    grid-area: cambios;
+}
+
+
+.seccion-servicios {
+    grid-area: servicios;
+}
+
+
+.seccion-informacion {
+    grid-area: informacion;
+}
+
+
+/* ==========================================================
+   12. SECCIONES PRINCIPALES
+   ========================================================== */
+
+/*
+   El espacio entre secciones ya es responsabilidad del
+   gap del Grid principal.
+
+   Por esa razón no necesitamos margin-bottom para
+   construir el layout.
+*/
 .seccion {
     min-width: 0;
 
-    margin-bottom:
-        var(--espacio-lg);
+    margin: 0;
 
     padding:
         var(--espacio-lg);
@@ -539,13 +589,10 @@ p {
 
 
 /* ==========================================================
-   11. SECCIÓN "AHORA"
+   13. SECCIÓN AHORA
    ========================================================== */
 
 .ahora {
-    padding:
-        var(--espacio-lg);
-
     background:
         var(--color-superficie-alterna);
 
@@ -598,7 +645,8 @@ p {
 
 
 /* ==========================================================
-   12. ACTIVIDADES ACTUALES
+   14. ACTIVIDADES ACTUALES
+   FLEXBOX
    ========================================================== */
 
 .actividades-ahora {
@@ -610,10 +658,30 @@ p {
 }
 
 
+/* ==========================================================
+   15. TARJETAS ACTUALES
+   POSITION RELATIVE
+   ========================================================== */
+
+/*
+   Cada actividad crea su propio contexto de
+   posicionamiento.
+
+   La etiqueta "En este momento" se posiciona respecto
+   a esta tarjeta y no respecto a la página completa.
+*/
 .actividad-actual {
+    position: relative;
+
     min-width: 0;
 
+    /*
+        El espacio superior adicional evita que la
+        etiqueta absoluta tape el contenido.
+    */
     padding:
+        4.25rem
+        var(--espacio-lg)
         var(--espacio-lg);
 
     background-color:
@@ -634,81 +702,34 @@ p {
 }
 
 
-.actividad-encabezado {
-    margin-bottom:
-        var(--espacio-lg);
-}
-
-
-.tipo-actividad {
-    margin-bottom:
-        var(--espacio-2xs);
-
-    color:
-        var(--color-secundario);
-
-    font-size: 0.72rem;
-    font-weight: 700;
-
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-
-.actividad-encabezado h3 {
-    margin-bottom: 0;
-
-    font-size: 1.2rem;
-}
-
-
 /* ==========================================================
-   13. DATOS DE ACTIVIDADES ACTUALES
+   16. ETIQUETA "EN ESTE MOMENTO"
+   POSITION ABSOLUTE
    ========================================================== */
 
-.actividad-datos {
-    margin-bottom:
-        var(--espacio-lg);
+/*
+   Este es el uso justificado de position del Caso 2.
+
+   No construye el layout de la página.
+
+   Únicamente superpone una etiqueta contextual sobre
+   cada tarjeta que representa una actividad en curso.
+*/
+.actividad-pie {
+    position: absolute;
+
+    top:
+        var(--espacio-md);
+
+    right:
+        var(--espacio-md);
+
+    z-index: 1;
+
+    max-width:
+        calc(100% - (var(--espacio-md) * 2));
 }
 
-
-.dato-actividad {
-    padding-block:
-        var(--espacio-sm);
-
-    border-top:
-        0.0625rem
-        solid
-        var(--color-borde);
-}
-
-
-.dato-actividad dt {
-    margin-bottom:
-        var(--espacio-2xs);
-
-    color:
-        var(--color-texto-secundario);
-
-    font-size: 0.7rem;
-    font-weight: 700;
-
-    text-transform: uppercase;
-}
-
-
-.dato-actividad dd {
-    margin-left: 0;
-    margin-bottom: 0;
-
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-
-/* ==========================================================
-   14. ESTADO EN VIVO
-   ========================================================== */
 
 .estado-en-vivo {
     display: inline-flex;
@@ -742,7 +763,84 @@ p {
 
 
 /* ==========================================================
-   15. PRÓXIMAS ACTIVIDADES
+   17. ENCABEZADO Y DATOS DE ACTIVIDADES ACTUALES
+   ========================================================== */
+
+.actividad-encabezado {
+    margin-bottom:
+        var(--espacio-lg);
+}
+
+
+.tipo-actividad {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-secundario);
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+
+.actividad-encabezado h3 {
+    margin-bottom: 0;
+
+    font-size: 1.2rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+.actividad-datos {
+    margin-bottom: 0;
+}
+
+
+.dato-actividad {
+    min-width: 0;
+
+    padding-block:
+        var(--espacio-sm);
+
+    border-top:
+        0.0625rem
+        solid
+        var(--color-borde);
+}
+
+
+.dato-actividad dt {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.dato-actividad dd {
+    margin-left: 0;
+    margin-bottom: 0;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   18. PRÓXIMAS ACTIVIDADES
    FLEXBOX
    ========================================================== */
 
@@ -846,7 +944,7 @@ p {
 
 
 /* ==========================================================
-   16. CATEGORÍAS
+   19. CATEGORÍAS
    ========================================================== */
 
 .categoria-actividad {
@@ -915,10 +1013,16 @@ p {
 
 
 /* ==========================================================
-   17. PROGRAMACIÓN POR ESCENARIOS
+   20. PROGRAMACIÓN POR ESCENARIOS
    CSS GRID
    ========================================================== */
 
+/*
+   Grid es apropiado aquí porque la colección deberá
+   permitir comparar varios escenarios en filas y columnas.
+
+   La configuración inicial conserva una columna.
+*/
 .grid-escenarios {
     display: grid;
 
@@ -931,7 +1035,7 @@ p {
 
 
 /* ==========================================================
-   18. TARJETAS DE ESCENARIO
+   21. TARJETAS DE ESCENARIO
    ========================================================== */
 
 .tarjeta-escenario {
@@ -1018,13 +1122,21 @@ p {
 }
 
 
+.escenario-encabezado > div {
+    min-width: 0;
+}
+
+
 .escenario-encabezado h3 {
     margin-bottom: 0;
+
+    overflow-wrap: anywhere;
 }
 
 
 /* ==========================================================
-   19. PROGRAMACIÓN INTERNA DE ESCENARIOS
+   22. PROGRAMACIÓN INTERNA
+   FLEXBOX
    ========================================================== */
 
 .programacion-escenario {
@@ -1042,6 +1154,8 @@ p {
 
     gap:
         var(--espacio-md);
+
+    min-width: 0;
 
     padding-block:
         var(--espacio-sm);
@@ -1089,16 +1203,10 @@ p {
 
 
 /* ==========================================================
-   20. CAMBIOS IMPORTANTES
+   23. CAMBIOS IMPORTANTES
+   FLEXBOX
    ========================================================== */
 
-/*
-   Los avisos comienzan en una columna debido al
-   enfoque mobile-first.
-
-   Cada cambio conserva texto explícito, de modo que
-   el significado no depende únicamente del color.
-*/
 .lista-cambios {
     display: flex;
     flex-direction: column;
@@ -1220,7 +1328,7 @@ p {
 
 
 /* ==========================================================
-   21. TIPOS DE CAMBIO
+   24. TIPOS DE CAMBIO
    ========================================================== */
 
 .cambio-traslado {
@@ -1295,17 +1403,10 @@ p {
 
 
 /* ==========================================================
-   22. SERVICIOS
+   25. SERVICIOS
    CSS GRID
    ========================================================== */
 
-/*
-   Los servicios se organizan mediante Grid.
-
-   En teléfono existe una sola columna.
-   Posteriormente las media queries podrán aumentar
-   el número de columnas sin modificar el HTML.
-*/
 .grid-servicios {
     display: grid;
 
@@ -1449,7 +1550,7 @@ p {
 
 
 /* ==========================================================
-   23. INFORMACIÓN GENERAL
+   26. INFORMACIÓN GENERAL
    ========================================================== */
 
 .seccion-informacion p {
@@ -1464,7 +1565,7 @@ p {
 
 
 /* ==========================================================
-   24. PIE DE PÁGINA
+   27. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {
@@ -1496,7 +1597,7 @@ p {
 
 
 /* ==========================================================
-   25. PREFERENCIA DE MOVIMIENTO REDUCIDO
+   28. MOVIMIENTO REDUCIDO
    ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {
