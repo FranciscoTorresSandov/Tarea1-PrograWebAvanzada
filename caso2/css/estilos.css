@@ -2,17 +2,20 @@
    CASO 2
    PANEL PÚBLICO DE INFORMACIÓN DE UN FESTIVAL
 
-   Commit 8:
-   - Se mantiene la base mobile-first.
-   - Se mantienen encabezado, navegación y sección Ahora.
-   - Se agregan seis próximas actividades.
-   - Se agregan cuatro espacios de programación.
-   - CSS Grid comienza a resolver específicamente la
-     programación por escenarios.
-   - Flexbox se utiliza para las próximas actividades.
-   - Todavía no se aplican breakpoints de tableta/escritorio.
-   - Cambios importantes y servicios se completarán
-     en el Commit 9.
+   Commit 9:
+   - Se mantiene el enfoque mobile-first.
+   - Se mantienen las actividades actuales y próximas.
+   - Se mantiene CSS Grid para programación por escenarios.
+   - Se incorporan cuatro tipos de cambios importantes.
+   - Los cambios se distinguen mediante texto, símbolos,
+     borde y color.
+   - Se incorporan ocho servicios para los asistentes.
+   - Los servicios se organizan mediante CSS Grid.
+   - Se eliminan los últimos placeholders de contenido.
+
+   En el Commit 10 se desarrollará el layout general,
+   se ampliará el uso coordinado de Grid y Flexbox y se
+   incorporará position de forma justificada.
    ========================================================== */
 
 
@@ -22,17 +25,24 @@
 
 :root {
 
-    /* Identidad visual del festival */
+    /* ------------------------------------------------------
+       Identidad visual del festival
+       ------------------------------------------------------ */
     --color-primario: #502070;
     --color-primario-oscuro: #341247;
     --color-secundario: #d95d39;
 
-    /* Acentos */
+    /* ------------------------------------------------------
+       Acentos
+       ------------------------------------------------------ */
     --color-acento: #f2bd4b;
+
     --color-en-vivo: #b42318;
     --color-en-vivo-fondo: #fff0ee;
 
-    /* Categorías */
+    /* ------------------------------------------------------
+       Categorías
+       ------------------------------------------------------ */
     --color-musica: #7a337f;
     --color-danza: #a43e64;
     --color-teatro: #385e8d;
@@ -40,25 +50,59 @@
     --color-infantil: #28705a;
     --color-gastronomia: #a54924;
 
-    /* Fondos */
+    /* ------------------------------------------------------
+       Cambios importantes
+       ------------------------------------------------------ */
+    --color-traslado: #385e8d;
+    --color-traslado-fondo: #edf4fb;
+
+    --color-horario: #765814;
+    --color-horario-fondo: #fff8dc;
+
+    --color-cancelacion: #a12626;
+    --color-cancelacion-fondo: #fff0f0;
+
+    --color-cambio-escenario: #7a337f;
+    --color-cambio-escenario-fondo: #f8effa;
+
+    /* ------------------------------------------------------
+       Servicios
+       ------------------------------------------------------ */
+    --color-servicio: #375f54;
+    --color-servicio-fondo: #eff8f4;
+
+    --color-servicio-prioritario: #a12626;
+    --color-servicio-prioritario-fondo: #fff3f2;
+
+    /* ------------------------------------------------------
+       Fondos
+       ------------------------------------------------------ */
     --color-fondo: #fff8f2;
     --color-superficie: #ffffff;
     --color-superficie-alterna: #f7f0fa;
     --color-fondo-suave: #fffdfb;
 
-    /* Texto */
+    /* ------------------------------------------------------
+       Texto
+       ------------------------------------------------------ */
     --color-texto: #2c2230;
     --color-texto-secundario: #655968;
     --color-texto-claro: #ffffff;
 
-    /* Bordes */
+    /* ------------------------------------------------------
+       Bordes
+       ------------------------------------------------------ */
     --color-borde: #ded2e2;
     --color-borde-suave: #eadfeb;
 
-    /* Foco accesible */
+    /* ------------------------------------------------------
+       Foco accesible
+       ------------------------------------------------------ */
     --color-foco: #ffd972;
 
-    /* Espaciado */
+    /* ------------------------------------------------------
+       Espaciado
+       ------------------------------------------------------ */
     --espacio-2xs: 0.25rem;
     --espacio-xs: 0.5rem;
     --espacio-sm: 0.75rem;
@@ -67,19 +111,25 @@
     --espacio-xl: 2rem;
     --espacio-2xl: 3rem;
 
-    /* Radios */
+    /* ------------------------------------------------------
+       Radios
+       ------------------------------------------------------ */
     --radio-sm: 0.5rem;
     --radio-md: 0.9rem;
     --radio-lg: 1.4rem;
 
-    /* Sombras */
+    /* ------------------------------------------------------
+       Sombras
+       ------------------------------------------------------ */
     --sombra-suave:
         0 0.3rem 1.2rem rgba(80, 32, 112, 0.08);
 
     --sombra-destacada:
         0 0.5rem 1.7rem rgba(80, 32, 112, 0.14);
 
-    /* Contenedor */
+    /* ------------------------------------------------------
+       Contenedor
+       ------------------------------------------------------ */
     --ancho-contenido: 75rem;
 }
 
@@ -154,7 +204,8 @@ dd {
 
 
 h1 {
-    margin-bottom: var(--espacio-sm);
+    margin-bottom:
+        var(--espacio-sm);
 
     font-size: 2rem;
     line-height: 1.05;
@@ -162,7 +213,8 @@ h1 {
 
 
 h2 {
-    margin-bottom: var(--espacio-xs);
+    margin-bottom:
+        var(--espacio-xs);
 
     font-size: 1.45rem;
     line-height: 1.2;
@@ -170,7 +222,8 @@ h2 {
 
 
 h3 {
-    margin-bottom: var(--espacio-xs);
+    margin-bottom:
+        var(--espacio-xs);
 
     font-size: 1.1rem;
     line-height: 1.25;
@@ -178,7 +231,8 @@ h3 {
 
 
 p {
-    margin-bottom: var(--espacio-md);
+    margin-bottom:
+        var(--espacio-md);
 }
 
 
@@ -198,7 +252,8 @@ p {
         var(--espacio-sm)
         var(--espacio-md);
 
-    color: var(--color-primario-oscuro);
+    color:
+        var(--color-primario-oscuro);
 
     font-weight: 700;
 
@@ -213,7 +268,8 @@ p {
 
 
 .salto-contenido:focus {
-    top: var(--espacio-md);
+    top:
+        var(--espacio-md);
 }
 
 
@@ -222,7 +278,8 @@ p {
    ========================================================== */
 
 .encabezado-festival {
-    color: var(--color-texto-claro);
+    color:
+        var(--color-texto-claro);
 
     background-color:
         var(--color-primario);
@@ -233,7 +290,8 @@ p {
     display: flex;
     flex-direction: column;
 
-    gap: var(--espacio-lg);
+    gap:
+        var(--espacio-lg);
 
     padding-block:
         var(--espacio-xl)
@@ -250,7 +308,8 @@ p {
     margin-bottom:
         var(--espacio-xs);
 
-    color: var(--color-acento);
+    color:
+        var(--color-acento);
 
     font-size: 0.75rem;
     font-weight: 700;
@@ -278,7 +337,8 @@ p {
     display: flex;
     flex-direction: column;
 
-    gap: var(--espacio-sm);
+    gap:
+        var(--espacio-sm);
 }
 
 
@@ -348,7 +408,8 @@ p {
     display: flex;
     flex-wrap: wrap;
 
-    gap: var(--espacio-xs);
+    gap:
+        var(--espacio-xs);
 
     margin: 0;
     padding: 0;
@@ -370,7 +431,8 @@ p {
     padding:
         var(--espacio-sm);
 
-    color: var(--color-texto-claro);
+    color:
+        var(--color-texto-claro);
 
     font-size: 0.82rem;
     font-weight: 700;
@@ -504,7 +566,8 @@ p {
     justify-content: space-between;
     align-items: flex-start;
 
-    gap: var(--espacio-sm);
+    gap:
+        var(--espacio-sm);
 }
 
 
@@ -680,6 +743,7 @@ p {
 
 /* ==========================================================
    15. PRÓXIMAS ACTIVIDADES
+   FLEXBOX
    ========================================================== */
 
 .lista-proximas {
@@ -690,12 +754,6 @@ p {
 }
 
 
-/*
-   Flexbox resuelve cada fila cronológica.
-
-   La hora y el contenido forman una distribución
-   principalmente horizontal/unidimensional.
-*/
 .proxima-actividad {
     display: flex;
 
@@ -788,13 +846,9 @@ p {
 
 
 /* ==========================================================
-   16. CATEGORÍAS DE ACTIVIDADES
+   16. CATEGORÍAS
    ========================================================== */
 
-/*
-   Las categorías utilizan texto explícito.
-   El color es únicamente una ayuda visual adicional.
-*/
 .categoria-actividad {
     display: inline-block;
 
@@ -865,16 +919,6 @@ p {
    CSS GRID
    ========================================================== */
 
-/*
-   Esta sección comienza a utilizar CSS Grid.
-
-   Debido al enfoque mobile-first, inicialmente existe
-   una sola columna.
-
-   Grid es apropiado porque posteriormente necesitaremos
-   comparar varios escenarios tanto horizontal como
-   verticalmente.
-*/
 .grid-escenarios {
     display: grid;
 
@@ -980,7 +1024,7 @@ p {
 
 
 /* ==========================================================
-   19. PROGRAMACIÓN INTERNA DE CADA ESCENARIO
+   19. PROGRAMACIÓN INTERNA DE ESCENARIOS
    ========================================================== */
 
 .programacion-escenario {
@@ -1045,28 +1089,367 @@ p {
 
 
 /* ==========================================================
-   20. SECCIONES EN DESARROLLO
+   20. CAMBIOS IMPORTANTES
    ========================================================== */
 
-.seccion-pendiente {
-    background-color:
-        var(--color-fondo-suave);
+/*
+   Los avisos comienzan en una columna debido al
+   enfoque mobile-first.
 
-    border-style:
-        dashed;
+   Cada cambio conserva texto explícito, de modo que
+   el significado no depende únicamente del color.
+*/
+.lista-cambios {
+    display: flex;
+    flex-direction: column;
+
+    gap:
+        var(--espacio-md);
 }
 
 
-.seccion-pendiente > p {
+.cambio {
+    min-width: 0;
+
+    padding:
+        var(--espacio-md);
+
+    border:
+        0.0625rem
+        solid
+        var(--color-borde);
+
+    border-left-width:
+        0.35rem;
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.cambio-encabezado {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap:
+        var(--espacio-md);
+
+    margin-bottom:
+        var(--espacio-md);
+}
+
+
+.cambio-simbolo {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 2.6rem;
+    height: 2.6rem;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    border:
+        0.0625rem
+        solid
+        currentColor;
+
+    border-radius:
+        50%;
+}
+
+
+.cambio-encabezado > div {
+    min-width: 0;
+}
+
+
+.cambio-tipo {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+.cambio-encabezado h3 {
     margin-bottom: 0;
 
-    color:
-        var(--color-texto-secundario);
+    font-size: 1rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+.cambio-descripcion {
+    font-size: 0.9rem;
+
+    overflow-wrap: anywhere;
+}
+
+
+.cambio-pie {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    gap:
+        var(--espacio-sm);
+
+    padding-top:
+        var(--espacio-sm);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    border-top:
+        0.0625rem
+        solid
+        currentColor;
 }
 
 
 /* ==========================================================
-   21. INFORMACIÓN GENERAL
+   21. TIPOS DE CAMBIO
+   ========================================================== */
+
+.cambio-traslado {
+    color:
+        var(--color-traslado);
+
+    background-color:
+        var(--color-traslado-fondo);
+
+    border-color:
+        var(--color-traslado);
+}
+
+
+.cambio-traslado .cambio-descripcion {
+    color: #385067;
+}
+
+
+.cambio-horario {
+    color:
+        var(--color-horario);
+
+    background-color:
+        var(--color-horario-fondo);
+
+    border-color:
+        var(--color-horario);
+}
+
+
+.cambio-horario .cambio-descripcion {
+    color: #665724;
+}
+
+
+.cambio-cancelacion {
+    color:
+        var(--color-cancelacion);
+
+    background-color:
+        var(--color-cancelacion-fondo);
+
+    border-color:
+        var(--color-cancelacion);
+
+    box-shadow:
+        var(--sombra-suave);
+}
+
+
+.cambio-cancelacion .cambio-descripcion {
+    color: #6e3333;
+}
+
+
+.cambio-escenario {
+    color:
+        var(--color-cambio-escenario);
+
+    background-color:
+        var(--color-cambio-escenario-fondo);
+
+    border-color:
+        var(--color-cambio-escenario);
+}
+
+
+.cambio-escenario .cambio-descripcion {
+    color: #614068;
+}
+
+
+/* ==========================================================
+   22. SERVICIOS
+   CSS GRID
+   ========================================================== */
+
+/*
+   Los servicios se organizan mediante Grid.
+
+   En teléfono existe una sola columna.
+   Posteriormente las media queries podrán aumentar
+   el número de columnas sin modificar el HTML.
+*/
+.grid-servicios {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr);
+
+    gap:
+        var(--espacio-md);
+}
+
+
+.servicio {
+    min-width: 0;
+
+    padding:
+        var(--espacio-md);
+
+    background-color:
+        var(--color-servicio-fondo);
+
+    border:
+        0.0625rem
+        solid
+        #bed8cf;
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.servicio-prioritario {
+    background-color:
+        var(--color-servicio-prioritario-fondo);
+
+    border-color:
+        #deb6b3;
+}
+
+
+.servicio-encabezado {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--espacio-md);
+
+    margin-bottom:
+        var(--espacio-md);
+}
+
+
+.servicio-icono {
+    display: inline-flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 2.8rem;
+    height: 2.8rem;
+
+    color:
+        var(--color-texto-claro);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+
+    background-color:
+        var(--color-servicio);
+
+    border-radius:
+        var(--radio-md);
+}
+
+
+.servicio-prioritario .servicio-icono {
+    background-color:
+        var(--color-servicio-prioritario);
+}
+
+
+.servicio-encabezado h3 {
+    margin-bottom: 0;
+
+    font-size: 1rem;
+}
+
+
+.servicio-descripcion {
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.86rem;
+}
+
+
+.servicio-datos {
+    margin-bottom: 0;
+}
+
+
+.servicio-datos > div {
+    padding-block:
+        var(--espacio-sm);
+
+    border-top:
+        0.0625rem
+        solid
+        rgba(55, 95, 84, 0.2);
+}
+
+
+.servicio-datos dt {
+    margin-bottom:
+        var(--espacio-2xs);
+
+    color:
+        var(--color-texto-secundario);
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+
+.servicio-datos dd {
+    margin-left: 0;
+    margin-bottom: 0;
+
+    font-size: 0.84rem;
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   23. INFORMACIÓN GENERAL
    ========================================================== */
 
 .seccion-informacion p {
@@ -1081,7 +1464,7 @@ p {
 
 
 /* ==========================================================
-   22. PIE DE PÁGINA
+   24. PIE DE PÁGINA
    ========================================================== */
 
 .pie-pagina {
@@ -1113,7 +1496,7 @@ p {
 
 
 /* ==========================================================
-   23. PREFERENCIA DE MOVIMIENTO REDUCIDO
+   25. PREFERENCIA DE MOVIMIENTO REDUCIDO
    ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {

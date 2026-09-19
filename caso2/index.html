@@ -6,8 +6,8 @@
 
     <!--
         La interfaz se desarrolla bajo un enfoque mobile-first.
-        Esta meta permite que el navegador utilice el ancho
-        real del dispositivo.
+        Esta meta permite que el navegador utilice correctamente
+        el ancho real del dispositivo.
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -64,8 +64,8 @@
 
 
             <!--
-                Datos generales solicitados:
-                fecha, ubicación y horario.
+                Datos generales solicitados por la consigna:
+                fecha, ubicación y horario general.
             -->
             <div
                 class="datos-festival"
@@ -423,13 +423,7 @@
 
         <!-- =================================================
              PRÓXIMAS ACTIVIDADES
-             =================================================
-
-             La lista contiene seis actividades futuras.
-
-             Se utiliza <ol> porque existe un orden cronológico
-             significativo.
-        -->
+             ================================================= -->
         <section
             id="programacion"
             class="seccion seccion-proximas"
@@ -453,12 +447,13 @@
             </header>
 
 
+            <!--
+                Se utiliza <ol> porque existe un orden
+                cronológico significativo.
+            -->
             <ol class="lista-proximas">
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 1
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -467,7 +462,6 @@
                     >
                         15:00
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -492,9 +486,6 @@
                 </li>
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 2
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -503,7 +494,6 @@
                     >
                         15:20
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -528,9 +518,6 @@
                 </li>
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 3
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -539,7 +526,6 @@
                     >
                         16:00
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -564,9 +550,6 @@
                 </li>
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 4
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -575,7 +558,6 @@
                     >
                         16:15
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -600,9 +582,6 @@
                 </li>
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 5
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -611,7 +590,6 @@
                     >
                         17:00
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -636,9 +614,6 @@
                 </li>
 
 
-                <!-- =========================================
-                     PRÓXIMA ACTIVIDAD 6
-                     ========================================= -->
                 <li class="proxima-actividad">
 
                     <time
@@ -647,7 +622,6 @@
                     >
                         17:30
                     </time>
-
 
                     <article class="proxima-contenido">
 
@@ -678,12 +652,7 @@
 
         <!-- =================================================
              PROGRAMACIÓN POR ESCENARIOS
-             =================================================
-
-             Esta sección utiliza CSS Grid porque el objetivo
-             final será permitir la comparación simultánea entre
-             diferentes espacios del festival.
-        -->
+             ================================================= -->
         <section
             id="escenarios"
             class="seccion seccion-escenarios"
@@ -708,11 +677,11 @@
 
 
             <!--
-                Grid específico de escenarios.
+                Esta colección se resuelve mediante CSS Grid.
 
-                En teléfono funciona con una sola columna.
-                Posteriormente las media queries permitirán
-                comparar varios escenarios simultáneamente.
+                En teléfono utiliza una columna.
+                Las siguientes versiones reorganizarán
+                la misma cuadrícula al aumentar el ancho.
             -->
             <div class="grid-escenarios">
 
@@ -746,54 +715,23 @@
                     <ol class="programacion-escenario">
 
                         <li>
-
-                            <time datetime="14:00">
-                                14:00
-                            </time>
-
-                            <span>
-                                Los Viajeros
-                            </span>
-
+                            <time datetime="14:00">14:00</time>
+                            <span>Los Viajeros</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="15:00">
-                                15:00
-                            </time>
-
-                            <span>
-                                Ensamble de Percusión Latina
-                            </span>
-
+                            <time datetime="15:00">15:00</time>
+                            <span>Ensamble de Percusión Latina</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="16:00">
-                                16:00
-                            </time>
-
-                            <span>
-                                Ritmos de Nuestra Tierra
-                            </span>
-
+                            <time datetime="16:00">16:00</time>
+                            <span>Ritmos de Nuestra Tierra</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="18:00">
-                                18:00
-                            </time>
-
-                            <span>
-                                Sonidos del Caribe
-                            </span>
-
+                            <time datetime="18:00">18:00</time>
+                            <span>Sonidos del Caribe</span>
                         </li>
 
                     </ol>
@@ -830,54 +768,23 @@
                     <ol class="programacion-escenario">
 
                         <li>
-
-                            <time datetime="14:15">
-                                14:15
-                            </time>
-
-                            <span>
-                                Historias del Barrio
-                            </span>
-
+                            <time datetime="14:15">14:15</time>
+                            <span>Historias del Barrio</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="15:30">
-                                15:30
-                            </time>
-
-                            <span>
-                                Improvisación Abierta
-                            </span>
-
+                            <time datetime="15:30">15:30</time>
+                            <span>Improvisación Abierta</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="17:00">
-                                17:00
-                            </time>
-
-                            <span>
-                                Cartas desde San José
-                            </span>
-
+                            <time datetime="17:00">17:00</time>
+                            <span>Cartas desde San José</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="19:00">
-                                19:00
-                            </time>
-
-                            <span>
-                                Voces en Escena
-                            </span>
-
+                            <time datetime="19:00">19:00</time>
+                            <span>Voces en Escena</span>
                         </li>
 
                     </ol>
@@ -914,54 +821,27 @@
                     <ol class="programacion-escenario">
 
                         <li>
-
-                            <time datetime="14:30">
-                                14:30
-                            </time>
-
-                            <span>
-                                Exposición de artesanía nacional
-                            </span>
-
+                            <time datetime="14:30">14:30</time>
+                            <span>Exposición de artesanía nacional</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="15:20">
-                                15:20
-                            </time>
-
+                            <time datetime="15:20">15:20</time>
                             <span>
                                 Patrimonio cultural y memoria colectiva
                             </span>
-
                         </li>
 
-
                         <li>
-
-                            <time datetime="17:30">
-                                17:30
-                            </time>
-
+                            <time datetime="17:30">17:30</time>
                             <span>
                                 Sabores tradicionales costarricenses
                             </span>
-
                         </li>
 
-
                         <li>
-
-                            <time datetime="19:15">
-                                19:15
-                            </time>
-
-                            <span>
-                                Conversatorio de artistas
-                            </span>
-
+                            <time datetime="19:15">19:15</time>
+                            <span>Conversatorio de artistas</span>
                         </li>
 
                     </ol>
@@ -998,54 +878,23 @@
                     <ol class="programacion-escenario">
 
                         <li>
-
-                            <time datetime="14:00">
-                                14:00
-                            </time>
-
-                            <span>
-                                Pequeños Exploradores
-                            </span>
-
+                            <time datetime="14:00">14:00</time>
+                            <span>Pequeños Exploradores</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="16:15">
-                                16:15
-                            </time>
-
-                            <span>
-                                Cuentos del Bosque
-                            </span>
-
+                            <time datetime="16:15">16:15</time>
+                            <span>Cuentos del Bosque</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="17:30">
-                                17:30
-                            </time>
-
-                            <span>
-                                Juegos tradicionales
-                            </span>
-
+                            <time datetime="17:30">17:30</time>
+                            <span>Juegos tradicionales</span>
                         </li>
 
-
                         <li>
-
-                            <time datetime="18:45">
-                                18:45
-                            </time>
-
-                            <span>
-                                Teatro de títeres
-                            </span>
-
+                            <time datetime="18:45">18:45</time>
+                            <span>Teatro de títeres</span>
                         </li>
 
                     </ol>
@@ -1059,11 +908,15 @@
 
         <!-- =================================================
              CAMBIOS IMPORTANTES
-             Commit 9
-             ================================================= -->
+             =================================================
+
+             Se utiliza <aside> porque los avisos complementan
+             la programación principal y llaman la atención
+             sobre modificaciones relevantes.
+        -->
         <aside
             id="cambios"
-            class="seccion seccion-pendiente"
+            class="seccion seccion-cambios"
         >
 
             <header class="encabezado-seccion">
@@ -1076,24 +929,236 @@
                     Cambios importantes
                 </h2>
 
+                <p class="descripcion-seccion">
+                    Modificaciones recientes que deben considerarse
+                    antes de trasladarse a una actividad.
+                </p>
+
             </header>
 
-            <p>
-                Los cambios de horario, escenario, traslados y
-                cancelaciones serán incorporados en la siguiente
-                etapa del desarrollo.
-            </p>
+
+            <div class="lista-cambios">
+
+
+                <!-- =========================================
+                     CAMBIO 1 - TRASLADO
+                     ========================================= -->
+                <article class="cambio cambio-traslado">
+
+                    <header class="cambio-encabezado">
+
+                        <span
+                            class="cambio-simbolo"
+                            aria-hidden="true"
+                        >
+                            ↔
+                        </span>
+
+                        <div>
+
+                            <p class="cambio-tipo">
+                                Actividad trasladada
+                            </p>
+
+                            <h3>
+                                Taller de Máscaras Tradicionales
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="cambio-descripcion">
+                        La actividad fue trasladada desde el área
+                        exterior hacia el Salón Cultural debido a
+                        condiciones climáticas.
+                    </p>
+
+
+                    <footer class="cambio-pie">
+
+                        <span>
+                            Nueva ubicación: Salón Cultural
+                        </span>
+
+                        <time datetime="13:40">
+                            Actualizado 13:40
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     CAMBIO 2 - HORARIO
+                     ========================================= -->
+                <article class="cambio cambio-horario">
+
+                    <header class="cambio-encabezado">
+
+                        <span
+                            class="cambio-simbolo"
+                            aria-hidden="true"
+                        >
+                            ◷
+                        </span>
+
+                        <div>
+
+                            <p class="cambio-tipo">
+                                Cambio de horario
+                            </p>
+
+                            <h3>
+                                Conversatorio de artistas
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="cambio-descripcion">
+                        El conversatorio inicialmente programado
+                        para las 18:45 comenzará a las 19:15.
+                    </p>
+
+
+                    <footer class="cambio-pie">
+
+                        <span>
+                            Nuevo horario: 19:15
+                        </span>
+
+                        <time datetime="13:55">
+                            Actualizado 13:55
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     CAMBIO 3 - CANCELACIÓN
+                     ========================================= -->
+                <article class="cambio cambio-cancelacion">
+
+                    <header class="cambio-encabezado">
+
+                        <span
+                            class="cambio-simbolo"
+                            aria-hidden="true"
+                        >
+                            ×
+                        </span>
+
+                        <div>
+
+                            <p class="cambio-tipo">
+                                Actividad cancelada
+                            </p>
+
+                            <h3>
+                                Presentación de Danza Contemporánea
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="cambio-descripcion">
+                        La presentación prevista para las 17:15
+                        fue cancelada por una situación logística
+                        del grupo participante.
+                    </p>
+
+
+                    <footer class="cambio-pie">
+
+                        <span>
+                            Estado: Cancelada
+                        </span>
+
+                        <time datetime="14:05">
+                            Actualizado 14:05
+                        </time>
+
+                    </footer>
+
+                </article>
+
+
+                <!-- =========================================
+                     CAMBIO 4 - ESCENARIO
+                     ========================================= -->
+                <article class="cambio cambio-escenario">
+
+                    <header class="cambio-encabezado">
+
+                        <span
+                            class="cambio-simbolo"
+                            aria-hidden="true"
+                        >
+                            →
+                        </span>
+
+                        <div>
+
+                            <p class="cambio-tipo">
+                                Cambio de escenario
+                            </p>
+
+                            <h3>
+                                Taller de Juegos Tradicionales
+                            </h3>
+
+                        </div>
+
+                    </header>
+
+
+                    <p class="cambio-descripcion">
+                        La actividad se mantiene a las 17:30,
+                        pero se realizará en Zona Familiar B
+                        en lugar de Zona Familiar A.
+                    </p>
+
+
+                    <footer class="cambio-pie">
+
+                        <span>
+                            Nuevo espacio: Zona Familiar B
+                        </span>
+
+                        <time datetime="14:15">
+                            Actualizado 14:15
+                        </time>
+
+                    </footer>
+
+                </article>
+
+            </div>
 
         </aside>
 
 
         <!-- =================================================
-             SERVICIOS
-             Commit 9
-             ================================================= -->
+             SERVICIOS DISPONIBLES
+             =================================================
+
+             Se incluyen ocho servicios, superando el mínimo
+             de seis solicitado por la consigna.
+
+             La colección se organiza mediante CSS Grid.
+        -->
         <section
             id="servicios"
-            class="seccion seccion-pendiente"
+            class="seccion seccion-servicios"
         >
 
             <header class="encabezado-seccion">
@@ -1106,12 +1171,481 @@
                     Servicios disponibles
                 </h2>
 
+                <p class="descripcion-seccion">
+                    Recursos de apoyo disponibles para facilitar
+                    la permanencia de los asistentes en el festival.
+                </p>
+
             </header>
 
-            <p>
-                Los servicios para asistentes serán incorporados
-                durante la siguiente etapa.
-            </p>
+
+            <div class="grid-servicios">
+
+
+                <!-- =========================================
+                     SERVICIO 1
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            ALI
+                        </span>
+
+                        <h3>
+                            Alimentación
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Puestos de comidas tradicionales,
+                        opciones vegetarianas y refrigerios.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Corredor gastronómico
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                10:00 – 20:30
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 2
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            WC
+                        </span>
+
+                        <h3>
+                            Baños
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Servicios sanitarios distribuidos cerca
+                        de las principales zonas del festival.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Sectores norte y sur
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                Durante todo el evento
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 3
+                     ========================================= -->
+                <article class="servicio servicio-prioritario">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            +
+                        </span>
+
+                        <h3>
+                            Primeros auxilios
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Atención básica para emergencias médicas
+                        y valoración inicial de asistentes.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Junto al puesto de información
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                Durante todo el evento
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 4
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            H2O
+                        </span>
+
+                        <h3>
+                            Hidratación
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Estaciones para rellenar botellas
+                        reutilizables con agua potable.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Tres puntos señalizados
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                Durante todo el evento
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 5
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            i
+                        </span>
+
+                        <h3>
+                            Información
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Orientación sobre programación,
+                        escenarios, servicios y ubicación.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Entrada principal
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                09:30 – 21:00
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 6
+                     ========================================= -->
+                <article class="servicio servicio-accesible">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            ACC
+                        </span>
+
+                        <h3>
+                            Accesibilidad
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Rutas accesibles, zonas preferenciales
+                        y asistencia para personas que la requieran.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Todos los espacios principales
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                Durante todo el evento
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 7
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            P
+                        </span>
+
+                        <h3>
+                            Estacionamiento
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Áreas habilitadas para vehículos
+                        particulares y bicicletas.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Acceso oeste
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                Según capacidad
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+
+                <!-- =========================================
+                     SERVICIO 8
+                     ========================================= -->
+                <article class="servicio">
+
+                    <header class="servicio-encabezado">
+
+                        <span
+                            class="servicio-icono"
+                            aria-hidden="true"
+                        >
+                            OP
+                        </span>
+
+                        <h3>
+                            Objetos perdidos
+                        </h3>
+
+                    </header>
+
+
+                    <p class="servicio-descripcion">
+                        Recepción y consulta de objetos encontrados
+                        durante la jornada del festival.
+                    </p>
+
+
+                    <dl class="servicio-datos">
+
+                        <div>
+
+                            <dt>
+                                Ubicación
+                            </dt>
+
+                            <dd>
+                                Puesto de información
+                            </dd>
+
+                        </div>
+
+                        <div>
+
+                            <dt>
+                                Disponibilidad
+                            </dt>
+
+                            <dd>
+                                10:00 – 21:00
+                            </dd>
+
+                        </div>
+
+                    </dl>
+
+                </article>
+
+            </div>
 
         </section>
 
@@ -1136,11 +1670,13 @@
 
             </header>
 
+
             <p>
                 El festival se desarrolla en distintos espacios
                 del Parque Metropolitano La Sabana durante toda
                 la jornada.
             </p>
+
 
             <p>
                 Se recomienda consultar este panel durante el día
